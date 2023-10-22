@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install server dependencies
+      - name: Install client dependencies
         run: yarn install
 
       

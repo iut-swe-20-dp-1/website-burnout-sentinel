@@ -1,0 +1,22 @@
+:root {
+    --purple1: #7366FF;
+    --purple2: #300722;
+    --pink1: #FFDFDF;
+    --pink2: #FF7373; 
+    --pink3: #FFA5A5;
+    --yellow1: #FFCC79;
+
+}
+
+/* Hide scrollbar for all elements */
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #7366FF;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #FFDFDF;
+}
