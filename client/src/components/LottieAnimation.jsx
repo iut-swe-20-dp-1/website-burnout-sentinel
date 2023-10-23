@@ -5,7 +5,7 @@ const LottieAnimation = ({ lottie_animation_data,
     is_looped,
     animation_speed,
     end_frame,
-    width, }) => {
+    style_classes, }) => {
     return (
         <LottiePlayer
         loop={is_looped}
@@ -13,7 +13,7 @@ const LottieAnimation = ({ lottie_animation_data,
         play
         speed={animation_speed}
         segments={[0, end_frame]}
-        className={`${width}`}
+        className={`${style_classes}`}
       />
   )
 }
