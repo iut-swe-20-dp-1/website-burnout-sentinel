@@ -2,8 +2,13 @@ import React from 'react';
 import Button from './Button';
 import HeroSectionAnimation from "../assets/HeroSectionAnimation.json";
 import LottieAnimation from './LottieAnimation';
+import { useNavigate } from 'react-router-dom';
 
 const SectionHero = () => {
+    const navigate = useNavigate();
+    const redirect_to_register = () => {
+        navigate('/register');
+    }
     return (
         <section id="home" className="flex flex-col justify-center p-10 mt-20 my-6">
             <div className="relative w-full max-w-full lg:max-w-6xl xl:max-w-screen-2xl mx-auto">
@@ -27,7 +32,7 @@ const SectionHero = () => {
                                 <Button
                                     additional_classes={"my-8 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"}
                                     button_text={"Get Started"}
-                                    flex_start={true}
+                                    flex_start={true} button_function={redirect_to_register}
                                 />
                             </div>
                             <div className="hidden lg:flex relative w-full lg:ml-16">
