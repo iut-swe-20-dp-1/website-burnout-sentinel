@@ -5,7 +5,7 @@ import LottieAnimation from './LottieAnimation';
 
 const SectionHero = () => {
     return (
-        <section id="home" className="flex flex-col justify-center p-10 my-6">
+        <section id="home" className="flex flex-col justify-center p-10 mt-20 my-6">
             <div className="relative w-full max-w-full lg:max-w-6xl xl:max-w-screen-2xl mx-auto">
                 <div className="absolute inset-0 -mr-3.5 bg-gradient-to-r from-[#FFA5A5] to-[#7366FF] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:rotate-3 rounded-3xl"></div>
                 <div className="relative bg-white shadow-lg rounded-3xl py-10">
