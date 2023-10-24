@@ -1,4 +1,6 @@
-export const footerLinks = [
+
+//landing page 
+export const landingPageFooterLinks = [
     {
         title: 'Getting Started',
         links: [
@@ -31,3 +33,13 @@ export const footerLinks = [
         ],
     },
 ];
+
+//base data form
+export const baseDataInputFields = [
+    { name: 'gsr', type: 'number', label: 'GSR' },
+    { name: 'bpm', type: 'number', label: 'BPM' },
+    { name: 'obj_temp', type: 'number', label: 'Object Temperature (°C)' },
+    { name: 'ambient_temp', type: 'number', label: 'Ambient Temperature (°C)' },
+  ];
+
+export const addBaseDataEmbedLink = "https://docs.google.com/forms/d/e/1FAIpQLSfB82j1rHE-v1jGUg3DjTUXbu6yncGTwBOzT8BCg3zb0KyRBA/viewform?embedded=true"
