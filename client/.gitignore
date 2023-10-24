@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 
-../burnoutSentinel/env/
+burnoutSentinel/env/
