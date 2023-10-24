@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {footerLinks} from "../utils/content"
+import {landingPageFooterLinks} from "../utils/content"
 
 const Footer = () => {
     return (
         <footer className="pt-10 sm:mt-10 w-full">
             <div className="max-w-6xl m-auto text-[#300722] flex flex-wrap justify-left">
-                {footerLinks.map((section, index) => (
+                {landingPageFooterLinks.map((section, index) => (
                     <div key={index} className="p-5 w-1/2 sm:w-1/2 md:w-1/3">
                         <div className="text-xs uppercase font-medium mb-6">{section.title}</div>
                         {section.links.map((link, i) => (
