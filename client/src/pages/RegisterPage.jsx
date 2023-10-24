@@ -29,7 +29,7 @@ const RegisterPage = () => {
         dob: '',
         gender: '',
         password: '',
-        confirm_password: '',
+        confirm_password: '', 
     });
 
     return (

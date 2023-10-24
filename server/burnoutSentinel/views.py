@@ -54,3 +54,25 @@ def signIn(request):
             return HttpResponse(response_data, status=501)
     else:
         return HttpResponse("This endpoint requires a POST method", status=405)
+
+
+@csrf_exempt
+def signUp(request):
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        email = data.get('email')
+        password = data.get('password')
+
+        name = data.get('name')
+        username = data.get('username')
+        dob = data.get('dob')
+        gender = data.get('gender')
+        try:
+            user = auth.create_user_with_email_and_password(email, password)
+            response_data = {"Successfully Created user"}
+            return HttpResponse(response_data, status=201)
+        except Exception as error:
+            response_data = {"error: "+ str(error.args[1])}
+            return HttpResponse(response_data, status=501)
+    else:
+        return HttpResponse("This endpoint requires a POST method", status=405)
