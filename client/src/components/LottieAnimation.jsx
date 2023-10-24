@@ -2,19 +2,22 @@ import React from 'react'
 import LottiePlayer from "react-lottie-player"
 
 const LottieAnimation = ({ lottie_animation_data,
-    is_looped,
-    animation_speed,
-    end_frame,
-    style_classes, }) => {
-    return (
-        <LottiePlayer
-        loop={is_looped}
-        animationData={lottie_animation_data}
-        play
-        speed={animation_speed}
-        segments={[0, end_frame]}
-        className={`${style_classes}`}
-      />
+  is_looped,
+  animation_speed,
+  start_frame,
+  end_frame,
+  style_classes, }) => {
+  const startFrame = start_frame ? start_frame : 0
+  const endFrame = end_frame ? end_frame : lottie_animation_data.op;
+  return (
+    <LottiePlayer
+      loop={is_looped}
+      animationData={lottie_animation_data}
+      play
+      speed={animation_speed}
+      segments={[startFrame, endFrame]}
+      className={`${style_classes}`}
+    />
   )
 }
 
