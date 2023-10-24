@@ -1,5 +1,5 @@
 from django.shortcuts import render
-# import pyrebase
+import pyrebase
 
 # import firebase_admin
 # from firebase_admin import credentials, initialize_app
@@ -12,6 +12,7 @@ from django.shortcuts import render
 firebaseConfig = {
     'apiKey': "AIzaSyB75594T8ZxZPmk2Q_2Mfd4O5sOT_iGCW0",
     'authDomain': "dp1-burnout-sentinel.firebaseapp.com",
+    'databaseURL': "https://dp1-burnout-sentinel-default-rtdb.asia-southeast1.firebasedatabase.app/",
     'projectId': "dp1-burnout-sentinel",
     'storageBucket': "dp1-burnout-sentinel.appspot.com",
     'messagingSenderId': "755877975811",
@@ -23,4 +24,5 @@ firebaseConfig = {
 
 # var app = initializeApp(firebaseConfig)
 # var analytics = getAnalytics(app)
-# firebase = pyrebase.innitialize_app(firebaseConfig)
+firebase = pyrebase.initialize_app(firebaseConfig)
+auth = firebase.auth()
