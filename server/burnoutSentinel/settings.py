@@ -37,17 +37,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_CREDENTIALS = True  # Allow cookies to be included in the requests
+CORS_ALLOW_ALL_ORIGINS = True  # Set to False to specify allowed origins
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:1573",  # Replace with your React frontend's URL
+    # Add other allowed origins as needed
+]
+
 
 ROOT_URLCONF = 'burnoutSentinel.urls'
 

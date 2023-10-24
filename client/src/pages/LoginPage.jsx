@@ -3,10 +3,11 @@ import LottieAnimation from '../components/LottieAnimation'
 import LoginAnimation from '../assets/LoginAnimation.json'
 import { inputFieldClass, labelClass, secondaryButtonClass } from '../utils/styles'
 import Button from '../components/Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const navigate=useNavigate();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -19,13 +20,65 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form data submitted:', formData);
+    
+        const loginUrl = 'http://127.0.0.1:8000/signin/'; 
+    
+        // Create a JSON object with the email and password data
+        const loginData = {
+            email: formData.email,
+            password: formData.password,
+        };
+    
+        // Send a POST request to your Django backend
+        fetch(loginUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body: JSON.stringify(loginData),
+        })
+        .then(response => {
+            if(response.status === 200){
+                console.log("yes baby")
+                navigate('/home')
+            }
+            return response.text()})  // Parse the response as text
+        .then(data => {
+            // Handle the response from the Django backend
+            console.log('Response from the server:', data);
+            // You can perform actions based on the response here
+        })
+        .catch(error => {
+            console.error('Error while sending data to the server:', error);
+            // Handle errors as needed
+        });
     };
+    
+    
 
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
 
     return (
         <>
@@ -38,7 +91,7 @@ const LoginPage = () => {
                     </h2>
                 </div>
                 <div className="flex justify-center my-2 mx-4 md:mx-0">
-                    <form className="w-full max-w-4xl bg-white/70 rounded-lg shadow-md px-12 py-6" onSubmit={handleSubmit}>
+                    <form className="w-full max-w-4xl bg-white/70 rounded-lg shadow-md px-12 py-6" onSubmit={handleSubmit}> 
                         <LottieAnimation lottie_animation_data={LoginAnimation} style_classes={"w-3/6 mx-auto"} />
                         <div className="flex flex-wrap -mx-3 mb-6">
                             <div className="w-full md:w-full px-3 mb-6">
