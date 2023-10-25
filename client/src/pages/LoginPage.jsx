@@ -24,9 +24,9 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setError('')
-        setSuccess('')
-        setWait('Logging you in...')
+        setError('');
+        setSuccess('');
+        setWait('Logging you in...');
 
         const loginUrl = 'http://127.0.0.1:8000/signin/';
 
@@ -47,24 +47,29 @@ const LoginPage = () => {
         })
             .then(response => {
                 if (response.status === 200) {
-                    console.log("yes baby")
+                    console.log(JSON.stringify(response));
+                    setWait('');
+                    setError('');
+                    console.log("yes baby");
                     setSuccess('Successfully logged in!');
-                    navigate('/home')
+                    navigate('/home');
                 }
-                return response.text()
+                return response.text();
             })  // Parse the response as text
             .then(data => {
-                // Handle the response from the Django backend
+                setWait('');
+                setSuccess('')
+                setError('An error has occurred!');
                 console.log('Response from the server:', data);
-                // You can perform actions based on the response here
             })
             .catch(error => {
                 setWait('');
-                setError('An error has occured!');
+                setSuccess('')
+                setError('An error has occurred!');
                 console.error('Error while sending data to the server:', error);
-                // Handle errors as needed
             });
     };
+
 
 
 
@@ -103,7 +108,7 @@ const LoginPage = () => {
                 </div>
                 <div className="flex justify-center my-2 mx-4 md:mx-0">
                     <form className="w-full max-w-4xl bg-white/70 rounded-lg shadow-md px-12 py-6" onSubmit={handleSubmit}>
-                        <LottieAnimation lottie_animation_data={LoginAnimation} style_classes={"w-3/6 mx-auto"} />
+                        <LottieAnimation lottie_animation_data={LoginAnimation} start_frame={53} style_classes={"w-3/6 mx-auto"} />
                         <div className="flex flex-wrap -mx-3 mb-6">
                             <div className="w-full md:w-full px-3 mb-6">
                                 <label className={`${labelClass}`} htmlFor='email'>Email</label>
@@ -134,9 +139,9 @@ const LoginPage = () => {
                                 </label>
                             </div>
 
-                            {success && <FormMessage bg_color={"green-300"} message={success} />}
-                            {error && <FormMessage bg_color={"red-400"} message={error} />}
-                            {wait && <FormMessage bg_color={"yellow-300"} message={wait} />}
+                            {success && <FormMessage bg_class={"bg-green-300"} message={success} />}
+                            {error && <FormMessage bg_class={"bg-red-400"} message={error} />}
+                            {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
 
                             <div className="w-full md:w-full px-3">
                                 <Button
