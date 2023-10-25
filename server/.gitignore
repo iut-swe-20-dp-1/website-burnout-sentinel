@@ -11,4 +11,4 @@ venv
 dp1-burnout-sentinel-firebase-adminsdk-8kg3d-3b7fa1dfbe.json
 
 # ignore pycache
-burnoutSentinel/__pycache__
+**/__pycache__/
