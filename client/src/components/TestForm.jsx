@@ -3,16 +3,19 @@ import LottieAnimation from './LottieAnimation';
 import { closeButtonClass, inputFieldClass, labelClass } from '../utils/styles';
 import Button from './Button';
 import { baseDataInputFields } from '../utils/content';
+import StressScoreContent from './StressScoreContent';
 
 const TestForm = ({
     form_title, lottie_animation_data, animation_speed, end_frame, start_frame, setShowTestForm
 }) => {
+    const randomInt=Math.floor(Math.random() * 11)
     const [formData, setFormData] = useState({
         gsr: '',
         bpm: '',
         obj_temp: '',
         ambient_temp: '',
     });
+    const [success, setSuccess] = useState(false);
     const [file, setFile] = useState(null);
     const [next, setNext] = useState(false);
 
@@ -25,9 +28,10 @@ const TestForm = ({
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
+        setSuccess(true);
     }
 
     return (
@@ -41,10 +45,13 @@ const TestForm = ({
                 <div className="relative w-full max-w-full max-h-full">
                     <div className="add-bg-here min-h-screen flex flex-col w-full h-full bg-cover bg-fixed bg-center">
                         <div className="flex justify-center my-2 mx-4 md:mx-0">
+
                             <form className="w-full max-w-4xl overflow-y-auto max-h-[90vh] bg-white/90 rounded-lg shadow-md px-12 py-4 relative" onSubmit={handleSubmit}>
-                                <div className="text-right">
+                            <div className="text-right">
                                     <button type="button" className={`${closeButtonClass}`} onClick={() => setShowTestForm(false)}>Close</button>
                                 </div>
+                                {success ? <StressScoreContent message={"Based on your data, your score is"} score={randomInt}/> : (<>
+                                
                                 <div className='px-12 py-2'>
                                     <div className="text-center my-4">
                                         <h2 className="text-3xl font-bold text-[#7366FF] tracking-tight">
@@ -53,7 +60,7 @@ const TestForm = ({
                                     </div>
                                     <LottieAnimation
                                         lottie_animation_data={lottie_animation_data} start_frame={start_frame} end_frame={end_frame} animation_speed={animation_speed}
-                                        style_classes="w-3/6 mx-auto"
+                                        style_classes="w-5/6 mx-auto"
                                     />
                                     <div className="flex flex-wrap mx-3 mb-6">
                                         {/* form start  */}
@@ -85,9 +92,7 @@ const TestForm = ({
                                                     type={field.type}
                                                     name={field.name}
                                                     value={formData[field.name]}
-                                                    onChange={handleInputChange}
-                                                    required
-                                                />
+                                                    onChange={handleInputChange} />
                                             </div>
                                         ))}
                                     </div>
@@ -97,7 +102,9 @@ const TestForm = ({
                                             button_text={"Submit"}
                                             button_type={"submit"}
                                         />
-                                    </div></div>
+                                    </div>
+                                </div>
+                            </>)}
                             </form>
                         </div>
                     </div>
