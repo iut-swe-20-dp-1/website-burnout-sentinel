@@ -52,5 +52,10 @@ export const suggestions = [
     { lower: 9, upper: 10, suggestion: "Your stress levels are extremely high. Please seek help immediately from a mental health professional." }
 ];
 
-  
+export const ActivePageType = {
+    Homepage: "home",
+    History: "history",
+    Profile: "profile",
+    LearnMore: "learn-more",
+  };
   
