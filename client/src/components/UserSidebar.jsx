@@ -60,7 +60,7 @@ const UserSidebar = () => {
                             <div className="inline relative">
                                 <button type="button" className="inline-flex items-center relative px-2 border border-[#300722] rounded-full">
                                     <div className="px-1.5 font-semibold text-[#300722]">
-                                        nafisa_6240
+                                        nafisa
                                     </div>
                                     <div className="h-10 w-10  user cursor-pointer relative rounded-full my-1 ml-1 bg-cover bg-center bg-[url('https://i.pinimg.com/1200x/78/6f/75/786f7595ba1b9d812a24b0960e18563c.jpg')]">
                                     </div>

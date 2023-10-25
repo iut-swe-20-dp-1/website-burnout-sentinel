@@ -45,7 +45,7 @@ const RegisterPage = () => {
         .then(response => {
             if(response.status === 201){
                 console.log("yes baby")
-                navigate('/home')
+                navigate('/login')
             }
             return response.text()})  // Parse the response as text
         .then(data => {
