@@ -1,9 +1,11 @@
 env
-
 venv
 
+# Ignore .env file
 .env
 
+# Ignore .env/ folder and its contents
 .env/
 
+# Firebase admin sdk secret key
 dp1-burnout-sentinel-firebase-adminsdk-8kg3d-3b7fa1dfbe.json

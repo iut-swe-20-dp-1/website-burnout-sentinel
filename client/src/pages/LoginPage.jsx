@@ -24,12 +24,9 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setError('');
-        setSuccess('');
-        setWait('Logging you in...');
-
-        const loginUrl = 'http://127.0.0.1:8000/signin/';
-
+    
+        const loginUrl = 'http://127.0.0.1:8000/api/signin/'; 
+    
         // Create a JSON object with the email and password data
         const loginData = {
             email: formData.email,
