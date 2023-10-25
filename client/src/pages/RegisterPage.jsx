@@ -20,6 +20,9 @@ const RegisterPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form data submitted:', formData);
+        if(formData.confirm_password!==formData.password){
+            //show error message
+        }
     };
 
     const [formData, setFormData] = useState({
