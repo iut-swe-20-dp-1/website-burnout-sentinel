@@ -25,12 +25,12 @@ const SectionFeatures = () => {
                 <div className="container mx-auto px-4">
                     <div className="flex flex-wrap">
                         <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-                            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                            <div className="hover:scale-105 relative flex flex-col min-w-0 break-words bg-[#FFDFDF]/90 w-full mb-8 shadow-lg rounded-lg">
                                 <div className="px-4 py-5 flex-auto">
                                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-[#f65c5c]">
                                         <AiOutlineNumber />
                                     </div>
-                                    <h6 className="text-xl font-semibold">Stress Score</h6>
+                                    <h6 className="text-xl text-[#7366FF] font-bold">Stress Score</h6>
                                     <p className="mt-2 mb-4 text-[#300722]">
                                         Enter your data in CSV or in the form. The AI model will analyze your physiological data to give a stress score of 0-10.
                                     </p>
@@ -38,12 +38,12 @@ const SectionFeatures = () => {
                             </div>
                         </div>
                         <div className="w-full md:w-4/12 px-4 text-center">
-                            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                            <div className="hover:scale-105 relative flex flex-col min-w-0 break-words bg-[#FFDFDF]/90 w-full mb-8 shadow-lg rounded-lg">
                                 <div className="px-4 py-5 flex-auto">
                                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-[#7366FF]">
                                         <BiComment />
                                     </div>
-                                    <h6 className="text-xl font-semibold">Suggestions</h6>
+                                    <h6 className="text-xl font-bold text-[#7366FF]">Suggestions</h6>
                                     <p className="mt-2 mb-4 text-[#300722]">
                                         Receive suggestions based on your stress level that can be followed so you can achieve a balance with your stress.
                                     </p>
@@ -51,12 +51,12 @@ const SectionFeatures = () => {
                             </div>
                         </div>
                         <div className="pt-6 w-full md:w-4/12 px-4 text-center">
-                            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                            <div className="hover:scale-105 relative flex flex-col min-w-0 break-words bg-[#FFDFDF]/90 w-full mb-8 shadow-lg rounded-lg">
                                 <div className="px-4 py-5 flex-auto">
                                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-[#fdb540]">
                                     <AiOutlineHistory/>
                                     </div>
-                                    <h6 className="text-xl font-semibold">View History</h6>
+                                    <h6 className="text-xl font-bold text-[#7366FF]">View History</h6>
                                     <p className="mt-2 mb-4 text-[#300722]">
                                         View your stress history over time and keep track of your stress score in order to manage your stress.
                                     </p>
