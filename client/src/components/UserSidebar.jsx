@@ -5,7 +5,7 @@ import { BsPersonCircle } from 'react-icons/bs';
 import { HiInformationCircle } from 'react-icons/hi'
 import { IoExit } from 'react-icons/io5'
 import { BiSolidTimeFive } from 'react-icons/bi';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import logo from "../assets/logo.png"
 
 const UserSidebar = () => {
@@ -16,7 +16,9 @@ const UserSidebar = () => {
         { text: "Learn More", icon: <HiInformationCircle className={`${userSidebarIconClass}`} />, link: "/learn-more" },
     ];
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const location = useLocation();
+    const currentPath = location.pathname;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const handleLogOut = () => {
@@ -80,10 +82,10 @@ const UserSidebar = () => {
                             <div className="flex-1 px-3 divide-y space-y-1">
                                 <ul className="space-y-2 pb-2">
                                     {links.map((link, index) => (
-                                        <li key={index}>
+                                        <li key={index} className={`${currentPath === link.link ? 'bg-[#FFA5A5] rounded-lg' : ''}`}>
                                             <a
                                                 href={link.link}
-                                                className="flex items-center py-3 px-2 rounded-lg hover:bg-[#FFA5A5] text-[#300722] group"
+                                                className={`flex items-center py-3 px-2 rounded-lg hover:bg-[#FFA5A5] text-[#300722] group`}
                                             >
                                                 {link.icon}
                                                 <span className="ml-3 text-xl text-[#300722]">{link.text}</span>
