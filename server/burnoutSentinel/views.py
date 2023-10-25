@@ -6,10 +6,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from decouple import config
 
+
+
 # Import CORS decorators
 # from django.views.decorators.cors import ensure_csrf_cookie, never_cache
 # from corsheaders.decorators import cors_headers
 
+# config_path = '/path/to/your/.env'
+# config.read(config_path)
 
 
 # Access the values from the .env file

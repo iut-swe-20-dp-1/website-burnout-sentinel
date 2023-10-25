@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Button from '../components/Button';
 import { inputFieldClass, labelClass, secondaryButtonClass } from '../utils/styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import LottieAnimation from '../components/LottieAnimation';
 import RegisterAnimation from '../assets/RegisterAnimation.json'
 
 const RegisterPage = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const navigate=useNavigate();
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -19,7 +21,42 @@ const RegisterPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form data submitted:', formData);
+    
+        const loginUrl = 'http://127.0.0.1:8000/api/signup/'; 
+    
+        // Create a JSON object with the email and password data
+        const loginData = {
+            email: formData.email,
+            password: formData.password,
+            name: formData.name,
+            username: formData.username,
+            dob: formData.username,
+            gender: formData.gender,
+        };
+    
+        // Send a POST request to your Django backend
+        fetch(loginUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(loginData),
+        })
+        .then(response => {
+            if(response.status === 201){
+                console.log("yes baby")
+                navigate('/home')
+            }
+            return response.text()})  // Parse the response as text
+        .then(data => {
+            // Handle the response from the Django backend
+            console.log('Response from the server:', data);
+            // You can perform actions based on the response here
+        })
+        .catch(error => {
+            console.error('Error while sending data to the server:', error);
+            // Handle errors as needed
+        });
     };
 
     const [formData, setFormData] = useState({
