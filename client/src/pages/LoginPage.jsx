@@ -4,10 +4,14 @@ import LoginAnimation from '../assets/LoginAnimation.json'
 import { inputFieldClass, labelClass, secondaryButtonClass } from '../utils/styles'
 import Button from '../components/Button'
 import { Link, useNavigate } from 'react-router-dom'
+import FormMessage from '../components/FormMessage'
 
 const LoginPage = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const navigate=useNavigate();
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('')
+    const [wait, setWait] = useState('')
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -20,15 +24,18 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
-        const loginUrl = 'http://127.0.0.1:8000/signin/'; 
-    
+        setError('')
+        setSuccess('')
+        setWait('Logging you in...')
+
+        const loginUrl = 'http://127.0.0.1:8000/signin/';
+
         // Create a JSON object with the email and password data
         const loginData = {
             email: formData.email,
             password: formData.password,
         };
-    
+
         // Send a POST request to your Django backend
         fetch(loginUrl, {
             method: 'POST',
@@ -38,24 +45,28 @@ const LoginPage = () => {
             },
             body: JSON.stringify(loginData),
         })
-        .then(response => {
-            if(response.status === 200){
-                console.log("yes baby")
-                navigate('/home')
-            }
-            return response.text()})  // Parse the response as text
-        .then(data => {
-            // Handle the response from the Django backend
-            console.log('Response from the server:', data);
-            // You can perform actions based on the response here
-        })
-        .catch(error => {
-            console.error('Error while sending data to the server:', error);
-            // Handle errors as needed
-        });
+            .then(response => {
+                if (response.status === 200) {
+                    console.log("yes baby")
+                    setSuccess('Successfully logged in!');
+                    navigate('/home')
+                }
+                return response.text()
+            })  // Parse the response as text
+            .then(data => {
+                // Handle the response from the Django backend
+                console.log('Response from the server:', data);
+                // You can perform actions based on the response here
+            })
+            .catch(error => {
+                setWait('');
+                setError('An error has occured!');
+                console.error('Error while sending data to the server:', error);
+                // Handle errors as needed
+            });
     };
-    
-    
+
+
 
     const [formData, setFormData] = useState({
         email: '',
@@ -91,19 +102,19 @@ const LoginPage = () => {
                     </h2>
                 </div>
                 <div className="flex justify-center my-2 mx-4 md:mx-0">
-                    <form className="w-full max-w-4xl bg-white/70 rounded-lg shadow-md px-12 py-6" onSubmit={handleSubmit}> 
+                    <form className="w-full max-w-4xl bg-white/70 rounded-lg shadow-md px-12 py-6" onSubmit={handleSubmit}>
                         <LottieAnimation lottie_animation_data={LoginAnimation} style_classes={"w-3/6 mx-auto"} />
                         <div className="flex flex-wrap -mx-3 mb-6">
                             <div className="w-full md:w-full px-3 mb-6">
                                 <label className={`${labelClass}`} htmlFor='email'>Email</label>
-                                <input className={`${inputFieldClass}`} type='email'  name="email" value={formData.email} onChange={handleInputChange} required />
+                                <input className={`${inputFieldClass}`} type='email' name="email" value={formData.email} onChange={handleInputChange} required />
                             </div>
 
                             <div className="w-full md:w-full px-3 mb-6">
                                 <label className={`${labelClass}`} htmlFor='password'>Password</label>
                                 <input
                                     className={`${inputFieldClass}`}
-                                    type={showPassword ? 'text' : 'password'}  name="password" value={formData.password} onChange={handleInputChange} 
+                                    type={showPassword ? 'text' : 'password'} name="password" value={formData.password} onChange={handleInputChange}
                                     required
                                 />
                             </div>
@@ -122,6 +133,11 @@ const LoginPage = () => {
                                     </span>
                                 </label>
                             </div>
+
+                            {success && <FormMessage bg_color={"green-300"} message={success} />}
+                            {error && <FormMessage bg_color={"red-400"} message={error} />}
+                            {wait && <FormMessage bg_color={"yellow-300"} message={wait} />}
+
                             <div className="w-full md:w-full px-3">
                                 <Button
                                     additional_classes={"my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"}
