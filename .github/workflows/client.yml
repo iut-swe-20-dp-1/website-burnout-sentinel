@@ -1,13 +1,15 @@
-name: Client
+name: Client CI
 
 on:
   push:
     branches:
+      - staging
       - nafisa
     paths:
       - "client/**"
   pull_request:
     branches:
+      - staging
       - nafisa
     paths:
       - "client/**"
