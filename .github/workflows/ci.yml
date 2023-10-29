@@ -1,17 +1,20 @@
-name: Test
+name: Client
 
 on:
   push:
-    branches: [ "staging" ]
+    branches: ["nafisa"]
   pull_request:
-    branches: [ "staging" ]
-  
+    branches: ["nafisa"]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
+      - name: Move to client
+        uses: cd client
+
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -23,4 +26,5 @@ jobs:
       - name: Install client dependencies
         run: yarn install
 
-      
+      - name: Run server tests
+        run: yarn run test
