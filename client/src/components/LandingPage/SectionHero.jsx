@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from './Button';
-import HeroSectionAnimation from "../assets/HeroSectionAnimation.json";
-import LottieAnimation from './LottieAnimation';
+import Button from '../Button';
+import HeroSectionAnimation from "../../assets/HeroSectionAnimation.json";
+import LottieAnimation from '../LottieAnimation';
 import { useNavigate } from 'react-router-dom';
 
 const SectionHero = () => {

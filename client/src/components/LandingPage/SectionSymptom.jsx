@@ -1,9 +1,9 @@
 import React from 'react'
-import LottieAnimation from './LottieAnimation'
-import HeadacheAnimation from "../assets/HeadacheAnimation.json"
-import TiredAnimation from "../assets/TiredAnimation.json"
-import SocialWithdrawalAnimation from "../assets/SocialWithdrawalAnimation.json"
-import InsomniaAnimation from "../assets/InsomniaAnimation.json"
+import LottieAnimation from '../LottieAnimation'
+import HeadacheAnimation from "../../assets/HeadacheAnimation.json"
+import TiredAnimation from "../../assets/TiredAnimation.json"
+import SocialWithdrawalAnimation from "../../assets/SocialWithdrawalAnimation.json"
+import InsomniaAnimation from "../../assets/InsomniaAnimation.json"
 
 const SectionSymptom = () => {
     return (

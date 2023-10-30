@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {landingPageFooterLinks} from "../utils/content"
+import {landingPageFooterLinks} from "../../utils/content"
 
 const Footer = () => {
     return (

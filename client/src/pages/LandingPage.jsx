@@ -1,12 +1,12 @@
 import React from 'react'
 
 //components import
-import PublicNavbar from '../components/PublicNavbar'
-import SectionHero from '../components/SectionHero'
-import SectionSymptom from '../components/SectionSymptom'
-import SectionFeatures from '../components/SectionFeatures'
-import SectionAboutUs from '../components/SectionAboutUs'
-import Footer from '../components/Footer'
+import PublicNavbar from '../components/LandingPage/PublicNavbar'
+import SectionHero from '../components/LandingPage/SectionHero'
+import SectionSymptom from '../components/LandingPage/SectionSymptom'
+import SectionFeatures from '../components/LandingPage/SectionFeatures'
+import SectionAboutUs from '../components/LandingPage/SectionAboutUs'
+import Footer from '../components/LandingPage/Footer'
 
 const LandingPage = () => {
   return (
