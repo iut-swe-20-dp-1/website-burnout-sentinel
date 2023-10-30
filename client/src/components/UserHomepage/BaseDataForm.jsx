@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import LottieAnimation from './LottieAnimation';
-import { closeButtonClass, inputFieldClass, labelClass } from '../utils/styles';
-import Button from './Button';
-import { baseDataInputFields } from '../utils/content';
-import GoogleFormEmbed from './GoogleFormEmbed';
+import LottieAnimation from '../LottieAnimation';
+import { closeButtonClass, inputFieldClass, labelClass } from '../../utils/styles';
+import Button from '../Button';
+import { baseDataInputFields } from '../../utils/content';
+import GoogleFormEmbed from '../GoogleFormEmbed';
 import FormSuccess from './FormSuccess';
 
 const BaseDataForm = ({

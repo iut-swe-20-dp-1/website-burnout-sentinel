@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import LottieAnimation from './LottieAnimation';
-import ManThinkingAnimation from "../assets/ManThinkingAnimation.json";
-import { dashboardCardBgUrl, dashboardCardBgClass, dashboardCardClass } from '../utils/styles';
-import Button from './Button';
-import BottomNotification from './BottomNotification';
+import LottieAnimation from '../LottieAnimation';
+import ManThinkingAnimation from "../../assets/ManThinkingAnimation.json";
+import { dashboardCardBgUrl, dashboardCardBgClass, dashboardCardClass } from '../../utils/styles';
+import Button from '../Button';
+import BottomNotification from '../BottomNotification';
 
 const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, setShowTestForm, baseDataExists, setBaseDataExists }) => {
     const [showNotification, setShowNotification] = useState(false);

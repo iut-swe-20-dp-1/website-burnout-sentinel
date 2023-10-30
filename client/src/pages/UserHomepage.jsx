@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import UserSidebar from '../components/UserSidebar';
-import UserHomepageCards from '../components/UserHomepageCards';
+import UserHomepageCards from '../components/UserHomepage/UserHomepageCards';
 import DocumentsAnimation from '../assets/DocumentsAnimation.json';
 import DocumentsAnimation2 from '../assets/DocumentsAnimation2.json';
 import TakeTestAnimation from '../assets/TakeTestAnimation.json';
-import BaseDataForm from '../components/BaseDataForm';
-import TestForm from '../components/TestForm';
+import BaseDataForm from '../components/UserHomepage/BaseDataForm';
+import TestForm from '../components/UserHomepage/TestForm';
 
 const UserHomepage = () => {
   const [baseDataExists, setBaseDataExists] = useState(false);

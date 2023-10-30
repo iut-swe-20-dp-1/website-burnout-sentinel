@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import LottieAnimation from './LottieAnimation'
-import GettingScoresAnimation from '../assets/GettingScoresAnimation.json'
+import LottieAnimation from '../LottieAnimation'
+import GettingScoresAnimation from '../../assets/GettingScoresAnimation.json'
 import { HiInformationCircle } from 'react-icons/hi';
-import { suggestions } from '../utils/content';
+import { suggestions } from '../../utils/content';
 
 const StressScoreContent = ({ message, score }) => {
     const [count, setCount] = useState(0);

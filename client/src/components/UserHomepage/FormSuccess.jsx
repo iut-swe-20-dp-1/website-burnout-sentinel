@@ -1,6 +1,6 @@
 import React from 'react'
-import CheckMarkAnimation from '../assets/CheckMarkAnimation.json'
-import LottieAnimation from './LottieAnimation'
+import CheckMarkAnimation from '../../assets/CheckMarkAnimation.json'
+import LottieAnimation from '../LottieAnimation'
 
 const FormSuccess = ({ message }) => {
     return (
