@@ -142,7 +142,7 @@ const LoginPage = () => {
                             </div>
 
                             {success && <FormMessage bg_class={"green-300"} message={success} />}
-                            {error && !wait && <FormMessage bg_class={"red-300"} message={error} />}
+                            {error && !wait && <FormMessage bg_class={"red-400"} message={error} />}
                             {wait && <FormMessage bg_class={"yellow-300"} message={wait} />}
 
                             <div className="w-full md:w-full px-3">
