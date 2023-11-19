@@ -4,10 +4,15 @@ import { inputFieldClass, labelClass, secondaryButtonClass } from '../utils/styl
 import { Link, useNavigate } from 'react-router-dom';
 import LottieAnimation from '../components/LottieAnimation';
 import RegisterAnimation from '../assets/RegisterAnimation.json'
+import FormMessage from '../components/FormMessage';
 
 const RegisterPage = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const navigate=useNavigate();
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('')
+    const [message, setMessage] = useState('')
+    const [wait, setWait] = useState('')
+    const navigate = useNavigate();
 
 
     const togglePasswordVisibility = () => {
@@ -21,9 +26,17 @@ const RegisterPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
-        const loginUrl = 'http://127.0.0.1:8000/api/signup/'; 
-    
+        setMessage("")
+        setWait("Please wait...")
+
+        if (formData.password !== formData.confirm_password) {
+            setWait("")
+            setMessage("Your passwords do not match!")
+            return
+        }
+
+        const loginUrl = 'http://127.0.0.1:8000/api/signup/';
+
         // Create a JSON object with the email and password data
         const loginData = {
             email: formData.email,
@@ -33,7 +46,7 @@ const RegisterPage = () => {
             dob: formData.username,
             gender: formData.gender,
         };
-    
+
         // Send a POST request to your Django backend
         fetch(loginUrl, {
             method: 'POST',
@@ -42,21 +55,27 @@ const RegisterPage = () => {
             },
             body: JSON.stringify(loginData),
         })
-        .then(response => {
-            if(response.status === 201){
-                console.log("yes baby")
+            .then(response => {
+                if (response.status === 201) {
+                    console.log("yes baby")
+                setWait("")
+                setSuccess("Registration was successful!")
                 navigate('/login')
-            }
-            return response.text()})  // Parse the response as text
-        .then(data => {
-            // Handle the response from the Django backend
-            console.log('Response from the server:', data);
-            // You can perform actions based on the response here
-        })
-        .catch(error => {
-            console.error('Error while sending data to the server:', error);
-            // Handle errors as needed
-        });
+                }
+                return response.text()
+            })  // Parse the response as text
+            .then(data => {
+                // Handle the response from the Django backend
+                setWait("")
+                console.log('Response from the server:', data);
+                // You can perform actions based on the response here
+            })
+            .catch(error => {
+                setWait("")
+                setError("Error occured during registration!")
+                console.error('Error while sending data to the server:', error);
+                // Handle errors as needed
+            });
     };
 
     const [formData, setFormData] = useState({
@@ -66,41 +85,43 @@ const RegisterPage = () => {
         dob: '',
         gender: '',
         password: '',
-        confirm_password: '', 
+        confirm_password: '',
     });
 
     return (
-        <div className='bg-[#f5e7e7] min-h-screen flex flex-col w-full h-full bg-cover bg-fixed bg-center' style={{
-            backgroundImage: "url(https://images.unsplash.com/photo-1517315003714-a071486bd9ea?auto=format&fit=crop&q=80&w=1471&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-        }}>
-            <div className="text-center mt-12 mb-8">
-                <h2 className="text-6xl font-bold text-[#7366FF] tracking-tight">
-                    Create An Account
-                </h2>
-            </div>
+        <div className='bg-[#FFA5A5] min-h-screen flex flex-col w-full h-full bg-cover bg-fixed bg-center'
+            style={{
+                backgroundImage: "url(https://img.freepik.com/free-vector/flat-north-pole-winter-background_23-2149851535.jpg?w=740&t=st=1700411376~exp=1700411976~hmac=823fb0cf464cf6cfa98581a29389fae63eb6c6416911b9aef00f095439f0658f)",
+            }}
+        >
             <div className="flex justify-center my-2 mx-4 md:mx-0">
-                <form className="w-full max-w-4xl bg-white/70 rounded-lg shadow-md px-12 py-6" onSubmit={handleSubmit}>
+                <form className="w-full max-w-xl md:max-w-2xl bg-white/80 rounded-lg shadow-md px-12 py-6 my-8 " onSubmit={handleSubmit}>
+                    <div className="text-center mb-8">
+                        <h2 className="text-5xl font-bold text-[#7366FF] tracking-tight">
+                            Create An Account
+                        </h2>
+                    </div>
                     <LottieAnimation lottie_animation_data={RegisterAnimation} style_classes={"w-2/6 mx-auto"} />
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full md:w-full px-3 mb-6">
                             <label className={`${labelClass}`} htmlFor='name'>Full Name</label>
-                            <input className={`${inputFieldClass}`} type='text'  name="name" value={formData.name} onChange={handleInputChange} required/>
+                            <input className={`${inputFieldClass}`} type='text' name="name" value={formData.name} onChange={handleInputChange} required />
                         </div>
                         <div className="w-full md:w-full px-3 mb-6">
                             <label className={`${labelClass}`} htmlFor='username'>Username</label>
-                            <input className={`${inputFieldClass}`} type='text'  name="username" value={formData.username} onChange={handleInputChange} required />
+                            <input className={`${inputFieldClass}`} type='text' name="username" value={formData.username} onChange={handleInputChange} required />
                         </div>
                         <div className="w-full md:w-full px-3 mb-6">
                             <label className={`${labelClass}`} htmlFor='email'>Email</label>
-                            <input className={`${inputFieldClass}`} type='email'  name="email" value={formData.email} onChange={handleInputChange} required />
+                            <input className={`${inputFieldClass}`} type='email' name="email" value={formData.email} onChange={handleInputChange} required />
                         </div>
                         <div className="w-full md:w-full px-3 mb-6">
                             <label className={`${labelClass}`} htmlFor='dob'>Date of Birth</label>
-                            <input className={`${inputFieldClass}`} type='date'  name="dob" value={formData.dob} onChange={handleInputChange} required />
+                            <input className={`${inputFieldClass}`} type='date' name="dob" value={formData.dob} onChange={handleInputChange} required />
                         </div>
                         <div className="w-full md:w-full px-3 mb-6">
                             <label className={`${labelClass}`} htmlFor='gender'>Gender</label>
-                            <select className={`${inputFieldClass}`} id="gender"  name="gender" value={formData.gender} onChange={handleInputChange}  required>
+                            <select className={`${inputFieldClass}`} id="gender" name="gender" value={formData.gender} onChange={handleInputChange} required>
                                 <option value="" disabled selected>Select your gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -111,8 +132,8 @@ const RegisterPage = () => {
                             <label className={`${labelClass}`} htmlFor='password'>Password</label>
                             <input
                                 className={`${inputFieldClass}`}
-                                type={showPassword ? 'text' : 'password'}  name="password" value={formData.password} onChange={handleInputChange} 
-                                required
+                                type={showPassword ? 'text' : 'password'} name="password" value={formData.password} onChange={handleInputChange}
+                                minLength={8} required
                             />
                         </div>
                         <div className="w-full md:w-full px-3 mb-6">
@@ -120,7 +141,7 @@ const RegisterPage = () => {
                             <input
                                 className={`${inputFieldClass}`}
                                 type={showPassword ? 'text' : 'password'}
-                                name="confirm_password" value={formData.confirm_password} onChange={handleInputChange} required
+                                name="confirm_password" value={formData.confirm_password} onChange={handleInputChange} minLength={8} required
                             />
                         </div>
                         <div className="w-full flex items-center justify-between px-3 mb-3 ">
@@ -137,6 +158,12 @@ const RegisterPage = () => {
                                 </span>
                             </label>
                         </div>
+
+                        {success && <FormMessage bg_class={"green-300"} message={success} />}
+                        {error && !wait && <FormMessage bg_class={"red-400"} message={error} />}
+                        {message && !success && <FormMessage bg_class={"yellow-300"} message={message} />}
+                        {wait && <FormMessage bg_class={"yellow-300"} message={wait} />}
+
                         <div className="w-full md:w-full px-3">
                             <Button
                                 additional_classes={"my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"}
