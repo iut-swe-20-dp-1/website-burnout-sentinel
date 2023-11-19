@@ -24,9 +24,9 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
-        const loginUrl = 'http://127.0.0.1:8000/api/signin/'; 
-    
+        setWait("Please wait...")
+        const loginUrl = 'http://127.0.0.1:8000/api/signin/';
+
         // Create a JSON object with the email and password data
         const loginData = {
             email: formData.email,
@@ -46,7 +46,7 @@ const LoginPage = () => {
                 if (response.status === 200) {
                     console.log(JSON.stringify(response));
                     setWait('');
-                    setError('');
+                    setError('')
                     console.log("yes baby");
                     setSuccess('Successfully logged in!');
                     navigate('/home');
@@ -55,8 +55,6 @@ const LoginPage = () => {
             })  // Parse the response as text
             .then(data => {
                 setWait('');
-                setSuccess('')
-                setError('An error has occurred!');
                 console.log('Response from the server:', data);
             })
             .catch(error => {
@@ -95,16 +93,19 @@ const LoginPage = () => {
 
     return (
         <>
-            <div className='bg-[#f5e7e7] min-h-screen flex flex-col w-full h-full bg-cover bg-fixed bg-center' style={{
-                backgroundImage: "url(https://images.unsplash.com/photo-1517315003714-a071486bd9ea?auto=format&fit=crop&q=80&w=1471&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
-            }}>
-                <div className="text-center mt-12 mb-8">
-                    <h2 className="text-6xl font-bold text-[#7366FF] tracking-tight">
-                        Login to your Account
-                    </h2>
-                </div>
+            <div className='bg-[#FFA5A5] min-h-screen flex flex-col w-full h-full bg-cover bg-fixed bg-center'
+                style={{
+                    backgroundImage: "url(https://img.freepik.com/free-vector/flat-north-pole-winter-background_23-2149851540.jpg?w=740&t=st=1700407711~exp=1700408311~hmac=291927d45eda57e00f0e52cab905523b63bebeb4628d85ecc690b1946332ee91)",
+                }}
+            >
+
                 <div className="flex justify-center my-2 mx-4 md:mx-0">
-                    <form className="w-full max-w-4xl bg-white/70 rounded-lg shadow-md px-12 py-6" onSubmit={handleSubmit}>
+                    <form className="w-full max-w-xl md:max-w-2xl bg-white/90 my-8 rounded-lg shadow-md px-12 py-6" onSubmit={handleSubmit}>
+                        <div className="text-center mb-8">
+                            <h2 className="text-5xl font-bold text-[#7366FF] tracking-tight">
+                                Login to your Account
+                            </h2>
+                        </div>
                         <LottieAnimation lottie_animation_data={LoginAnimation} start_frame={53} style_classes={"w-3/6 mx-auto"} />
                         <div className="flex flex-wrap -mx-3 mb-6">
                             <div className="w-full md:w-full px-3 mb-6">
@@ -136,9 +137,13 @@ const LoginPage = () => {
                                 </label>
                             </div>
 
-                            {success && <FormMessage bg_class={"bg-green-300"} message={success} />}
-                            {error && <FormMessage bg_class={"bg-red-400"} message={error} />}
-                            {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
+                            <div className="text-lg text-center px-3 mb-3 ">
+                                <Link to="/forgot-password" className="text-blue-500 hover:underline">Forgot Your Password?</Link>
+                            </div>
+
+                            {success && <FormMessage bg_class={"green-300"} message={success} />}
+                            {error && !wait && <FormMessage bg_class={"red-300"} message={error} />}
+                            {wait && <FormMessage bg_class={"yellow-300"} message={wait} />}
 
                             <div className="w-full md:w-full px-3">
                                 <Button
