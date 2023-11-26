@@ -9,7 +9,7 @@ router.route("/login").post(login);
 // router.route("/forgotpassword").post(forgotpassword);
 // Example protected route (middleware ensures that the user is authenticated)
 router.get('/protected', authMiddleware, (req, res) => {
-    res.json({ message: 'This is a protected route', user: req.userData });
+    res.json({ message: 'This is a protected route', user: req.user });
 });
 
 module.exports = router;

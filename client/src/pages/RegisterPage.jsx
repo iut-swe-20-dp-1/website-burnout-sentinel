@@ -4,11 +4,11 @@ import { inputFieldClass, labelClass, secondaryButtonClass } from '../utils/styl
 import { Link, useNavigate } from 'react-router-dom';
 import LottieAnimation from '../components/LottieAnimation';
 import RegisterAnimation from '../assets/RegisterAnimation.json'
+import axios from 'axios';
 
 const RegisterPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate=useNavigate();
-
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -19,7 +19,7 @@ const RegisterPage = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmitDjango = (e) => {
         e.preventDefault();
     
         const loginUrl = 'http://127.0.0.1:8000/api/signup/'; 
@@ -57,6 +57,41 @@ const RegisterPage = () => {
             console.error('Error while sending data to the server:', error);
             // Handle errors as needed
         });
+    };
+
+    const handleSubmit = async (e) => {
+        // to Mern backend
+        e.preventDefault();
+
+        try {
+            const registrationData = {
+                email: formData.email,
+                password: formData.password,
+                fullName: formData.name,
+                username: formData.username,
+                dob: formData.username,
+                gender: formData.gender,
+            };
+            const config = {
+                header: {
+                  "Content-Type": "application/json",
+                },
+              };
+        
+            const response = await axios.post('http://localhost:8800/api/auth/register', registrationData);
+
+            console.log(response.data);
+            if(response.status == 201){
+                console.log("Registration Sucessfull");
+                // Give sucess notification?
+                navigate('/login');
+            }else{
+                console.log("Unsucessful registration");
+            }
+
+        } catch (error) {
+            console.error('Error:', error.response ? error.response.data : error.message);
+        }
     };
 
     const [formData, setFormData] = useState({

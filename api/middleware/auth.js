@@ -24,18 +24,14 @@ module.exports = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, "your-secret-key");
-    req.userData = decoded;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+    if (!user) {
+        console.log(error)
+        res.status(404).json({ message: 'No user found with this id.' });
+    }
+    req.user = user;
     next();
-
-    // const decoded1 = jwt.verify(token, process.env.JWT_SECRET);
-    // const user = await User.findById(decoded1.id);
-    // if (!user) {
-    //     console.log(error)
-    //     res.status(404).json({ message: 'No user found with this id.' });
-    // }
-    // req.user = user;
-    // next();
   } catch (error) {
     console.log(error);
     res.status(401).json({ message: "Not allowed to access this route." });
