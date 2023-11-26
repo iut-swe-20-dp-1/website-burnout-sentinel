@@ -82,29 +82,32 @@ const LoginPage = () => {
         password: formData.password,
       };
       const config = {
-        header: {
+        headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       };
+      
+      console.log("Attempting request to login");
 
       const response = await axios.post(
         "http://localhost:8800/api/auth/login",
         loginData,
         config
       );
+      console.log("Got a response");
 
       console.log(response.data);
       if (response.status == 200) {
-        console.log("Login Sucessfull");
-        console.log(response.data?.user);
-        // Give sucess notification?
+        console.log("Login Sucessful.");
+        console.log(response.data);
 
-        //Test
-        const res2 = await axios.get("http://localhost:8800/api/auth/private")
-        console.log(res2);
+        //Testing to see if protected route can now be accessed
+        const res2 = await axios.get("http://localhost:8800/api/auth/protected",{ withCredentials: true })
+        console.log(res2.data); 
 
 
-        navigate("/home");
+        // navigate("/home");
       } else {
         console.log("Unsucessful Login");
       }

@@ -15,6 +15,7 @@ module.exports = async (req, res, next) => {
 
   // If token not found in the header, check the "accessToken" cookie
   if (!token && req.cookies?.accessToken) {
+    console.log("Found token in cookies");
     token = req.cookies.accessToken;
   }
 
@@ -27,13 +28,12 @@ module.exports = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id);
     if (!user) {
-        console.log(error)
-        res.status(404).json({ message: 'No user found with this id.' });
+        return res.status(404).json({ message: 'No user found with this id.' });
     }
     req.user = user;
     next();
   } catch (error) {
     console.log(error);
-    res.status(401).json({ message: "Not allowed to access this route." });
+    return res.status(401).json({ message: "Not allowed to access this route." });
   }
 };

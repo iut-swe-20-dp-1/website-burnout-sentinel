@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
 require("dotenv").config();
 
 // Connect to Mongo Database
@@ -15,13 +16,19 @@ try {
 
 const app = express();
 // Middleware parsers
+app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 // Setup Routes
 app.use("/api/auth", require("./routes/auth"));
-
 
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () =>

@@ -37,7 +37,7 @@ exports.register = async (req, res) => {
 };
 
 // Login user
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -56,22 +56,24 @@ exports.login = async (req, res) => {
     const expiresIn = process.env.JWT_EXPIRATION;
 
     // Generate JWT token
-    const token = jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: expiresIn,
     });
     const user_info = user.toObject();
-    console.log(user_info)
     const response = {
       success: true,
       token,
-      user: user_info
+      user: user_info,
     };
-    res
-      .cookie("accessToken", token, { httpOnly: true })
-      .status(200)
-      .json(response);
+    req.user = user_info;
+    res.cookie("accessToken", token, { httpOnly: true });
+    next();
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
+};
+
+exports.loginHelper = async (req, res) => {
+  res.status(200).json(req.user);
 };
