@@ -77,3 +77,9 @@ exports.login = async (req, res, next) => {
 exports.loginHelper = async (req, res) => {
   res.status(200).json(req.user);
 };
+
+exports.logout = async (req, res) => {
+  // Clear the accessToken cookie
+  res.clearCookie('accessToken');
+  res.status(200).json("Sucessfully logged out.");
+};

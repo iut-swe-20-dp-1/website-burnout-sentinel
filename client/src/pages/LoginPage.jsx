@@ -107,7 +107,7 @@ const LoginPage = () => {
         console.log(res2.data); 
 
 
-        // navigate("/home");
+        navigate("/home");
       } else {
         console.log("Unsucessful Login");
       }

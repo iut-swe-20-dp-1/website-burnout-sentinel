@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 // const ErrorResponse = require("../utils/errorResponse");
 
-module.exports = async (req, res, next) => {
+exports.authMiddleware = async (req, res, next) => {
   let token;
 
   // Check if the token is present in the "Authorization" header

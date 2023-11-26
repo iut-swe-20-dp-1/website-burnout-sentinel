@@ -7,6 +7,7 @@ import { IoExit } from 'react-icons/io5'
 import { BiSolidTimeFive } from 'react-icons/bi';
 import { useLocation, useNavigate } from 'react-router-dom';
 import logo from "../assets/logo.png"
+import axios from "axios";
 
 const UserSidebar = () => {
     const links = [
@@ -21,8 +22,13 @@ const UserSidebar = () => {
     const currentPath = location.pathname;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    const handleLogOut = () => {
-        navigate('/');
+    const handleLogOut = async () => {
+        const res = await axios.get("http://localhost:8800/api/auth/logout",{ withCredentials: true })
+        console.log(res.data); 
+        if(res.status === 200){
+            console.log("Logout was status 200");
+            navigate('/');
+        }
     }
 
     const toggleSidebar = () => {

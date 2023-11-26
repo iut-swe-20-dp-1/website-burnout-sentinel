@@ -2,3 +2,4 @@
 # Express
 /api/node_modules
 /api/.env
+/api/OAuth_Credentials.json
