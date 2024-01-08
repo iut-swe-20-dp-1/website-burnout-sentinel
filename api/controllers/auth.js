@@ -2,6 +2,20 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
+// Helper functions
+
+const removePassword = (user) => {
+  const { password, ...userWithoutPass } = user;
+  return userWithoutPass;
+};
+
+const generateAccessToken = (user) => {
+  const userWithoutPass = removePassword(user);
+  return jwt.sign(userWithoutPass, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRATION,
+  });
+};
+
 // Register a new user
 exports.register = async (req, res) => {
   try {
@@ -80,6 +94,37 @@ exports.loginHelper = async (req, res) => {
 
 exports.logout = async (req, res) => {
   // Clear the accessToken cookie
-  res.clearCookie('accessToken');
+  res.clearCookie("accessToken");
   res.status(200).json("Sucessfully logged out.");
+};
+
+// Google Authentication failed
+exports.googleFailure = async (req, res) => {
+  res.status(401).json({ message: "Google Authentication Failed" });
+};
+
+exports.googleLogin = async (req, res) => {
+  console.log("googleLogin in controllers accessed!");
+  try {
+    const googleProfile = req.user;
+    console.log("Google Profile: ", googleProfile);
+    // Check if the user already exists in your database
+    const user = await User.findOne({ googleId: googleProfile.googleId });
+
+    const user_object = user.toObject();
+
+    const accessToken = generateAccessToken(user_object);
+
+    const userWithoutPass = removePassword(user_object);
+
+    const response = {
+      success: true,
+      user: userWithoutPass,
+      accessToken,
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };

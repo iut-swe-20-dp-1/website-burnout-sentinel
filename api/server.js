@@ -1,9 +1,11 @@
 const express = require("express");
+const session = require("express-session");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 require("dotenv").config();
+const passport = require("./config/passport");
 
 // Connect to Mongo Database
 const connectDB = require("./config/db");
@@ -15,10 +17,21 @@ try {
 }
 
 const app = express();
+app.use(
+  session({
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
 // Middleware parsers
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json());
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(
   cors({
