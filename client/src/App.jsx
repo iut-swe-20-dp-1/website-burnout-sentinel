@@ -13,6 +13,8 @@ import UserHomepage from './pages/UserHomepage';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import VerifyEmailPage from './pages/VerifyEmailPage';
+import UserHistory from './pages/UserHistory';
+import UserProfile from './pages/UserProfile';
 
 function App() {
 
@@ -26,7 +28,10 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />        
         <Route path="/verify-mail/:action" element={<VerifyEmailPage />} /> {/* action = "reset" to reset pass ||  "activate" for mail verification after registration*/}
-        <Route path="/home" element={<PrivateRoute><UserHomepage /></PrivateRoute>} />
+        {/* <Route path="/home" element={<PrivateRoute><UserHomepage /></PrivateRoute>} /> */}
+        <Route path="/home" element={<UserHomepage />} />
+        <Route path="/history" element={<UserHistory />} />
+        <Route path="/profile" element={<UserProfile />} />
         </Routes>
         </BrowserRouter>
     </>
