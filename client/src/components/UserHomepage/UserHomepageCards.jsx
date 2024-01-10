@@ -36,11 +36,11 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                 </div>
             </div>
 
-            <Button
+            {/* <Button
                 additional_classes="lg:px-5 md:px-2 px-2 py-1 text-white bg-[#300722] text-2xl font-bold before:border-[#300722]"
                 button_text="Demo Switch"
                 button_function={() => setBaseDataExists(!baseDataExists)}
-            />
+            /> */}
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="col-span-2 md:col-span-2">
@@ -49,7 +49,7 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
 
                 <div className="col-span-2 md:col-span-1 my-auto">
                     <div className="grid gap-4 mt-3">
-                        <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
+                        {/* <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
                             <div className={`bg-[#7366FF] ${dashboardCardBgClass}`}></div>
                             <div className="relative w-full h-full p-4 sm:px-6 lg:px-4 flex">
                                 <div>
@@ -71,7 +71,7 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         {/* second card  */}
                         <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
                             <div className={`bg-yellow-600 ${dashboardCardBgClass}`}></div>
