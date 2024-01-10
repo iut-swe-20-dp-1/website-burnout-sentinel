@@ -46,10 +46,13 @@ const ResetPasswordPage = () => {
 
     return (
         <>
-            <div className='bg-gradient-to-l from-[#FFA5A5] to-[#a9a2fc] min-h-screen flex flex-col w-full h-full bg-cover bg-fixed bg-center'
+            <div className=' min-h-screen flex flex-col w-full h-full bg-cover bg-fixed bg-center'
             // style={{
             //     backgroundImage: "url(https://images.unsplash.com/photo-1517315003714-a071486bd9ea?auto=format&fit=crop&q=80&w=1471&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
             // }}
+            style={{
+                backgroundImage: "url(https://images.unsplash.com/photo-1487147264018-f937fba0c817?auto=format&fit=crop&q=80&w=1374&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+              }}
             >
 
                 <div className="flex justify-center my-2 mx-4 md:mx-0">
