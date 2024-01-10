@@ -15,6 +15,7 @@ import ResetPasswordPage from './pages/ResetPasswordPage';
 import VerifyEmailPage from './pages/VerifyEmailPage';
 import UserHistory from './pages/UserHistory';
 import UserProfile from './pages/UserProfile';
+import LearnMorePage from './pages/LearnMorePage';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/home" element={<UserHomepage />} />
         <Route path="/history" element={<UserHistory />} />
         <Route path="/profile" element={<UserProfile />} />
+        <Route path="/learn-more" element={<LearnMorePage />} />
         </Routes>
         </BrowserRouter>
     </>
