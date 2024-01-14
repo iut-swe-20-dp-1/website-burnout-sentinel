@@ -15,8 +15,6 @@ const RegisterPage = () => {
     const [wait, setWait] = useState('')
     const navigate = useNavigate();
 
-    const navigate=useNavigate();
-
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
