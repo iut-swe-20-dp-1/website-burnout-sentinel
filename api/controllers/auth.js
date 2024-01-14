@@ -79,7 +79,7 @@ exports.login = async (req, res, next) => {
       token,
       user: user_info,
     };
-    req.user = user_info;
+    req.response = response;
     res.cookie("accessToken", token, { httpOnly: true });
     next();
   } catch (error) {
@@ -89,7 +89,47 @@ exports.login = async (req, res, next) => {
 };
 
 exports.loginHelper = async (req, res) => {
-  res.status(200).json(req.user);
+  res.status(200).json(req.response);
+};
+
+// Reset password
+exports.resetPassword = async (req, res, next) => {
+  try {
+    let { email, currentPassword, newPassword } = req.body;
+
+    if(!email){
+      email = req.user.email;
+    }
+
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the provided current password is correct
+    const passwordMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Incorrect current password" });
+    }
+
+    // Hash the new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password
+    user.password = hashedNewPassword;
+    await user.save();
+
+    const response = {
+      success: true,
+      message: "Password reset successful",
+    };
+
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 exports.logout = async (req, res) => {
@@ -104,11 +144,9 @@ exports.googleFailure = async (req, res) => {
 };
 
 exports.googleLogin = async (req, res) => {
-
   const isRegistration = req.user.register;
 
   try {
-
     if (isRegistration) {
       // Wants to register using google OAuth
       let user = await User.findOne({ googleId: req.user.googleId });

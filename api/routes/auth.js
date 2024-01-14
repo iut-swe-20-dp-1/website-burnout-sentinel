@@ -15,6 +15,7 @@ const {
   register,
   login,
   loginHelper,
+  resetPassword,
   logout,
   googleFailure,
   googleLogin,
@@ -24,6 +25,7 @@ const {
 router.route("/register").post(register);
 router.post("/login", login, loginHelper);
 // router.route("/forgotpassword").post(forgotpassword);
+router.post("/resetpassword", authMiddleware, resetPassword);
 router.get("/logout", logout);
 
 router.get("/protected", authMiddleware, (req, res) => {
