@@ -16,7 +16,7 @@ import VerifyEmailPage from './pages/VerifyEmailPage';
 import UserHistory from './pages/UserHistory';
 import UserProfile from './pages/UserProfile';
 import LearnMorePage from './pages/LearnMorePage';
-import Test from './pages/test';
+import Test from './pages/Test';
 
 function App() {
 
@@ -35,7 +35,7 @@ function App() {
         <Route path="/history" element={<UserHistory />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/learn-more" element={<LearnMorePage />} />
-        <Route path="/test" element={<Test />} />
+        <Route path="/test" element={<Test/>} />
         </Routes>
         </BrowserRouter>
     </>
