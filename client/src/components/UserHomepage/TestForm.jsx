@@ -11,9 +11,8 @@ const TestForm = ({
     const randomInt=Math.floor(Math.random() * 11)
     const [formData, setFormData] = useState({
         gsr: '',
-        bpm: '',
-        obj_temp: '',
-        ambient_temp: '',
+        hr: '',
+        temp: '',
     });
     const [success, setSuccess] = useState(false);
     const [file, setFile] = useState(null);
