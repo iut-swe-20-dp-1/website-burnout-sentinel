@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import LottieAnimation from './LottieAnimation';
-import ManThinkingAnimation from "../assets/ManThinkingAnimation.json";
-import { dashboardCardBgUrl, dashboardCardBgClass, dashboardCardClass } from '../utils/styles';
-import Button from './Button';
-import BottomNotification from './BottomNotification';
+import LottieAnimation from '../LottieAnimation';
+import ManThinkingAnimation from "../../assets/ManThinkingAnimation.json";
+import { dashboardCardBgUrl, dashboardCardBgClass, dashboardCardClass } from '../../utils/styles';
+import Button from '../Button';
+import BottomNotification from '../BottomNotification';
 
 const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, setShowTestForm, baseDataExists, setBaseDataExists }) => {
     const [showNotification, setShowNotification] = useState(false);
@@ -16,11 +16,32 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
     return (
         <>
             {showNotification && <BottomNotification text="Please Enter Your Base Data First!" />}
-            <Button
+
+            <div className={`${dashboardCardClass} mb-6`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
+                <div className={`bg-[#7366FF] ${dashboardCardBgClass}`}></div>
+                <div className="relative w-full h-full p-4 sm:px-6 lg:px-4 flex">
+                    <div>
+                        <h1 className="text-white text-3xl mt-2 font-bold">
+                            Download sample CSV file for entering your data
+                        </h1>
+
+                        <Button
+                            additional_classes="my-4 lg:px-5 md:px-2 px-2 py-1 text-white bg-[#300722] text-2xl font-bold before:border-[#300722]"
+                            button_text={"Download CSV"}
+                            flex_start="true"
+                            // give csv download function 
+                            button_function={() => {}}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            {/* <Button
                 additional_classes="lg:px-5 md:px-2 px-2 py-1 text-white bg-[#300722] text-2xl font-bold before:border-[#300722]"
                 button_text="Demo Switch"
                 button_function={() => setBaseDataExists(!baseDataExists)}
-            />
+            /> */}
+
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="col-span-2 md:col-span-2">
                     <LottieAnimation lottie_animation_data={ManThinkingAnimation} style_classes="w-5/6" />
@@ -28,7 +49,7 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
 
                 <div className="col-span-2 md:col-span-1 my-auto">
                     <div className="grid gap-4 mt-3">
-                        <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
+                        {/* <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
                             <div className={`bg-[#7366FF] ${dashboardCardBgClass}`}></div>
                             <div className="relative w-full h-full p-4 sm:px-6 lg:px-4 flex">
                                 <div>
@@ -50,7 +71,7 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         {/* second card  */}
                         <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
                             <div className={`bg-yellow-600 ${dashboardCardBgClass}`}></div>

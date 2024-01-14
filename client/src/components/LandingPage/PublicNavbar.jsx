@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Button from './Button'
-import { navLinkClass } from '../utils/styles'
+import Button from '../Button'
+import { navLinkClass } from '../../utils/styles'
 
 const PublicNavbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

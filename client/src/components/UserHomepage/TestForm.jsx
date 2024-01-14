@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import LottieAnimation from './LottieAnimation';
-import { closeButtonClass, inputFieldClass, labelClass } from '../utils/styles';
-import Button from './Button';
-import { baseDataInputFields } from '../utils/content';
+import LottieAnimation from '../LottieAnimation';
+import { closeButtonClass, inputFieldClass, labelClass } from '../../utils/styles';
+import Button from '../Button';
+import { baseDataInputFields } from '../../utils/content';
 import StressScoreContent from './StressScoreContent';
 
 const TestForm = ({

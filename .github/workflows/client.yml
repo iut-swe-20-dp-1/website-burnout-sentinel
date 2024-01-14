@@ -1,15 +1,23 @@
-name: Test
+name: Client CI
 
 on:
   push:
-    branches: [ "staging" ]
+    branches:
+      - staging
+      - nafisa
+    paths:
+      - "client/**"
   pull_request:
-    branches: [ "staging" ]
-  
+    branches:
+      - staging
+      - nafisa
+    paths:
+      - "client/**"
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - name: Checkout code
@@ -23,4 +31,5 @@ jobs:
       - name: Install client dependencies
         run: yarn install
 
-      
+    #   - name: Run server tests
+    #     run: yarn run test
