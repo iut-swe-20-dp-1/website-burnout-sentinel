@@ -3,6 +3,12 @@ const router = express.Router();
 const { authMiddleware } = require("../middleware/auth");
 const passport = require("../config/passport");
 
+// Custom middleware to extract the 'register' flag
+const extractRegisterFlag = (req, res, next) => {
+  req.session.register = req.query.register === "true";
+  next();
+};
+
 const {
   register,
   login,
@@ -10,6 +16,7 @@ const {
   logout,
   googleFailure,
   googleLogin,
+  getTokenForGoogle
 } = require("../controllers/auth");
 
 router.route("/register").post(register);
@@ -23,16 +30,24 @@ router.get("/protected", authMiddleware, (req, res) => {
 });
 
 router.get("/googlefailure", googleFailure);
+
+// Use this to start authentication using google
 router.get(
   "/google",
+  extractRegisterFlag,
   passport.authenticate("google", { scope: ["profile", "email"] })
-); // Use this to start authentication using google
+); 
+
+// This route is accessed after authentication
 router.get(
-  "/google/callback", // This route is accessed after authentication
+  "/google/callback", 
   passport.authenticate("google", {
-    failureRedirect: "api/auth/googlefailure",
+    failureRedirect: "/api/auth/googlefailure",
   }),
   googleLogin
 );
+
+// Get token for google logins
+router.get("/gettokenforgoogle", getTokenForGoogle);
 
 module.exports = router;
