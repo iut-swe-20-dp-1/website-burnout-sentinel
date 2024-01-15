@@ -79,7 +79,7 @@ exports.login = async (req, res, next) => {
       token,
       user: user_info,
     };
-    req.user = user_info;
+    req.response = response;
     res.cookie("accessToken", token, { httpOnly: true });
     next();
   } catch (error) {
@@ -89,7 +89,47 @@ exports.login = async (req, res, next) => {
 };
 
 exports.loginHelper = async (req, res) => {
-  res.status(200).json(req.user);
+  res.status(200).json(req.response);
+};
+
+// Reset password
+exports.resetPassword = async (req, res, next) => {
+  try {
+    let { email, currentPassword, newPassword } = req.body;
+
+    if(!email){
+      email = req.user.email;
+    }
+
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Check if the provided current password is correct
+    const passwordMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Incorrect current password" });
+    }
+
+    // Hash the new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password
+    user.password = hashedNewPassword;
+    await user.save();
+
+    const response = {
+      success: true,
+      message: "Password reset successful",
+    };
+
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 exports.logout = async (req, res) => {
@@ -104,12 +144,56 @@ exports.googleFailure = async (req, res) => {
 };
 
 exports.googleLogin = async (req, res) => {
-  console.log("googleLogin in controllers accessed!");
+  const isRegistration = req.user.register;
+
   try {
-    const googleProfile = req.user;
-    console.log("Google Profile: ", googleProfile);
-    // Check if the user already exists in your database
-    const user = await User.findOne({ googleId: googleProfile.googleId });
+    if (isRegistration) {
+      // Wants to register using google OAuth
+      let user = await User.findOne({ googleId: req.user.googleId });
+
+      if (!user) {
+        // If the user doesn't exist, create a new user
+        user = new User({
+          googleId: req.user.googleId,
+          fullName: req.user.fullName,
+          email: req.user.email,
+          username: req.user.username,
+          password: req.user.password,
+        });
+        await user.save();
+        res.status(201).json({ message: "User registered successfully" });
+      } else {
+        // user already exists.
+        res.status(409).json({
+          sucess: false,
+          message: "User already exists, try logging in.",
+        });
+      }
+    } else {
+      // wants to login using google OAuth
+      res.redirect(`/api/auth/gettokenforgoogle?googleId=${req.user.googleId}`);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+exports.getTokenForGoogle = async (req, res) => {
+  console.log("Getting Token for Google");
+  try {
+    if (req.query.googleId) {
+      console.log("Found the googleId in the query param.");
+    }
+    const googleId = req.query.googleId;
+
+    const user = await User.findOne({ googleId: googleId });
+    if (!user) {
+      return res.status(404).json({
+        sucess: false,
+        message: "User does not exist, try registering.",
+      });
+    }
 
     const user_object = user.toObject();
 
