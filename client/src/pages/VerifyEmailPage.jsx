@@ -5,6 +5,7 @@ import MailSentAnimation from "../assets/MailSentAnimation.json";
 import LottieAnimation from "../components/LottieAnimation";
 import NotFoundPage from "./NotFoundPage";
 import Button from "../components/Button";
+import Loading from "../components/Loading";
 
 const VerifyEmailPage = () => {
     const [validUrl, setValidUrl] = useState(true);
@@ -41,8 +42,7 @@ const VerifyEmailPage = () => {
     return (
         <Fragment>
             {loading ? (
-                <div className="w-full h-full bg-[#a9a2fc] ">
-                    <LottieAnimation lottie_animation_data={loadingAnimation} style_classes={"w-1/2  mx-auto"} /></div>
+                <Loading setBg={true}/>
             ) : validUrl ? (
                 <div className="bg-[#a9a2fc] w-full h-screen">
                 <div className="w-3/4 text-center mx-auto">

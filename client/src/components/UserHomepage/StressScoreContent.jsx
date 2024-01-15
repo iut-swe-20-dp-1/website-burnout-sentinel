@@ -6,7 +6,21 @@ import { suggestions } from '../../utils/content';
 
 const StressScoreContent = ({ message, score, level }) => {
     const [count, setCount] = useState(0);
+    const [suggestion, setSuggestion] = useState('')
+
+    const foundSuggestion = (score) => {
+        console.log("score received")
+        console.log(score)
+        let selectedSuggestion = suggestions.find(
+            (suggestion) => Math.round(score) == suggestion.score
+        );
+        console.log(selectedSuggestion)
+        return selectedSuggestion;
+    };
+
     useEffect(() => {
+        setSuggestion(foundSuggestion(score))
+        console.log(suggestion)
         if (score > 0) {
             let animationInterval = setInterval(() => {
                 setCount((prevCount) => {
@@ -20,11 +34,9 @@ const StressScoreContent = ({ message, score, level }) => {
             }, 30); // Adjust the interval duration as needed
             return () => clearInterval(animationInterval);
         }
-    }, [score]);
 
-    const foundSuggestion = suggestions.find(
-        (suggestion) => score >= suggestion.lower && score <= suggestion.upper
-    );
+
+    }, []);
 
     return (
         <>
@@ -33,12 +45,18 @@ const StressScoreContent = ({ message, score, level }) => {
                 <h2 className="text-3xl  tracking-tight">
                     {message}
                 </h2>
-                <h1 className='text-7xl text-[#7366FF] font-bold mt-3'>{count.toFixed(1)}</h1>
+                <h1 className='text-7xl text-[#7366FF] font-bold mt-3'>{count.toFixed(2)}</h1>
+            </div>
+
+            <div className="text-center mb-4">
+                <h2 className="text-xl tracking-tight">
+                    Stress Level detected: {level}
+                </h2>
             </div>
 
             <div className="text-center mb-4">
                 <h2 className="text-xl  tracking-tight">
-                    {foundSuggestion.suggestion}
+                    {suggestion.suggestion}
                 </h2>
             </div>
 
