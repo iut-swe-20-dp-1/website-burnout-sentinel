@@ -21,7 +21,6 @@ const TestForm = ({
     const [message, setMessage] = useState('');
     const [wait, setWait] = useState(false);
     const [file, setFile] = useState(null);
-    const [next, setNext] = useState(false);
     const [filename, setFilename] = useState('');
     const [score, setScore] = useState('')
     const [stressLevel, setStressLevel] = useState('')
