@@ -7,7 +7,27 @@ const Test = () => {
     const [message, setMessage] = useState('')
 
     const handleFileChange = (e) => {
-        setCsv(e.target.files[0]);
+
+        const selectedFile = e.target.files[0];
+
+        if (selectedFile) {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                const content = event.target.result;
+                const lines = content.split('\n');
+
+                if (lines.length < 40 && lines.length > 10000) {
+                    setMessage('File contains less than 40 rows or more than 10000 rows. Please choose a valid file.');
+                    setCsv(null); // Reset the selected file
+                } else {
+                    setMessage("Successfully uploaded CSV with " + lines.length + " rows.");
+                    setCsv(selectedFile);
+                }
+            };
+
+            reader.readAsText(selectedFile);
+        }
     };
 
     const handleSubmit = async (e) => {
