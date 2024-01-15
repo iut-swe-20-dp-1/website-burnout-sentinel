@@ -26,10 +26,30 @@ const TestForm = ({
     const [score, setScore] = useState('')
     const [stressLevel, setStressLevel] = useState('')
 
-    const handleFileChange = (file) => {
-        setFile(file);
-        setFilename(file ? file.name : '');
-    }
+    const handleFileChange = (e) => {
+
+        const selectedFile = e.target.files[0];
+
+        if (selectedFile) {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                const content = event.target.result;
+                const lines = content.split('\n');
+
+                if (lines.length < 40 && lines.length > 10000) {
+                    setMessage('File contains less than 40 rows or more than 10000 rows. Please choose a valid file.');
+                    setCsv(null); // Reset the selected file
+                } else {
+                    setMessage("Added CSV with " + lines.length + " rows.");
+                    setFile(selectedFile);
+                    setFilename(selectedFile ? selectedFile.name : '');
+                }
+            };
+
+            reader.readAsText(selectedFile);
+        }
+    };
 
     // const handleInputChange = (e) => {
     //     const { name, value } = e.target;
@@ -119,7 +139,7 @@ const TestForm = ({
                                                     {/* form start  */}
                                                     <div class="flex items-center justify-center w-full">
                                                         <form onSubmit={handleFileFormSubmit}>
-                                                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover.bg-gray-100">
+                                                            <label for="dropzone-file" class="md:p-5 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover.bg-gray-100 my-5">
                                                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                                                     <svg class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
                                                                     </path>
@@ -130,7 +150,7 @@ const TestForm = ({
                                                                     <p class="text-xs text-gray-500 text-center">Enter your CSV or Excel (containing your physiological data)
                                                                     </p>
                                                                 </div>
-                                                                <input id="dropzone-file" type="file" class="hidden" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onChange={(e) => handleFileChange(e.target.files[0])} />
+                                                                <input id="dropzone-file" type="file" class="hidden" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onChange={(e) => handleFileChange(e)} required/>
                                                             </label>
                                                             <div className="w-full md:w-full px-3">
                                                                 {file && (<div className="w-full mx-auto py-2 text-center px-3 my-4 border-t-2 ">
