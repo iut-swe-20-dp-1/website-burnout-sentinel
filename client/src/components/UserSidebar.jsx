@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiFillHome } from 'react-icons/ai';
 import { userSidebarIconClass } from '../utils/styles';
 import { BsPersonCircle } from 'react-icons/bs';
@@ -21,11 +21,21 @@ const UserSidebar = () => {
     const location = useLocation();
     const currentPath = location.pathname;
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [userimg, setUserimg] = useState('')
+    const [name, setName] = useState('')
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            setName('Nafisa')
+            setUserimg('https://i.pinimg.com/1200x/78/6f/75/786f7595ba1b9d812a24b0960e18563c.jpg')
+        }
+        fetchUserData();
+    }, [])
 
     const handleLogOut = async () => {
-        const res = await axios.get("http://localhost:8800/api/auth/logout",{ withCredentials: true })
-        console.log(res.data); 
-        if(res.status === 200){
+        const res = await axios.get("http://localhost:8800/api/auth/logout", { withCredentials: true })
+        console.log(res.data);
+        if (res.status === 200) {
             console.log("Logout was status 200");
             navigate('/');
         }
@@ -66,10 +76,15 @@ const UserSidebar = () => {
                             <div className="inline relative">
                                 <button type="button" className="inline-flex items-center relative px-2 border border-[#300722] rounded-full">
                                     <div className="px-1.5 font-semibold text-[#300722]">
-                                        nafisa
+                                        {name}
                                     </div>
-                                    <div className="h-10 w-10  user cursor-pointer relative rounded-full my-1 ml-1 bg-cover bg-center bg-[url('https://i.pinimg.com/1200x/78/6f/75/786f7595ba1b9d812a24b0960e18563c.jpg')]">
-                                    </div>
+                                    <div
+                                        className={`h-10 w-10 user cursor-pointer relative rounded-full my-1 ml-1 bg-cover bg-center`}
+                                        style={{
+                                            backgroundImage: `url(${userimg})`
+                                        }}
+                                    ></div>
+
                                 </button>
                             </div>
                         </div>
