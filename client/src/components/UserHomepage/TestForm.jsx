@@ -11,7 +11,7 @@ import Loading from '../Loading';
 const TestForm = ({
     form_title, lottie_animation_data, animation_speed, end_frame, start_frame, setShowTestForm
 }) => {
-    const randomInt = Math.floor(Math.random() * 11)
+    // const randomInt = Math.floor(Math.random() * 11)
     const [formData, setFormData] = useState({
         gsr: '',
         hr: '',
