@@ -9,6 +9,6 @@ const {
 } = require("../controllers/profile");
 
 router.post("/update", authMiddleware, updateProfile);
-router.post("/get", authMiddleware, getInfo);
+router.get("/get", authMiddleware, getInfo);
 
 module.exports = router;

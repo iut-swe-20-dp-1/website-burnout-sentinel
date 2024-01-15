@@ -67,6 +67,7 @@ app.use(passport.session());
 // Setup Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/profile", require("./routes/profile"));
+app.use("/api/history", require("./routes/history"));
 
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () =>
