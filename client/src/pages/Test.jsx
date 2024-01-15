@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { inputFieldClass, labelClass } from '../utils/styles';
+import { mlUrl } from '../utils/urls';
 
 const Test = () => {
     const [csv, setCsv] = useState(null);
+    const [message, setMessage] = useState('')
 
     const handleFileChange = (e) => {
         setCsv(e.target.files[0]);
@@ -11,29 +13,34 @@ const Test = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("carried out")
+        setMessage('Wait!')
 
         console.log(csv)
         const formData = new FormData()
         formData.append('csv', csv)
 
         try {
-            // const url = 'https://ml-deployment-test.onrender.com/csv';
-            const url = 'http://127.0.0.1:8000/csv';
+            const url = `${mlUrl}/csv`;
             const response = await fetch(url, {
                 method: "POST",
                 body: formData,
             });
 
             if (response.ok) {
-                console.log(response)
                 const data = await response.json();
                 const prediction = data.prediction;
                 const classification = data.classification;
 
                 console.log("Prediction:", prediction);
                 console.log("Classification:", classification);
+                setMessage(`Prediction: ${prediction} and stress level is ${classification}`)
             } else {
-                console.error("Failed to upload file.")
+                if(response.message){
+                    console.log(response.message)
+                } else {
+                    console.log("Something went wrong!")
+                    setMessage('Something went wrong!')
+                }
             }
         } catch (error) {
             console.error(error)
@@ -50,8 +57,10 @@ const Test = () => {
                 type="file"
                 name="csv"
                 onChange={handleFileChange}
+                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
             />
             <button type="submit">Submit</button>
+        <h1>{message}</h1>
         </form>
     );
 };

@@ -4,7 +4,7 @@ import GettingScoresAnimation from '../../assets/GettingScoresAnimation.json'
 import { HiInformationCircle } from 'react-icons/hi';
 import { suggestions } from '../../utils/content';
 
-const StressScoreContent = ({ message, score }) => {
+const StressScoreContent = ({ message, score, level }) => {
     const [count, setCount] = useState(0);
     useEffect(() => {
         if (score > 0) {
