@@ -80,7 +80,7 @@ exports.login = async (req, res, next) => {
       user: user_info,
     };
     req.response = response;
-    res.cookie("accessToken", token, { httpOnly: true });
+    res.cookie("accessToken", token, { httpOnly: false }); // hehe
     next();
   } catch (error) {
     console.log(error);

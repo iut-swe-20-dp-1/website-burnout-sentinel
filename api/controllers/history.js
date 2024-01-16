@@ -1,21 +1,26 @@
 const User = require("../models/User");
 const History = require("../models/History");
 
+const getUserId = async (email) => {
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return null; // Returning null if user not found
+  }
+
+  return user._id;
+};
+
+
 exports.addHistory = async (req, res) => {
   try {
     const email = req.user.email;
+    const userId = await getUserId(email);
 
-    // Find the user from User schema using email
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+    if (!userId) {
+      return res.status(404).json({ success: false, message: "User not found" });
     }
 
-    // Get the id and find that user's record in the history schema
-    const userId = user._id;
     let userHistory = await History.findOne({ userId });
 
     // If there is no entry for that user in the history schema, create one
@@ -47,18 +52,12 @@ exports.addHistory = async (req, res) => {
 exports.getHistory = async (req, res) => {
   try {
     const email = req.user.email;
+    const userId = await getUserId(email);
 
-    // Find the user from User schema using email
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+    if (!userId) {
+      return res.status(404).json({ success: false, message: "User not found" });
     }
 
-    // Get the id and find that user's record in the history schema
-    const userId = user._id;
     let userHistory = await History.findOne({ userId });
 
     // If there is no entry for that user in the history schema, create one
