@@ -8,6 +8,7 @@ import {
 } from "../utils/styles";
 import Button from "../components/Button";
 import FormMessage from "../components/FormMessage";
+import { serverUrl } from "../utils/urls";
 
 const ResetPasswordPage = () => {
   const [error, setError] = useState("");
@@ -43,7 +44,7 @@ const ResetPasswordPage = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8800/api/auth/resetpassword",
+        `${serverUrl}/api/auth/resetpassword`,
         {
           method: "POST",
           headers: {
@@ -155,15 +156,15 @@ const ResetPasswordPage = () => {
                 </label>
               </div>
               {success && (
-                <FormMessage bg_class={"green-300"} message={success} />
+                <FormMessage bg_class={"bg-green-300"} message={success} />
               )}
               {message && !success && (
-                <FormMessage bg_class={"yellow-300"} message={message} />
+                <FormMessage bg_class={"bg-yellow-300"} message={message} />
               )}
               {error && !wait && (
-                <FormMessage bg_class={"red-400"} message={error} />
+                <FormMessage bg_class={"bg-red-400"} message={error} />
               )}
-              {wait && <FormMessage bg_class={"yellow-300"} message={wait} />}
+              {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
 
               <div className="w-full md:w-full px-3">
                 <Button

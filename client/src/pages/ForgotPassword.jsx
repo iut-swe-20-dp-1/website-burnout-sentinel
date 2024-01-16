@@ -59,9 +59,9 @@ const ForgotPasswordPage = () => {
                                     button_type={"submit"}
                                 />
                             </div>
-                            {success && <FormMessage bg_class={"green-300"} message={success} />}
-                            {error && !wait && <FormMessage bg_class={"red-400"} message={error} />}
-                            {wait && <FormMessage bg_class={"yellow-300"} message={wait} />}
+                            {success && <FormMessage bg_class={"bg-green-300"} message={success} />}
+                            {error && !wait && <FormMessage bg_class={"bg-red-400"} message={error} />}
+                            {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
                         </div>
                     </form>
                 </div>

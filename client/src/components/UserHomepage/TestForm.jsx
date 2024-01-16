@@ -97,6 +97,9 @@ const TestForm = ({
                 }
             }
         } catch (error) {
+            setWait(false);
+            setSuccess(false);
+            setMessage("Something went wrong! Please try again...")
             console.error(error)
         }
     }
@@ -156,7 +159,7 @@ const TestForm = ({
                                                                     <span className="text-lg text-[#7366FF] font-bold">File Selected: {filename}</span>
                                                                 </div>)}
 
-                                                                {message && <FormMessage bg_class={"yellow-300"} message={message} />}
+                                                                { message && <FormMessage bg_class={"bg-yellow-300"} message={message} />}
                                                                 <Button
                                                                     additional_classes={"my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"}
                                                                     button_text={"Submit"}
