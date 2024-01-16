@@ -121,7 +121,7 @@ const UserHistory = () => {
 
   return (
     <>
-      <div className="bg-[#DFE9F7]">
+      <div className="bg-[#D9F0FF]">
         <UserSidebar />
         <div
           className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
@@ -194,7 +194,10 @@ const UserHistory = () => {
                             history.map((entry, index) => (
                               <tr
                                 key={index}
-                                className={"bg-white border-b rounded-md"
+                                className={
+                                  index % 2 === 0
+                                    ? "bg-[#DFE9F7] border-b rounded-md"
+                                    : "bg-white border-b rounded-md"
                                 }
                               >
                                 <td className="text-lg text-[#300722] font-light px-6 py-4 whitespace-nowrap">

@@ -15,7 +15,7 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="bg-[#DFE9F7]">
+      <div className="bg-[#D9F0FF]">
         <UserSidebar key={reloadSidebar} />{" "}
         <div
           className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"

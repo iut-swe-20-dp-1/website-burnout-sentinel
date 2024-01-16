@@ -177,13 +177,13 @@ const UserSidebar = () => {
                       key={index}
                       className={`${
                         currentPath === link.link
-                          ? "bg-[#FFA5A5] rounded-lg"
+                          ? "bg-[#a7d4f3] rounded-lg"
                           : ""
                       }`}
                     >
                       <a
                         href={link.link}
-                        className={`flex items-center py-3 px-2 rounded-lg hover:bg-[#FFA5A5] text-[#300722] group`}
+                        className={`flex items-center py-3 px-2 rounded-lg hover:bg-[#a7d4f3] text-[#300722] group`}
                       >
                         {link.icon}
                         <span className="ml-3 text-xl text-[#300722]">
@@ -197,7 +197,7 @@ const UserSidebar = () => {
                   <li>
                     <div
                       onClick={handleLogOut}
-                      className="flex items-center cursor-pointer py-3 px-2 rounded-lg hover:bg-[#FFA5A5] text-[#300722] group"
+                      className="flex items-center cursor-pointer py-3 px-2 rounded-lg hover:bg-[#a7d4f3] text-[#300722] group"
                     >
                       <IoExit className={`${userSidebarIconClass}`} />
                       <span className="ml-3 text-xl text-[#300722]">
