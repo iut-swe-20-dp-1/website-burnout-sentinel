@@ -26,11 +26,12 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
   });
 
   var userData = {
-    email: "user@example.com",
+    email: "ayesha@gmail.com",
     username: "john_doe",
     dob: "1990-01-01",
     name: "John Doe",
     gender: "male",
+    profileImage: null,
   };
 
   useEffect(() => {
@@ -41,9 +42,9 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
         dob: userData.dob,
         name: userData.name,
         gender: userData.gender,
-        pic: userData.pic,
+        // pic: userData.pic,
       });
-      setUserimg(formData.pic);
+      setUserimg(userData.profileImage);
     };
 
     fetchUserData();
@@ -76,6 +77,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
       if (response.status === 200) {
         setWait("");
         setSuccess("Profile Updated sucessfully.");
+        setUserimg(url);
         // Trigger the reload of the UserSidebar component
         reloadSidebar();
       }
@@ -117,10 +119,10 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
               <label className={`${labelClass}`} htmlFor="pic">
                 Profile Image
               </label>
-              {formData.pic && (
+              {userimg && (
                 <img
                   className="h-64 w-64 rounded-full my-1"
-                  src={formData.pic}
+                  src={userimg}
                   alt="current_pfp"
                 />
               )}
@@ -129,7 +131,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
                 type="file"
                 accept=".png, .jpeg, .jpg, .gif"
                 name="pic"
-                onChange={handleFileChange}
+                onChange={(e) => handleFileChange(e)}
               />
             </div>
 
