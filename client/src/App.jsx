@@ -17,6 +17,7 @@ import UserHistory from './pages/UserHistory';
 import UserProfile from './pages/UserProfile';
 import LearnMorePage from './pages/LearnMorePage';
 import Test from './pages/Test';
+import Suggestions from './pages/Suggestions';
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/learn-more" element={<LearnMorePage />} />
         <Route path="/test" element={<Test/>} />
+        <Route path="/suggest" element={<Suggestions/>} />
         </Routes>
         </BrowserRouter>
     </>
