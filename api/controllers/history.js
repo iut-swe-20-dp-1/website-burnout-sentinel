@@ -68,7 +68,7 @@ exports.getHistory = async (req, res) => {
     }
 
     // Send the user's history
-    return res.status(200).json({ success: true, userHistory: userHistory });
+    return res.status(200).json({ success: true, userHistory: userHistory.userHistory });
   } catch (error) {
     console.error(error);
     return res
