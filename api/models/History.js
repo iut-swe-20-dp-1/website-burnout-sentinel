@@ -14,6 +14,10 @@ const historySchema = new mongoose.Schema({
         max: 10,
         required: true
       },
+      classification: {
+        type: String,
+        required: true,
+      },
       timestamp: {
         type: Date,
         default: Date.now,

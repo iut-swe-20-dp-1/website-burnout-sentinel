@@ -22,9 +22,8 @@ exports.addHistory = async (req, res) => {
     }
 
     // Take info from the req body and append it to the userHistory array
-    const { score } = req.body;
-    const timestamp = new Date();
-    userHistory.userHistory.push({ score, timestamp });
+    const { score, classification, timestamp } = req.body;
+    userHistory.userHistory.push({ score, classification, timestamp });
 
     // Save the updated history
     await userHistory.save();
