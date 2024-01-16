@@ -44,11 +44,16 @@ function App() {
 
 
 function PrivateRoute ({children}){
-  const currentUser = true; // get this from a function
-  if(currentUser!==null && currentUser!==undefined && currentUser===true ){
+  const accessToken = document.cookie.split('; ').find(row => row.startsWith('accessToken=')).split('=')[1];
+  const decodedToken = JSON.parse(atob(accessToken.split('.')[1]));
+  const currentTimestamp = Math.floor(Date.now() / 1000);
+  if (decodedToken.exp && decodedToken.exp < currentTimestamp) {
+      // Token has expired
+      console.log('Token has expired');
+      return <Navigate to="/login"/>
+  }else{
     return <>{children}</>
-  } else {
-    return <Navigate to="/login"/>
   }
+  
 }
 export default App

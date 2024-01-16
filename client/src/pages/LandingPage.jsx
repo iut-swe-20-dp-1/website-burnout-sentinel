@@ -3,6 +3,7 @@ import React from 'react'
 //components import
 import PublicNavbar from '../components/LandingPage/PublicNavbar'
 import SectionHero from '../components/LandingPage/SectionHero'
+import ShowUserStats from '../components/LandingPage/ShowUserStats'
 import SectionSymptom from '../components/LandingPage/SectionSymptom'
 import SectionFeatures from '../components/LandingPage/SectionFeatures'
 import SectionAboutUs from '../components/LandingPage/SectionAboutUs'
@@ -16,6 +17,7 @@ const LandingPage = () => {
       }}>
         <PublicNavbar />
         <SectionHero/>
+        <ShowUserStats/>
         <SectionSymptom />
         <SectionFeatures/>
         <SectionAboutUs/>
