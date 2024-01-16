@@ -44,12 +44,19 @@ export const baseDataInputFields = [
 export const addBaseDataEmbedLink = "https://docs.google.com/forms/d/e/1FAIpQLSfB82j1rHE-v1jGUg3DjTUXbu6yncGTwBOzT8BCg3zb0KyRBA/viewform?embedded=true"
 
 export const suggestions = [
-    { lower: 0, upper: 2, suggestion: "You seem to be managing your stress well. Keep up the good work!" },
-    { lower: 3, upper: 4, suggestion: "You're doing alright, but there's room for improvement. Consider trying relaxation techniques." },
-    { lower: 5, upper: 6, suggestion: "It looks like you're experiencing moderate stress. Reach out to friends and consider talking to a counselor." },
-    { lower: 7, upper: 8, suggestion: "Your stress levels are high. It's important to take action. Consider professional help and relaxation methods." },
-    { lower: 9, upper: 10, suggestion: "Your stress levels are extremely high. Please seek help immediately from a mental health professional." }
-];
+    { "score": 0, "suggestion": "You seem to be managing your stress well. Keep up the good work! 😊" },
+    { "score": 1, "suggestion": "You're off to a great start in managing your stress! 😌" },
+    { "score": 2, "suggestion": "Your stress levels are low. Keep up the positive mindset! 🌈" },
+    { "score": 3, "suggestion": "You're doing well, but there's room for improvement. Try relaxation techniques. 🌟" },
+    { "score": 4, "suggestion": "Keep up the effort in managing your stress. Consider trying new relaxation methods. 💆" },
+    { "score": 5, "suggestion": "You're experiencing moderate stress. Reach out to friends and consider talking to a counselor. 🤗" },
+    { "score": 6, "suggestion": "Moderate stress is normal, but ensure you take time for self-care. You've got this! 💪" },
+    { "score": 7, "suggestion": "Your stress levels are noticeable. Take action with professional help and relaxation methods. 🌈" },
+    { "score": 8, "suggestion": "High stress calls for action. Consider professional help and prioritize self-care. 🌺" },
+    { "score": 9, "suggestion": "Extremely high stress levels. Seek immediate help from a mental health professional. 🙏" },
+    { "score": 10, "suggestion": "Your stress levels are critical. Urgently seek help from a mental health professional. 🆘" }
+]
+
 
 export const ActivePageType = {
     Homepage: "home",

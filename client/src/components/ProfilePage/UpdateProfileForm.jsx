@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   inputFieldClass,
   labelClass,
@@ -11,18 +11,49 @@ import upload from "../../utils/upload";
 import axios from "axios";
 
 const UpdateProfileForm = ({ reloadSidebar }) => {
-  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState("");
   const [wait, setWait] = useState("");
+  const [userimg, setUserimg] = useState(null);
+  const [formData, setFormData] = useState({
+    email: "",
+    username: "",
+    dob: "",
+    name: "",
+    gender: "",
+    pic: null,
+  });
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  var userData = {
+    email: "user@example.com",
+    username: "john_doe",
+    dob: "1990-01-01",
+    name: "John Doe",
+    gender: "male",
   };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      setFormData({
+        email: userData.email,
+        username: userData.username,
+        dob: userData.dob,
+        name: userData.name,
+        gender: userData.gender,
+        pic: userData.pic,
+      });
+      setUserimg(formData.pic);
+    };
+
+    fetchUserData();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage("");
+    setSuccess("");
+    setWait("Please wait...");
 
     let url;
     if (userimg != null) {
@@ -43,24 +74,17 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
       );
 
       if (response.status === 200) {
-        setMessage("Profile Updated sucessfully.");
+        setWait("");
+        setSuccess("Profile Updated sucessfully.");
         // Trigger the reload of the UserSidebar component
         reloadSidebar();
       }
     } catch (err) {
       console.log(err);
+      setWait("");
+      setMessage("Internal server error");
     }
   };
-
-  const [formData, setFormData] = useState({
-    email: "",
-    username: "",
-    dob: "",
-    name: "",
-    gender: "",
-    pic: null,
-  });
-  const [userimg, setUserimg] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -88,10 +112,18 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-full px-3 mb-6">
+              {/* <div className={`h-64 w-64 user cursor-pointer relative rounded-full my-1 ml-1 bg-cover bg-center bg-[url(`${formData.pic}`)]`}>
+                            </div> */}
               <label className={`${labelClass}`} htmlFor="pic">
                 Profile Image
               </label>
-              {userimg && <img src={userimg} alt="current_pfp" />}
+              {formData.pic && (
+                <img
+                  className="h-64 w-64 rounded-full my-1"
+                  src={formData.pic}
+                  alt="current_pfp"
+                />
+              )}
               <input
                 className={`${inputFieldClass}`}
                 type="file"

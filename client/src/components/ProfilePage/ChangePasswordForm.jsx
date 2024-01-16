@@ -22,8 +22,10 @@ const ChangePasswordForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
+    setWait("Please wait...");
 
     if (formData.newPassword !== formData.confirmNewPassword) {
+      setWait("");
       setMessage("Your passwords do not match!");
       return;
     }
@@ -48,7 +50,8 @@ const ChangePasswordForm = () => {
 
       if (response.ok) {
         // Password reset successful, handle success accordingly
-        setMessage("Password reset successful!");
+        setWait("");
+        setSuccess("Password reset successful!");
       } else {
         // Password reset failed, handle the error
         setMessage(data.message || "Password reset failed");

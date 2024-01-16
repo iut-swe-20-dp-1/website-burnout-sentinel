@@ -1,39 +1,66 @@
 import React, { useState } from 'react';
 import { inputFieldClass, labelClass } from '../utils/styles';
+import { mlUrl } from '../utils/urls';
 
 const Test = () => {
     const [csv, setCsv] = useState(null);
+    const [message, setMessage] = useState('')
 
     const handleFileChange = (e) => {
-        setCsv(e.target.files[0]);
+
+        const selectedFile = e.target.files[0];
+
+        if (selectedFile) {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                const content = event.target.result;
+                const lines = content.split('\n');
+
+                if (lines.length < 40 && lines.length > 10000) {
+                    setMessage('File contains less than 40 rows or more than 10000 rows. Please choose a valid file.');
+                    setCsv(null); // Reset the selected file
+                } else {
+                    setMessage("Successfully uploaded CSV with " + lines.length + " rows.");
+                    setCsv(selectedFile);
+                }
+            };
+
+            reader.readAsText(selectedFile);
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("carried out")
+        setMessage('Wait!')
 
         console.log(csv)
         const formData = new FormData()
         formData.append('csv', csv)
 
         try {
-            // const url = 'https://ml-deployment-test.onrender.com/csv';
-            const url = 'http://127.0.0.1:8000/csv';
+            const url = `${mlUrl}/csv`;
             const response = await fetch(url, {
                 method: "POST",
                 body: formData,
             });
 
             if (response.ok) {
-                console.log(response)
                 const data = await response.json();
                 const prediction = data.prediction;
                 const classification = data.classification;
 
                 console.log("Prediction:", prediction);
                 console.log("Classification:", classification);
+                setMessage(`Prediction: ${prediction} and stress level is ${classification}`)
             } else {
-                console.error("Failed to upload file.")
+                if(response.message){
+                    console.log(response.message)
+                } else {
+                    console.log("Something went wrong!")
+                    setMessage('Something went wrong!')
+                }
             }
         } catch (error) {
             console.error(error)
@@ -50,8 +77,10 @@ const Test = () => {
                 type="file"
                 name="csv"
                 onChange={handleFileChange}
+                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
             />
             <button type="submit">Submit</button>
+        <h1>{message}</h1>
         </form>
     );
 };
