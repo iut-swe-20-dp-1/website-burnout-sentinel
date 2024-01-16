@@ -35,7 +35,7 @@ const UserHistory = () => {
             "level": "medium"
         },
         {
-            "date": "2023-01-20",
+            "date": Date.now(),
             "stressScore": 2,
             "level": "low"
         }
@@ -52,7 +52,7 @@ const UserHistory = () => {
     }, [])
 
     var data = {
-        labels: history?.map(x => x.date),
+        labels: history?.map(x => new Date(x.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })),
         datasets: [{
             label: 'Stress Over Time',
             data: history?.map(x => x.stressScore),

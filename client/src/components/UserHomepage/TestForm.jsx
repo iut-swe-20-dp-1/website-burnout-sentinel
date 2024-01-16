@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import LottieAnimation from '../LottieAnimation';
 import { closeButtonClass, inputFieldClass, labelClass } from '../../utils/styles';
 import Button from '../Button';
+import { HiInformationCircle } from 'react-icons/hi';
 import { baseDataInputFields } from '../../utils/content';
 import StressScoreContent from './StressScoreContent';
 import { mlUrl } from '../../utils/urls';
@@ -24,6 +25,12 @@ const TestForm = ({
     const [filename, setFilename] = useState('');
     const [score, setScore] = useState('')
     const [stressLevel, setStressLevel] = useState('')
+    const [next, setNext] = useState(false);
+
+    const goToTestForm = (e) => {
+        e.preventDefault();
+        setNext(true);
+    }
 
     const handleFileChange = (e) => {
 
@@ -57,6 +64,8 @@ const TestForm = ({
 
     const handleFileFormSubmit = async (e) => {
         e.preventDefault();
+        const currentDate = new Date();
+        console.log(currentDate)
         console.log(file);
         setSuccess(false);
         setWait(true);
@@ -88,6 +97,7 @@ const TestForm = ({
             } else {
                 setWait(false);
                 setSuccess(false);
+                setFile(null)
                 if (response.message) {
                     console.log(response.message)
                     setMessage(response.message)
@@ -99,6 +109,7 @@ const TestForm = ({
         } catch (error) {
             setWait(false);
             setSuccess(false);
+            setFile(null)
             setMessage("Something went wrong! Please try again...")
             console.error(error)
         }
@@ -120,11 +131,11 @@ const TestForm = ({
                                 <div className="text-right">
                                     <button type="button" className={`${closeButtonClass}`} onClick={() => setShowTestForm(false)}>Close</button>
                                 </div>
-                                {success ? (
+                                {next ? (<>{success ? (
                                     <StressScoreContent message={"Based on your data, your score is"} score={score} level={stressLevel} />
                                 ) : (
                                     wait ? (
-                                        <Loading loadingMessage={'Please wait while we calculate your score!'}/>
+                                        <Loading loadingMessage={'Please wait while we calculate your score!'} />
                                     ) : (
                                         <>
                                             <div className='px-12 py-2'>
@@ -152,14 +163,14 @@ const TestForm = ({
                                                                     <p class="text-xs text-gray-500 text-center">Enter your CSV or Excel (containing your physiological data)
                                                                     </p>
                                                                 </div>
-                                                                <input id="dropzone-file" type="file" class="hidden" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onChange={(e) => handleFileChange(e)} required/>
+                                                                <input id="dropzone-file" type="file" class="hidden" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onChange={(e) => handleFileChange(e)} required />
                                                             </label>
                                                             <div className="w-full md:w-full px-3">
                                                                 {file && (<div className="w-full mx-auto py-2 text-center px-3 my-4 border-t-2 ">
                                                                     <span className="text-lg text-[#7366FF] font-bold">File Selected: {filename}</span>
                                                                 </div>)}
 
-                                                                { message && <FormMessage bg_class={"bg-yellow-300"} message={message} />}
+                                                                {message && <FormMessage bg_class={"bg-yellow-300"} message={message} />}
                                                                 <Button
                                                                     additional_classes={"my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"}
                                                                     button_text={"Submit"}
@@ -196,7 +207,38 @@ const TestForm = ({
                                             </div>
                                         </>
                                     )
-                                )}
+                                )}</>) : (<>
+                                    <div className='bg-yellow-200 text-left p-2 my-2 flex items-center'>
+                                        <HiInformationCircle className='text-[#300722] text-5xl mr-2' />
+                                        <p> Disclaimer: Please be aware that the score and the information provided on this website are not a replacement for professional guidance. If you believe you are at risk of adverse effects, we strongly recommend consulting a qualified medical professional.</p>
+                                    </div>
+                                    <form onSubmit={goToTestForm}>
+
+                                    <div className="w-full flex items-center justify-between px-3 mb-3 ">
+                                        <label
+                                            htmlFor="show_password"
+                                            className="flex items-center w-1/2"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                className="mr-1 bg-white shadow"
+                                                required
+                                            />
+                                            <span className="text-md text-gray-700 pt-1 h-full my-auto">
+                                                I understand and wish to continue
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <div className="w-full md:w-full px-3">
+                                        <Button
+                                            additional_classes={"my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"}
+                                            button_text={"Next"}
+                                            button_type={"submit"}
+                                        />
+                                    </div>
+                                    </form>
+                                </>)}
                             </div>
                         </div>
                     </div>
