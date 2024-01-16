@@ -7,6 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import Button from "../Button";
 import FormMessage from "../FormMessage";
+import { serverUrl } from "../../utils/urls";
 
 const ChangePasswordForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +33,7 @@ const ChangePasswordForm = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8800/api/auth/resetpassword",
+        `${serverUrl}/api/auth/resetpassword`,
         {
           method: "POST",
           headers: {
@@ -147,15 +148,15 @@ const ChangePasswordForm = () => {
             </div>
 
             {success && (
-              <FormMessage bg_class={"green-300"} message={success} />
+              <FormMessage bg_class={"bg-green-300"} message={success} />
             )}
             {error && !wait && (
-              <FormMessage bg_class={"red-300"} message={error} />
+              <FormMessage bg_class={"bg-red-300"} message={error} />
             )}
             {message && !success && (
-              <FormMessage bg_class={"yellow-300"} message={message} />
+              <FormMessage bg_class={"bg-yellow-300"} message={message} />
             )}
-            {wait && <FormMessage bg_class={"yellow-300"} message={wait} />}
+            {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
 
             <div className="w-full md:w-full px-3">
               <Button

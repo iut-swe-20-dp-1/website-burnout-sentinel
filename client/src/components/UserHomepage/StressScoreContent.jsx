@@ -55,15 +55,15 @@ const StressScoreContent = ({ message, score, level }) => {
             </div>
 
             <div className="text-center mb-4">
-                <h2 className="text-xl  tracking-tight">
+                <h2 className="text-2xl font-bold tracking-tight">
                     {suggestion.suggestion}
                 </h2>
             </div>
 
-            <div className='bg-yellow-200 text-left p-2 my-2 flex items-center'>
+            {/* <div className='bg-yellow-200 text-left p-2 my-2 flex items-center'>
                 <HiInformationCircle className='text-[#300722] text-5xl mr-2' />
                 <p> Disclaimer: Please be aware that the score and the information provided on this website are not a replacement for professional guidance. If you believe you are at risk of adverse effects, we strongly recommend consulting a qualified medical professional.</p>
-            </div>
+            </div> */}
         </>
     )
 }

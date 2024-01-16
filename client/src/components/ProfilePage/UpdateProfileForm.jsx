@@ -9,6 +9,7 @@ import Button from "../Button";
 import FormMessage from "../FormMessage";
 import upload from "../../utils/upload";
 import axios from "axios";
+import { serverUrl } from "../../utils/urls";
 
 const UpdateProfileForm = ({ reloadSidebar }) => {
   const [error, setError] = useState("");
@@ -46,7 +47,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
         };
 
         const response = await axios.get(
-          "http://localhost:8800/api/profile/get",
+          `${serverUrl}/api/profile/get`,
           config
         );
         const userData = response.data.user;
@@ -82,7 +83,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8800/api/profile/update",
+        `${serverUrl}/api/profile/update`,
         {
           ...formData,
           profileImage: url,
@@ -231,14 +232,14 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
             </div>
 
             {success && (
-              <FormMessage bg_class={"green-300"} message={success} />
+              <FormMessage bg_class={"bg-green-300"} message={success} />
             )}
             {error && !wait && (
-              <FormMessage bg_class={"red-300"} message={error} />
+              <FormMessage bg_class={"bg-red-300"} message={error} />
             )}
-            {wait && <FormMessage bg_class={"yellow-300"} message={wait} />}
+            {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
             {message && !success && (
-              <FormMessage bg_class={"yellow-300"} message={message} />
+              <FormMessage bg_class={"bg-yellow-300"} message={message} />
             )}
 
             <div className="w-full md:w-full px-3">

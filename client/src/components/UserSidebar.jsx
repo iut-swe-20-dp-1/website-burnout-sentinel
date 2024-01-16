@@ -8,6 +8,7 @@ import { BiSolidTimeFive } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import axios from "axios";
+import { serverUrl } from "../utils/urls";
 
 const UserSidebar = () => {
   const [userData, setUserData] = useState(null);
@@ -24,7 +25,7 @@ const UserSidebar = () => {
         };
 
         const response = await axios.get(
-          "http://localhost:8800/api/profile/get",
+            `${serverUrl}/api/profile/get`,
           config
         );
         setUserData(response.data.user);
@@ -66,7 +67,7 @@ const UserSidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleLogOut = async () => {
-    const res = await axios.get("http://localhost:8800/api/auth/logout", {
+    const res = await axios.get(`${serverUrl}/api/auth/logout`, {
       withCredentials: true,
     });
     console.log(res.data);
@@ -106,9 +107,9 @@ const UserSidebar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
                 <svg
@@ -119,9 +120,9 @@ const UserSidebar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
               </button>

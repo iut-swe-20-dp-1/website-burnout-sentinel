@@ -10,6 +10,7 @@ import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import FormMessage from "../components/FormMessage";
 import axios from "axios";
+import { serverUrl } from "../utils/urls";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -89,7 +90,7 @@ const LoginPage = () => {
       };
       
       const response = await axios.post(
-        "http://localhost:8800/api/auth/login",
+        `${serverUrl}/api/auth/login`,
         loginData,
         config
       );
@@ -101,7 +102,7 @@ const LoginPage = () => {
         console.log(response.data);
 
         //Testing to see if protected route can now be accessed
-        const res2 = await axios.get("http://localhost:8800/api/auth/protected",{ withCredentials: true })
+        const res2 = await axios.get(`${serverUrl}/api/auth/protected`,{ withCredentials: true })
         console.log(res2.data); 
 
 
@@ -194,9 +195,9 @@ const LoginPage = () => {
                                 <Link to="/forgot-password" className="text-blue-500 hover:underline">Forgot Your Password?</Link>
                             </div>
 
-                            {success && <FormMessage bg_class={"green-300"} message={success} />}
-                            {error && !wait && <FormMessage bg_class={"red-300"} message={error} />}
-                            {wait && <FormMessage bg_class={"yellow-300"} message={wait} />}
+                            {success && <FormMessage bg_class={"bg-green-300"} message={success} />}
+                            {error && !wait && <FormMessage bg_class={"bg-red-300"} message={error} />}
+                            {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
 
               <div className="w-full md:w-full px-3">
                 <Button

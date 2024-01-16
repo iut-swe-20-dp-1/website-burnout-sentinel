@@ -10,6 +10,7 @@ import LottieAnimation from "../components/LottieAnimation";
 import RegisterAnimation from "../assets/RegisterAnimation.json";
 import FormMessage from "../components/FormMessage";
 import axios from "axios";
+import { clientUrl, serverUrl } from "../utils/urls";
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -88,7 +89,7 @@ const RegisterPage = () => {
     try {
       const config = {
         headers: {
-          "Access-Control-Allow-Origin": "http://localhost:5173",
+          "Access-Control-Allow-Origin": `${clientUrl}`,
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
           "Access-Control-Allow-Headers":
             "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Allow-Methods, Access-Control-Request-Headers, Access-Control-Allow-Origin",
@@ -99,7 +100,7 @@ const RegisterPage = () => {
 
       // Perform the API request
       const response = await axios.get(
-        "http://localhost:8800/api/auth/google?register=true",
+        `${serverUrl}/api/auth/google?register=true`,
         config
       );
 
@@ -152,7 +153,7 @@ const RegisterPage = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:8800/api/auth/register",
+        `${serverUrl}/api/auth/register`,
         registrationData
       );
 
@@ -321,15 +322,15 @@ const RegisterPage = () => {
             </div>
 
             {success && (
-              <FormMessage bg_class={"green-300"} message={success} />
+              <FormMessage bg_class={"bg-green-300"} message={success} />
             )}
             {error && !wait && (
-              <FormMessage bg_class={"red-400"} message={error} />
+              <FormMessage bg_class={"bg-red-400"} message={error} />
             )}
             {message && !success && (
-              <FormMessage bg_class={"yellow-300"} message={message} />
+              <FormMessage bg_class={"bg-yellow-300"} message={message} />
             )}
-            {wait && <FormMessage bg_class={"yellow-300"} message={wait} />}
+            {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
 
             <div className="w-full md:w-full px-3">
               <Button
