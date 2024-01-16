@@ -173,6 +173,12 @@ const UserHistory = () => {
                               scope="col"
                               className="text-lg font-medium text-[#300722] px-6 py-4 text-left"
                             >
+                              Time
+                            </th>
+                            <th
+                              scope="col"
+                              className="text-lg font-medium text-[#300722] px-6 py-4 text-left"
+                            >
                               Stress Score
                             </th>
                             <th
@@ -194,11 +200,28 @@ const UserHistory = () => {
                                     : "bg-white border-b rounded-md"
                                 }
                               >
-                                <td className="px-6 py-4 whitespace-nowrap text-md font-medium text-[#300722]">
-                                  {entry.date}
+                                <td className="text-md text-[#300722] font-light px-6 py-4 whitespace-nowrap">
+                                  {new Date(entry.date).toLocaleDateString(
+                                    "en-GB",
+                                    {
+                                      day: "numeric",
+                                      month: "short",
+                                      year: "numeric",
+                                    }
+                                  )}
                                 </td>
                                 <td className="text-md text-[#300722] font-light px-6 py-4 whitespace-nowrap">
-                                  {entry.stressScore}
+                                  {new Date(entry.date).toLocaleTimeString(
+                                    "en-US",
+                                    {
+                                      hour: "2-digit",
+                                      minute: "2-digit",
+                                      hour12: true,
+                                    }
+                                  )}
+                                </td>
+                                <td className="text-md text-[#300722] font-light px-6 py-4 whitespace-nowrap">
+                                  {entry.stressScore.toFixed(2)}
                                 </td>
                                 <td className="text-md text-[#300722] font-light px-6 py-4 whitespace-nowrap">
                                   {entry.level}

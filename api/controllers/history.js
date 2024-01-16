@@ -67,6 +67,9 @@ exports.getHistory = async (req, res) => {
       await userHistory.save();
     }
 
+    // Sort the userHistory based on timestamp in descending order
+    userHistory.userHistory.sort((a, b) => b.timestamp - a.timestamp);
+
     // Send the user's history
     return res.status(200).json({ success: true, userHistory: userHistory.userHistory });
   } catch (error) {
@@ -76,3 +79,4 @@ exports.getHistory = async (req, res) => {
       .json({ success: false, message: "Internal Server Error" });
   }
 };
+
