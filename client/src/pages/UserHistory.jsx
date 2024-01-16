@@ -121,7 +121,7 @@ const UserHistory = () => {
 
   return (
     <>
-      <div className="bg-[#FFDFDF]">
+      <div className="bg-[#DFE9F7]">
         <UserSidebar />
         <div
           className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
@@ -165,25 +165,25 @@ const UserHistory = () => {
                           <tr>
                             <th
                               scope="col"
-                              className="text-lg font-medium text-[#300722] px-6 py-4 text-left"
+                              className="text-xl font-medium text-[#300722] px-6 py-4 text-left"
                             >
                               Date
                             </th>
                             <th
                               scope="col"
-                              className="text-lg font-medium text-[#300722] px-6 py-4 text-left"
+                              className="text-xl font-medium text-[#300722] px-6 py-4 text-left"
                             >
                               Time
                             </th>
                             <th
                               scope="col"
-                              className="text-lg font-medium text-[#300722] px-6 py-4 text-left"
+                              className="text-xl font-medium text-[#300722] px-6 py-4 text-left"
                             >
                               Stress Score
                             </th>
                             <th
                               scope="col"
-                              className="text-lg font-medium text-[#300722] px-6 py-4 text-left"
+                              className="text-xl font-medium text-[#300722] px-6 py-4 text-left"
                             >
                               Stress Level
                             </th>
@@ -194,13 +194,10 @@ const UserHistory = () => {
                             history.map((entry, index) => (
                               <tr
                                 key={index}
-                                className={
-                                  index % 2 === 0
-                                    ? "bg-[#DFE9F7] border-b rounded-md"
-                                    : "bg-white border-b rounded-md"
+                                className={"bg-white border-b rounded-md"
                                 }
                               >
-                                <td className="text-md text-[#300722] font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-lg text-[#300722] font-light px-6 py-4 whitespace-nowrap">
                                   {new Date(entry.date).toLocaleDateString(
                                     "en-GB",
                                     {
@@ -210,7 +207,7 @@ const UserHistory = () => {
                                     }
                                   )}
                                 </td>
-                                <td className="text-md text-[#300722] font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-lg text-[#300722] font-light px-6 py-4 whitespace-nowrap">
                                   {new Date(entry.date).toLocaleTimeString(
                                     "en-US",
                                     {
@@ -220,10 +217,10 @@ const UserHistory = () => {
                                     }
                                   )}
                                 </td>
-                                <td className="text-md text-[#300722] font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-lg text-[#300722] font-light px-6 py-4 whitespace-nowrap">
                                   {entry.stressScore.toFixed(2)}
                                 </td>
-                                <td className="text-md text-[#300722] font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-lg text-[#300722] font-light px-6 py-4 whitespace-nowrap">
                                   {entry.level}
                                 </td>
                               </tr>

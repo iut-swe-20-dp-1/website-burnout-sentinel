@@ -14,7 +14,7 @@ const UserHomepage = () => {
   const [showTestForm, setShowTestForm] = useState(false);
 
   return (
-    <div className='bg-[#FFDFDF] min-h-screen'>
+    <div className='bg-[#DFE9F7] min-h-screen'>
       <UserSidebar />
       <div className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
       <div id="main-content" className="relative overflow-y-auto lg:ml-64">
