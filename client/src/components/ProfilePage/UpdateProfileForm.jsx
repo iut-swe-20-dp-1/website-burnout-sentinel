@@ -21,7 +21,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
   const [formData, setFormData] = useState({
     email: "",
     username: "",
-    dob: "",
+    // dob: "",
     name: "",
     gender: "",
     pic: null,
@@ -54,7 +54,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
         setFormData({
           email: userData.email,
           username: userData.username,
-          dob: userData.dob,
+          // dob: userData.dob,
           name: userData.fullName,
           gender: userData.gender,
         });
@@ -119,19 +119,24 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
     // setFormData({ ...formData, [name]: file });
     setUserimg(e.target.files[0]);
     console.log("Got image : ", e.target.files[0]);
+
+    // Create a local URL for the image
+    const imageUrl = URL.createObjectURL(e.target.files[0]);
+    setDisplayUserImg(imageUrl);
+    console.log(imageUrl)
   };
   return (
     <>
       <div className="flex justify-center">
         <form
-          className="w-full bg-white/90 my-8 rounded-lg shadow-md px-24 pt-6"
+          className="w-full bg-white/90 my-8 rounded-lg shadow-md px-6 pt-6"
           onSubmit={handleSubmit}
         >
-          <div className="mb-8">
+          {/* <div className="mb-8">
             <h2 className="text-3xl font-bold text-[#7366FF] tracking-tight">
               Your Profile
             </h2>
-          </div>
+          </div> */}
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-full px-3 mb-6">
               {/* <div className={`h-64 w-64 user cursor-pointer relative rounded-full my-1 ml-1 bg-cover bg-center bg-[url(`${formData.pic}`)]`}>
@@ -139,13 +144,20 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
               <label className={`${labelClass}`} htmlFor="pic">
                 Profile Image
               </label>
-              {displayUserImg && (
-                <img
-                  className="h-64 w-64 rounded-full my-1"
-                  src={displayUserImg}
-                  alt="current_pfp"
-                />
+              {displayUserImg ? (
+                <div className="flex items-center justify-center h-40 my-4">
+                  <img
+                    className="h-40 w-40 object-cover rounded-full"
+                    src={displayUserImg}
+                    alt="current_pfp"
+                  />
+                </div>
+              ) : (
+                <div className="text-xl my-2 text-center">
+                  You don't seem to have a profile image yet!
+                </div>
               )}
+
               <input
                 className={`${inputFieldClass}`}
                 type="file"
@@ -155,7 +167,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
               />
             </div>
 
-            <div className="w-full md:w-full px-3 mb-6">
+            {/* <div className="w-full md:w-full px-3 mb-6">
               <label className={`${labelClass}`} htmlFor="name">
                 Full Name
               </label>
@@ -165,9 +177,8 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                required
               />
-            </div>
+            </div> */}
 
             <div className="w-full md:w-full px-3 mb-6">
               <label className={`${labelClass}`} htmlFor="username">
@@ -179,7 +190,6 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
                 name="username"
                 value={formData.username}
                 onChange={handleInputChange}
-                required
               />
             </div>
 
@@ -197,7 +207,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
               />
             </div>
 
-            <div className="w-full md:w-full px-3 mb-6">
+            {/* <div className="w-full md:w-full px-3 mb-6">
               <label className={`${labelClass}`} htmlFor="dob">
                 Date of Birth
               </label>
@@ -207,9 +217,8 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
                 name="dob"
                 value={formData.dob}
                 onChange={handleInputChange}
-                required
               />
-            </div>
+            </div> */}
 
             <div className="w-full md:w-full px-3 mb-6">
               <label className={`${labelClass}`} htmlFor="gender">
@@ -221,7 +230,6 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
                 name="gender"
                 value={formData.gender}
                 onChange={handleInputChange}
-                required
               >
                 <option value="" disabled selected>
                   Select your gender
