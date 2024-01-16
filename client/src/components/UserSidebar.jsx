@@ -127,7 +127,7 @@ const UserSidebar = () => {
                 </svg>
               </button>
               <a
-                href="#"
+                href="/home"
                 className="text-xl font-bold flex items-center lg:ml-2.5"
               >
                 <img src={logo} className="h-6 mr-2" alt="Logo" />

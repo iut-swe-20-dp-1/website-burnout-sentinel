@@ -50,11 +50,11 @@ export const suggestions = [
     { "score": 3, "suggestion": "You're doing well, but there's room for improvement. Try relaxation techniques. 🌟" },
     { "score": 4, "suggestion": "Keep up the effort in managing your stress. Consider trying new relaxation methods. 💆" },
     { "score": 5, "suggestion": "You're experiencing moderate stress. Reach out to friends and consider talking to a counselor. 🤗" },
-    { "score": 6, "suggestion": "Moderate stress is normal, but ensure you take time for self-care. You've got this! 💪" },
+    { "score": 6, "suggestion": "A little high stress is normal, but ensure you take time for self-care. You've got this! 💪" },
     { "score": 7, "suggestion": "Your stress levels are noticeable. Take action with professional help and relaxation methods. 🌈" },
     { "score": 8, "suggestion": "High stress calls for action. Consider professional help and prioritize self-care. 🌺" },
-    { "score": 9, "suggestion": "Extremely high stress levels. Seek immediate help from a mental health professional. 🙏" },
-    { "score": 10, "suggestion": "Your stress levels are critical. Urgently seek help from a mental health professional. 🆘" }
+    { "score": 9, "suggestion": "Extremely high stress levels. Please consider seeking immediate help from a mental health professional. 🙏" },
+    { "score": 10, "suggestion": "Your stress levels are critical. You may need to seek help from a mental health professional. 🆘" }
 ]
 
 

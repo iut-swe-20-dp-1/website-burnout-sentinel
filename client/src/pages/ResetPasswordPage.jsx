@@ -142,7 +142,7 @@ const ResetPasswordPage = () => {
               </div>
 
               <div className="w-full flex items-center justify-between px-3 mb-3 ">
-                <label for="show_password" className="flex items-center w-1/2">
+                <label htmlFor="show_password" className="flex items-center w-1/2">
                   <input
                     type="checkbox"
                     name="show_password"
