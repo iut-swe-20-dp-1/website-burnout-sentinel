@@ -88,8 +88,6 @@ const LoginPage = () => {
         withCredentials: true,
       };
       
-      console.log("Attempting request to login");
-
       const response = await axios.post(
         "http://localhost:8800/api/auth/login",
         loginData,

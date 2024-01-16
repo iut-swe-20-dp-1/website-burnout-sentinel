@@ -10,7 +10,7 @@ import FormMessage from "../FormMessage";
 import upload from "../../utils/upload";
 import axios from "axios";
 
-const UpdateProfileForm = () => {
+const UpdateProfileForm = ({ reloadSidebar }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
@@ -44,6 +44,8 @@ const UpdateProfileForm = () => {
 
       if (response.status === 200) {
         setMessage("Profile Updated sucessfully.");
+        // Trigger the reload of the UserSidebar component
+        reloadSidebar();
       }
     } catch (err) {
       console.log(err);
