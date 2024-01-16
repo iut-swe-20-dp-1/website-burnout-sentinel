@@ -4,7 +4,7 @@ const historySchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true
+    required: true,
   },
   userHistory: [
     {
@@ -12,7 +12,7 @@ const historySchema = new mongoose.Schema({
         type: Number,
         min: 0,
         max: 10,
-        required: true
+        required: true,
       },
       classification: {
         type: String,
@@ -21,10 +21,10 @@ const historySchema = new mongoose.Schema({
       timestamp: {
         type: Date,
         default: Date.now,
-        required: true
-      }
-    }
-  ]
+        required: true,
+      },
+    },
+  ],
 });
 
 const History = mongoose.model("History", historySchema);
