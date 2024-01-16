@@ -78,14 +78,14 @@ const ChangePasswordForm = () => {
     <>
       <div className="flex justify-center">
         <form
-          className="w-full bg-white/90 my-8 rounded-lg shadow-md px-24 pt-6"
+          className="w-full bg-white/90 my-8 rounded-lg shadow-md px-6 pt-6"
           onSubmit={handleSubmit}
         >
-          <div className="mb-8">
+          {/* <div className="mb-8">
             <h2 className="text-3xl font-bold text-[#7366FF] tracking-tight">
               Change your password
             </h2>
-          </div>
+          </div> */}
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-full px-3 mb-6">
               <label className={`${labelClass}`} htmlFor="currentPassword">
