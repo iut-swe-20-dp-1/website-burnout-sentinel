@@ -7,6 +7,7 @@ import Button from '../Button';
 import BottomNotification from '../BottomNotification';
 import { Link } from 'react-router-dom';
 import SampleCsvView from './SampleCsvView';
+import { sampleCsvUrl } from '../../utils/urls';
 
 const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, setShowTestForm, baseDataExists, setBaseDataExists }) => {
     const [showNotification, setShowNotification] = useState(false);
@@ -20,8 +21,21 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
     return (
         <>
             {showNotification && <BottomNotification text="Please Enter Your Base Data First!" />}
+            {/* <div className="p-2 rounded-lg">
+                    <h2 className="text-4xl font-bold text-[#7366FF] tracking-tight text-center">
+                      Get Started Right Away!
+                    </h2>
+                  </div> */}
 
-            <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
+
+
+            {/* <div className="mb-4 p-2 rounded-lg">
+                <h2 className="text-3xl font-bold text-[#7366FF] tracking-tight">
+                    Confused About Getting Started? Download/View our sample CSV below
+                </h2>
+            </div> */}
+
+<div className={`${dashboardCardClass} mb-10`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
                 <div className={`bg-[#7366FF] ${dashboardCardBgClass}`}></div>
                 <div className="relative w-full h-full p-4 sm:px-6 lg:px-4 flex">
                     <div>
@@ -36,17 +50,17 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                                     </>
                                 ) : (
                                     <div className="flex items-center font-bold  ">
-                                    <span className="text-xl">View CSV Format</span>
-                                    <FiChevronsDown className="ml-auto cursor-pointer" />
-                                  </div>
-                                  
+                                        <span className="text-xl">View CSV Format</span>
+                                        <FiChevronsDown className="ml-auto cursor-pointer" />
+                                    </div>
+
                                 )}
                             </div>
 
                         </h1>
 
                         {expanded && <SampleCsvView />}
-                        <Link to="https://res.cloudinary.com/dwvhnoeqo/raw/upload/v1705396987/BurnoutSentinel/CSV/Sample_CSV_pcsnyv.CSV">
+                        <Link to={`${sampleCsvUrl}`}>
                             <Button
                                 additional_classes="my-4 lg:px-5 md:px-2 px-2 py-1 text-white bg-[#300722] text-2xl font-bold before:border-[#300722]"
                                 button_text={"Download CSV"}
@@ -57,54 +71,23 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                 </div>
             </div>
 
-            {/* <Button
-                additional_classes="lg:px-5 md:px-2 px-2 py-1 text-white bg-[#300722] text-2xl font-bold before:border-[#300722]"
-                button_text="Demo Switch"
-                button_function={() => setBaseDataExists(!baseDataExists)}
-            /> */}
-
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 lg:-mt-5">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 -mt-5">
                 <div className="col-span-2 md:col-span-2 ">
                     <LottieAnimation lottie_animation_data={ManThinkingAnimation} style_classes="w-4/6" />
                 </div>
-
-
                 <div className="col-span-2 md:col-span-1 my-auto w-full">
                     <div className="grid gap-4 mt-3">
-                        {/* <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
-                            <div className={`bg-[#7366FF] ${dashboardCardBgClass}`}></div>
-                            <div className="relative w-full h-full p-4 sm:px-6 lg:px-4 flex">
-                                <div>
-                                    <h1 className="text-white text-3xl mt-2 font-bold">
-                                        {baseDataExists ? "Update Your Base Data" : "Add Your Base Data"}
-                                    </h1>
-
-                                    <p className="text-white text-xl mt-2">
-                                        {baseDataExists
-                                            ? "Keep your info current for better recommendations and relevant insights as your body changes."
-                                            : "Assess your stress levels for informed well-being decisions. Start now for a healthier future."}
-                                    </p>
-
-                                    <Button
-                                        additional_classes="my-4 lg:px-5 md:px-2 px-2 py-1 text-white bg-[#300722] text-2xl font-bold before:border-[#300722]"
-                                        button_text={baseDataExists ? "Update Data" : "Add Data"}
-                                        flex_start="true"
-                                        button_function={() => baseDataExists ? setShowUpdateBaseDataForm(true) : setShowAddBaseDataForm(true)}
-                                    />
-                                </div>
-                            </div>
-                        </div> */}
-                        {/* second card  */}
                         <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
-                            <div className={`bg-[#52b6e5] ${dashboardCardBgClass}`}></div>
+                            <div className={`bg-[#1bf7f3] ${dashboardCardBgClass}`}></div>
                             {/* <div className={`bg-yellow-600 ${dashboardCardBgClass}`}></div> */}
-                            <div className="relative w-full h-full p-4 sm:px-6 lg:px-4 flex">
+                            <div className="relative w-full h-full p-4 sm:px-12 lg:px-6 flex">
                                 <div>
-                                    <h1 className="text-white text-3xl mt-2 font-bold">
+
+                                    <h1 className="text-[#300722] text-4xl mt-2 font-bold">
                                         Stress Assessment
                                     </h1>
 
-                                    <p className="text-white text-xl mt-2">
+                                    <p className="text-[#300722] text-xl mt-2">
                                         Assess your stress levels for informed well-being decisions. Start now for a healthier future.
                                     </p>
                                     <Button
@@ -125,6 +108,8 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                     </div>
                 </div>
             </div>
+
+            
         </>
     );
 };

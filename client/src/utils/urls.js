@@ -5,3 +5,5 @@ export const mlUrl = 'http://127.0.0.1:8000'
 
 export const clientUrl = 'http://localhost:5173'
 // export const clientUrl = 'https://burnout-sentinels.netlify.app'
+
+export const sampleCsvUrl = "https://res.cloudinary.com/dwvhnoeqo/raw/upload/v1705396987/BurnoutSentinel/CSV/Sample_CSV_pcsnyv.CSV"

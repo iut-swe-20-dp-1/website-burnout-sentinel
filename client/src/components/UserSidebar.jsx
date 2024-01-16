@@ -88,7 +88,7 @@ const UserSidebar = () => {
 
   return (
     <>
-      <nav className="bg-[#a9a2fc] border-b border-[#aea8f3] fixed z-30 w-full">
+      <nav className="bg-[#7366FF] border-b border-[#aea8f3] fixed z-30 w-full">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start lg:p-2 p-0">
@@ -131,7 +131,7 @@ const UserSidebar = () => {
                 className="text-xl font-bold flex items-center lg:ml-2.5"
               >
                 <img src={logo} className="h-6 mr-2" alt="Logo" />
-                <span className="self-center whitespace-nowrap">
+                <span className="self-center text-white whitespace-nowrap">
                   Burnout Sentinel
                 </span>
               </a>
@@ -141,9 +141,9 @@ const UserSidebar = () => {
               <div className="inline relative">
                 <button
                   type="button"
-                  className="inline-flex items-center relative px-2 border border-[#300722] rounded-full"
+                  className="inline-flex items-center relative px-2 border border-white rounded-full"
                 >
-                  <div className="px-1.5 font-semibold text-[#300722]">
+                  <div className="px-1.5 font-semibold text-white">
                     {username}
                   </div>
                   <div
@@ -177,13 +177,13 @@ const UserSidebar = () => {
                       key={index}
                       className={`${
                         currentPath === link.link
-                          ? "bg-[#a7d4f3] rounded-lg"
+                          ? "bg-[#aafffe] rounded-lg"
                           : ""
                       }`}
                     >
                       <a
                         href={link.link}
-                        className={`flex items-center py-3 px-2 rounded-lg hover:bg-[#a7d4f3] text-[#300722] group`}
+                        className={`flex items-center py-3 px-2 rounded-lg hover:bg-[#96fffe] text-[#300722] group`}
                       >
                         {link.icon}
                         <span className="ml-3 text-xl text-[#300722]">
@@ -197,7 +197,7 @@ const UserSidebar = () => {
                   <li>
                     <div
                       onClick={handleLogOut}
-                      className="flex items-center cursor-pointer py-3 px-2 rounded-lg hover:bg-[#a7d4f3] text-[#300722] group"
+                      className="flex items-center cursor-pointer py-3 px-2 rounded-lg hover:bg-[#96fffe] text-[#300722] group"
                     >
                       <IoExit className={`${userSidebarIconClass}`} />
                       <span className="ml-3 text-xl text-[#300722]">

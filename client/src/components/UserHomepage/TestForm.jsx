@@ -9,10 +9,11 @@ import Button from "../Button";
 import { HiInformationCircle } from "react-icons/hi";
 import { baseDataInputFields } from "../../utils/content";
 import StressScoreContent from "./StressScoreContent";
-import { mlUrl, serverUrl } from "../../utils/urls";
+import { mlUrl, sampleCsvUrl, serverUrl } from "../../utils/urls";
 import FormMessage from "../FormMessage";
 import Loading from "../Loading";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const TestForm = ({
     form_title,
@@ -340,6 +341,10 @@ const TestForm = ({
                                                 </label>
                                             </div>
 
+
+                                            <p className="text-lg">
+                                                You can download a sample CSV to check the expected format from <Link to={`${sampleCsvUrl}`} ><span className="font-bold text-underline">here</span></Link>.
+                                            </p>
                                             <div className="w-full md:w-full px-3">
                                                 <Button
                                                     additional_classes={

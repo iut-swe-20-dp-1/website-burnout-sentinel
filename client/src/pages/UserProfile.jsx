@@ -15,7 +15,7 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="bg-[#D9F0FF]">
+      <div className="bg-[#e0ffff]">
         <UserSidebar key={reloadSidebar} />{" "}
         <div
           className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
@@ -27,7 +27,7 @@ const UserProfile = () => {
               <div className="pt-6 flex items-center justify-center h-full">
                 <div>
                   <div className="mb-8 bg-[#7366FF] p-2 rounded-lg">
-                    <h2 className="text-4xl font-bold text-[#DFE9F7] tracking-tight border-b-2 border-[#DFE9F7]">
+                    <h2 className="text-4xl font-bold text-[#f4ffff] tracking-tight border-b-2 border-[#f4ffff]">
                       Update Your Profile
                     </h2>
                   </div>
@@ -46,7 +46,7 @@ const UserProfile = () => {
               <div className="pt-6 flex items-center justify-center h-full">
                 <div className="pl-4">
                   <div className="mb-8 bg-[#7366FF] p-2 rounded-lg">
-                    <h2 className="text-4xl font-bold text-[#DFE9F7] tracking-tight border-b-2 border-[#DFE9F7]">
+                    <h2 className="text-4xl font-bold text-[#f4ffff] tracking-tight border-b-2 border-[#f4ffff]">
                       Change Your Password
                     </h2>
                   </div>

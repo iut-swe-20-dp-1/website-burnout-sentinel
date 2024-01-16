@@ -121,7 +121,7 @@ const UserHistory = () => {
 
   return (
     <>
-      <div className="bg-[#b8dcf0]">
+      <div className="bg-[#e0ffff]">
         <UserSidebar />
         <div
           className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
@@ -132,7 +132,7 @@ const UserHistory = () => {
 
             
             <div className="pt-6 px-4"><div className="mb-8 bg-[#7366FF] p-2 rounded-lg">
-              <h2 className="text-4xl font-bold text-[#DFE9F7] text-center tracking-tight border-b-2 border-[#DFE9F7]">
+              <h2 className="text-4xl font-bold text-[#f4ffff] text-center tracking-tight">
                 Track Your Stress History
               </h2>
             </div>
