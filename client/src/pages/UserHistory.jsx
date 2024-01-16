@@ -121,7 +121,7 @@ const UserHistory = () => {
 
   return (
     <>
-      <div className="bg-[#D9F0FF]">
+      <div className="bg-[#b8dcf0]">
         <UserSidebar />
         <div
           className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
@@ -129,7 +129,13 @@ const UserHistory = () => {
         ></div>
         <div id="main-content" className="relative overflow-y-auto lg:ml-64">
           <main>
-            <div className="pt-6 px-4">
+
+            
+            <div className="pt-6 px-4"><div className="mb-8 bg-[#7366FF] p-2 rounded-lg">
+              <h2 className="text-4xl font-bold text-[#DFE9F7] text-center tracking-tight border-b-2 border-[#DFE9F7]">
+                Track Your Stress History
+              </h2>
+            </div>
               <div className="flex items-center justify-center">
                 <LottieAnimation
                   lottie_animation_data={HistoryAnimation}
@@ -196,7 +202,7 @@ const UserHistory = () => {
                                 key={index}
                                 className={
                                   index % 2 === 0
-                                    ? "bg-[#DFE9F7] border-b rounded-md"
+                                    ? "bg-[#f2f2fb] border-b rounded-md"
                                     : "bg-white border-b rounded-md"
                                 }
                               >

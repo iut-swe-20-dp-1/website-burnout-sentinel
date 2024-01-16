@@ -59,7 +59,7 @@ const TestForm = ({
                     );
                     setCsv(null); // Reset the selected file
                 } else {
-                    setMessage("Added CSV with " + lines.length + " rows.");
+                    setMessage(`Received ${selectedFile?.name} with ` + lines.length + ` rows.`);
                     setFile(selectedFile);
                     setFilename(selectedFile ? selectedFile.name : "");
                 }
@@ -191,86 +191,99 @@ const TestForm = ({
                                             />
                                         ) : (
                                             <>
-                                                <div className="px-12 py-2">
-                                                    <div className="text-center my-4">
+                                                <form onSubmit={handleFileFormSubmit} className="px-6 py-2">
+                                                    <div className="text-center mb-7">
                                                         <h2 className="text-3xl font-bold text-[#7366FF] tracking-tight">
                                                             {form_title}
                                                         </h2>
                                                     </div>
-                                                    <LottieAnimation
-                                                        lottie_animation_data={lottie_animation_data}
-                                                        start_frame={start_frame}
-                                                        end_frame={end_frame}
-                                                        animation_speed={animation_speed}
-                                                        style_classes="w-3/6 mx-auto"
-                                                    />
-                                                    <div className="flex flex-wrap mx-3 mb-6">
-                                                        {/* form start  */}
-                                                        <div className="flex items-center justify-center w-full">
-                                                            <form onSubmit={handleFileFormSubmit}>
-                                                                <label
-                                                                    htmlFor="dropzone-file"
-                                                                    className="md:p-5 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover.bg-gray-100 my-5"
-                                                                >
-                                                                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                                                        <svg
-                                                                            className="w-10 h-10 mb-3 text-gray-400"
-                                                                            fill="none"
-                                                                            stroke="currentColor"
-                                                                            viewBox="0 0 24 24"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                        >
-                                                                            <path
-                                                                                strokeLinecap="round"
-                                                                                strokeLinejoin="round"
-                                                                                strokeWidth="2"
-                                                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                                                                            ></path>
-                                                                        </svg>
-                                                                        <p className="mb-2 text-sm text-gray-500">
-                                                                            <span className="font-semibold">
-                                                                                Click to upload
-                                                                            </span>
-                                                                        </p>
-                                                                        <p className="text-xs text-gray-500 text-center">
-                                                                            Enter your CSV or Excel (containing your
-                                                                            physiological data)
-                                                                        </p>
-                                                                    </div>
-                                                                    <input
-                                                                        id="dropzone-file"
-                                                                        type="file"
-                                                                        className="hidden"
-                                                                        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                                                                        onChange={(e) => handleFileChange(e)}
 
-                                                                    />
-                                                                </label>
-                                                                <div className="w-full md:w-full px-3">
-                                                                    {file && (
-                                                                        <div className="w-full mx-auto py-2 text-center px-3 my-4 border-t-2 ">
-                                                                            <span className="text-lg text-[#7366FF] font-bold">
-                                                                                File Selected: {filename}
-                                                                            </span>
-                                                                        </div>
-                                                                    )}
-
-                                                                    {message && (
-                                                                        <FormMessage
-                                                                            bg_class={"bg-yellow-300"}
-                                                                            message={message}
-                                                                        />
-                                                                    )}
-                                                                    <Button
-                                                                        additional_classes={
-                                                                            "my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"
-                                                                        }
-                                                                        button_text={"Submit"}
-                                                                        button_type={"submit"}
-                                                                    />
-                                                                </div>
-                                                            </form>
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                                        {/* Lottie Animation */}
+                                                        <div>
+                                                            <LottieAnimation
+                                                                lottie_animation_data={lottie_animation_data}
+                                                                start_frame={start_frame}
+                                                                end_frame={end_frame}
+                                                                animation_speed={animation_speed}
+                                                                style_classes="w-full mx-auto"
+                                                            />
                                                         </div>
+
+                                                        {/* File Upload Form */}
+                                                        <div>
+                                                            <div className="flex flex-col items-center justify-center w-full h-64 md:p-5 rounded-lg cursor-pointer my-5">
+                                                                <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                                                    <label
+                                                                        htmlFor="dropzone-file"
+                                                                        className="md:p-5 flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover.bg-gray-100 my-5"
+                                                                    >
+                                                                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                                                            <svg
+                                                                                className="w-10 h-10 mb-3 text-gray-400"
+                                                                                fill="none"
+                                                                                stroke="currentColor"
+                                                                                viewBox="0 0 24 24"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                            >
+                                                                                <path
+                                                                                    strokeLinecap="round"
+                                                                                    strokeLinejoin="round"
+                                                                                    strokeWidth="2"
+                                                                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                                                                                ></path>
+                                                                            </svg>
+                                                                            <p className="mb-2 text-sm text-gray-500">
+                                                                                <span className="font-semibold">
+                                                                                    Click to upload
+                                                                                </span>
+                                                                            </p>
+                                                                            <p className="text-xs text-gray-500 text-center">
+                                                                                Enter your CSV or Excel (containing your
+                                                                                physiological data)
+                                                                            </p>
+                                                                        </div>
+                                                                        <input
+                                                                            id="dropzone-file"
+                                                                            type="file"
+                                                                            className="hidden"
+                                                                            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                                                            onChange={(e) => handleFileChange(e)}
+
+                                                                        />
+                                                                    </label>
+
+                                                                </div>
+
+                                                            </div>
+                                                            {message && (
+                                                                <FormMessage
+                                                                    bg_class={"bg-yellow-300"}
+                                                                    message={message}
+                                                                />
+                                                            )}
+                                                            <Button
+                                                                additional_classes={
+                                                                    "my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"
+                                                                }
+                                                                button_text={"Submit"}
+                                                                button_type={"submit"}
+                                                            />
+                                                        </div>
+                                                        {/* <div className="w-full md:w-full px-3">
+                                                                {file && (
+                                                                    <div className="w-full mx-auto py-2 text-center px-3 my-4 border-t-2 ">
+                                                                        <span className="text-lg text-[#7366FF] font-bold">
+                                                                            File Selected: {filename}
+                                                                        </span>
+                                                                    </div>
+                                                                )}
+
+
+                                                            </div> */}
+
+
+
 
                                                         {/* <div className="w-full mx-auto py-2 text-center px-3 my-4 border-t-2 ">
                                             <span className="text-lg text-[#7366FF] font bold">OR FILL UP THE FORM BELOW</span>
@@ -288,15 +301,15 @@ const TestForm = ({
                                                     onChange={handleInputChange} />
                                             </div>
                                         ))} */}
-                                                    </div>
-                                                    {/* <div className="w-full md:w-full px-3">
+
+                                                        {/* <div className="w-full md:w-full px-3">
                                             <Button
                                                 additional_classes={"my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"}
                                                 button_text={"Submit"}
                                                 button_type={"submit"}
                                             />
-                                        </div> */}
-                                                </div>
+                                        </div> */}</div>
+                                                </form>
                                             </>
                                         )}
                                     </>

@@ -97,6 +97,7 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                         {/* second card  */}
                         <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
                             <div className={`bg-[#52b6e5] ${dashboardCardBgClass}`}></div>
+                            {/* <div className={`bg-yellow-600 ${dashboardCardBgClass}`}></div> */}
                             <div className="relative w-full h-full p-4 sm:px-6 lg:px-4 flex">
                                 <div>
                                     <h1 className="text-white text-3xl mt-2 font-bold">

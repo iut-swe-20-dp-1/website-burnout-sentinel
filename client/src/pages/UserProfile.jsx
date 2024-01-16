@@ -26,8 +26,8 @@ const UserProfile = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="pt-6 flex items-center justify-center h-full">
                 <div>
-                  <div className="mb-8">
-                    <h2 className="text-4xl font-bold text-[#7366FF] tracking-tight border-b-2 border-[#7366FF]">
+                  <div className="mb-8 bg-[#7366FF] p-2 rounded-lg">
+                    <h2 className="text-4xl font-bold text-[#DFE9F7] tracking-tight border-b-2 border-[#DFE9F7]">
                       Update Your Profile
                     </h2>
                   </div>
@@ -45,15 +45,15 @@ const UserProfile = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="pt-6 flex items-center justify-center h-full">
                 <div className="pl-4">
-                  <div className="mb-8">
-                    <h2 className="text-4xl font-bold text-[#7366FF] tracking-tight border-b-2 border-[#7366FF]">
+                  <div className="mb-8 bg-[#7366FF] p-2 rounded-lg">
+                    <h2 className="text-4xl font-bold text-[#DFE9F7] tracking-tight border-b-2 border-[#DFE9F7]">
                       Change Your Password
                     </h2>
                   </div>
                   <LottieAnimation
-                  lottie_animation_data={ResetPasswordAnimation}
-                  style_classes="w-3/6 md:w-4/6"
-                /></div>
+                    lottie_animation_data={ResetPasswordAnimation}
+                    style_classes="w-3/6 md:w-4/6"
+                  /></div>
               </div>
 
               <div className="pt-6 px-4">
