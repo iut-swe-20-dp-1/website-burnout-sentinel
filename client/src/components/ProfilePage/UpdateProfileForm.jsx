@@ -16,6 +16,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
   const [success, setSuccess] = useState("");
   const [wait, setWait] = useState("");
   const [userimg, setUserimg] = useState(null);
+  const [displayUserImg, setDisplayUserImg] = useState(null);
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -25,26 +26,43 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
     pic: null,
   });
 
-  var userData = {
-    email: "ayesha@gmail.com",
-    username: "john_doe",
-    dob: "1990-01-01",
-    name: "John Doe",
-    gender: "male",
-    profileImage: null,
-  };
+  //   var userData = {
+  //     email: "ayesha@gmail.com",
+  //     username: "john_doe",
+  //     dob: "1990-01-01",
+  //     name: "John Doe",
+  //     gender: "male",
+  //     profileImage: null,
+  //   };
 
   useEffect(() => {
     const fetchUserData = async () => {
-      setFormData({
-        email: userData.email,
-        username: userData.username,
-        dob: userData.dob,
-        name: userData.name,
-        gender: userData.gender,
-        // pic: userData.pic,
-      });
-      setUserimg(userData.profileImage);
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        };
+
+        const response = await axios.get(
+          "http://localhost:8800/api/profile/get",
+          config
+        );
+        const userData = response.data.user;
+        setFormData({
+          email: userData.email,
+          username: userData.username,
+          dob: userData.dob,
+          name: userData.fullName,
+          gender: userData.gender,
+        });
+        setUserimg(userData.profileImage);
+        setDisplayUserImg(userData.profileImage);
+      } catch (error) {
+        console.log(error);
+        setError(error.message);
+      }
     };
 
     fetchUserData();
@@ -78,6 +96,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
         setWait("");
         setSuccess("Profile Updated sucessfully.");
         setUserimg(url);
+        setDisplayUserImg(url);
         // Trigger the reload of the UserSidebar component
         reloadSidebar();
       }
@@ -119,10 +138,10 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
               <label className={`${labelClass}`} htmlFor="pic">
                 Profile Image
               </label>
-              {userimg && (
+              {displayUserImg && (
                 <img
                   className="h-64 w-64 rounded-full my-1"
-                  src={userimg}
+                  src={displayUserImg}
                   alt="current_pfp"
                 />
               )}

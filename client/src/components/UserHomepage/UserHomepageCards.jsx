@@ -4,6 +4,7 @@ import ManThinkingAnimation from "../../assets/ManThinkingAnimation.json";
 import { dashboardCardBgUrl, dashboardCardBgClass, dashboardCardClass } from '../../utils/styles';
 import Button from '../Button';
 import BottomNotification from '../BottomNotification';
+import { Link } from 'react-router-dom';
 
 const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, setShowTestForm, baseDataExists, setBaseDataExists }) => {
     const [showNotification, setShowNotification] = useState(false);
@@ -25,13 +26,13 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                             Download sample CSV file for entering your data
                         </h1>
 
+                        <Link to="https://res.cloudinary.com/dwvhnoeqo/raw/upload/v1705396987/BurnoutSentinel/CSV/Sample_CSV_pcsnyv.CSV">
                         <Button
                             additional_classes="my-4 lg:px-5 md:px-2 px-2 py-1 text-white bg-[#300722] text-2xl font-bold before:border-[#300722]"
                             button_text={"Download CSV"}
                             flex_start="true"
-                            // give csv download function 
-                            button_function={() => {}}
                         />
+                        </Link>
                     </div>
                 </div>
             </div>
