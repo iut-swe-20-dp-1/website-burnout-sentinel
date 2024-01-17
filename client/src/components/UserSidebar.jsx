@@ -171,7 +171,7 @@ const UserSidebar = () => {
                 {showDropdown && (
                   <div className="absolute right-0 mt-2 bg-white border rounded-lg shadow-md overflow-hidden">
                     <div
-                      onClick={handleLogOut}
+                      onClick={()=>{navigate('/profile')}}
                       className="flex px-6 items-center cursor-pointer py-3 rounded-sm hover:bg-[#DFE9F7] text-[#300722] group"
                     >
                       <BsPersonCircle className={`${userSidebarIconClass}`} />
