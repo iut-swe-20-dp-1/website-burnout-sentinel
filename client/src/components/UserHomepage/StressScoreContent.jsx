@@ -98,11 +98,11 @@ const StressScoreContent = ({ message, score, level }) => {
         </h2>
       </div>
 
-      <div className="text-center mb-4">
+      {suggestion && (<div className="text-center mb-4">
         <h2 className="text-2xl font-bold tracking-tight">
-          {suggestion.suggestion}
+          {suggestion?.suggestion}
         </h2>
-      </div>
+      </div>)}
 
       {/* Feedback and Review section */}
       <div className="bg-yellow-200 bg-opacity-80 rounded-2xl p-6 my-6">
