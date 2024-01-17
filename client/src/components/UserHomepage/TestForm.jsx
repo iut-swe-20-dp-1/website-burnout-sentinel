@@ -22,6 +22,7 @@ const TestForm = ({
     end_frame,
     start_frame,
     setShowTestForm,
+    guest
 }) => {
     // const randomInt = Math.floor(Math.random() * 11)
     const [formData, setFormData] = useState({

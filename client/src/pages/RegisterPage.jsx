@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
 import {
+  incognitoButtonClass,
   inputFieldClass,
   labelClass,
   secondaryButtonClass,
@@ -9,6 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 import LottieAnimation from "../components/LottieAnimation";
 import RegisterAnimation from "../assets/RegisterAnimation.json";
 import FormMessage from "../components/FormMessage";
+import { GiHidden } from "react-icons/gi";
+import { BsIncognito } from "react-icons/bs";
 import axios from "axios";
 import { clientUrl, serverUrl } from "../utils/urls";
 
@@ -28,6 +31,10 @@ const RegisterPage = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  const turnOnGuestMode=()=>{
+    
+  }
 
   const handleSubmitDjango = (e) => {
     e.preventDefault();
@@ -341,7 +348,7 @@ const RegisterPage = () => {
                 button_type={"submit"}
               />
             </div>
-            <div className="mx-auto pb-1 text-center">
+            {/* <div className="mx-auto pb-1 text-center">
               <span className="text-sm text-[#300722]">or sign up with</span>
             </div>
             <div className="flex items-center w-full mt-2 mx-auto justify-center">
@@ -367,6 +374,23 @@ const RegisterPage = () => {
                     ></path>
                   </svg>
                   Google
+                </button>
+              </div>
+            </div>
+          </div> */}
+
+            <div className="mx-auto pb-1 text-center">
+              <span className="text-sm text-[#300722] uppercase">or try</span>
+            </div>
+            <div className="flex items-center w-full mt-2 mx-auto justify-center">
+              <div className="px-3 pt-4 border-t border-gray-400">
+                <button
+                  type="button"
+                  className={`${incognitoButtonClass}`}
+                  onClick={turnOnGuestMode}
+                >
+                  <BsIncognito className="text-[#300722] text-xl mr-2" />
+                  Guest Mode
                 </button>
               </div>
             </div>

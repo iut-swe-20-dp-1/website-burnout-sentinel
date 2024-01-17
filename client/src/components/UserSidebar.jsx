@@ -3,6 +3,7 @@ import { AiFillHome } from "react-icons/ai";
 import { userSidebarIconClass } from "../utils/styles";
 import { BsPersonCircle } from "react-icons/bs";
 import { HiInformationCircle } from "react-icons/hi";
+import { FaHandsHelping } from "react-icons/fa";
 import { IoExit } from "react-icons/io5";
 import { BiSolidTimeFive } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -53,6 +54,11 @@ const UserSidebar = () => {
       text: "Profile",
       icon: <BsPersonCircle className={`${userSidebarIconClass}`} />,
       link: "/profile",
+    },
+    {
+      text: "Suggestions",
+      icon: <FaHandsHelping className={`${userSidebarIconClass}`} />,
+      link: "/suggestions",
     },
     {
       text: "Learn More",
