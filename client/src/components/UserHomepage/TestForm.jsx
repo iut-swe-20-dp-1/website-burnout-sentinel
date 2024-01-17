@@ -122,7 +122,7 @@ const TestForm = ({
                     withCredentials: true,
                 };
                 const historyBody = {
-                    score: prediction/10,
+                    score: prediction,
                     classification: classification,
                     timestamp: currentDate, // Use colon here instead of equal sign
                 };
