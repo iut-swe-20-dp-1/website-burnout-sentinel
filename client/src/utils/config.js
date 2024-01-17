@@ -8,7 +8,7 @@ export const getAuthConfigHeader = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken1}`,
       },
-      withCredentials: true,
+      credentials: "include",
     };
   } else {
     return "";

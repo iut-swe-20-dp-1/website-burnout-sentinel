@@ -48,6 +48,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
         // };
 
         const authConfig = getAuthConfigHeader()
+        console.log("authconfig at update profile : ", authConfig)
 
         const response = await axios.get(
           `${serverUrl}/api/profile/get`,
