@@ -13,6 +13,9 @@ import FormMessage from "../components/FormMessage";
 import axios from "axios";
 import { serverUrl } from "../utils/urls";
 import { BsIncognito } from "react-icons/bs";
+import Cookies from "js-cookie";
+import { getAuthConfigHeader } from "../utils/config";
+
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -109,11 +112,18 @@ const LoginPage = () => {
       if (response.status == 200) {
         console.log("Login Sucessful.");
         console.log(response.data);
+        const accessToken = response.data.token;
+        console.log(accessToken);
+
+        // Set the cookie
+        document.cookie = `accessToken=${accessToken}; path=/;`;
         setWait("");
         setSuccess("Login was successful!");
+        setError("");
 
+        const authConfig = getAuthConfigHeader();
         //Testing to see if protected route can now be accessed
-        const res2 = await axios.get(`${serverUrl}/api/auth/protected`, { withCredentials: true })
+        const res2 = await axios.get(`${serverUrl}/api/auth/protected`, authConfig)
         console.log(res2.data);
         navigate("/home");
       } else {
@@ -122,6 +132,7 @@ const LoginPage = () => {
     } catch (error) {
       setWait("");
       setError("Error occured during login!");
+      setSuccess("")
       console.error(
         "Error:",
         error.response ? error.response.data : error.message

@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import axios from "axios";
 import { serverUrl } from "../utils/urls";
+import { getAuthConfigHeader } from "../utils/config";
 
 const UserSidebar = () => {
   const [userData, setUserData] = useState(null);
@@ -18,16 +19,18 @@ const UserSidebar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        };
+        // const config = {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   withCredentials: true,
+        // };
+        const authConfig = getAuthConfigHeader()
 
         const response = await axios.get(
           `${serverUrl}/api/profile/get`,
-          config
+          // config
+          authConfig
         );
         setUserData(response.data.user);
       } catch (error) {
@@ -73,9 +76,11 @@ const UserSidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleLogOut = async () => {
-    const res = await axios.get(`${serverUrl}/api/auth/logout`, {
-      withCredentials: true,
-    });
+    const authConfig = getAuthConfigHeader()
+    const res = await axios.get(`${serverUrl}/api/auth/logout`, 
+    // {withCredentials: true,}
+    authConfig
+    );
     console.log(res.data);
     if (res.status === 200) {
       console.log("Logout was status 200");
@@ -171,7 +176,7 @@ const UserSidebar = () => {
                 {showDropdown && (
                   <div className="absolute right-0 mt-2 bg-white border rounded-lg shadow-md overflow-hidden">
                     <div
-                      onClick={handleLogOut}
+                      onClick={()=>{navigate('/profile')}}
                       className="flex px-6 items-center cursor-pointer py-3 rounded-sm hover:bg-[#DFE9F7] text-[#300722] group"
                     >
                       <BsPersonCircle className={`${userSidebarIconClass}`} />

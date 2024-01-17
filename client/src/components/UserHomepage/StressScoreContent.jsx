@@ -6,6 +6,7 @@ import { suggestions } from "../../utils/content";
 import Button from "../Button";
 import axios from "axios";
 import { serverUrl } from "../../utils/urls";
+import { getAuthConfigHeader } from "../../utils/config";
 
 const StressScoreContent = ({ message, score, level, guest }) => {
   const [count, setCount] = useState(0);
@@ -33,12 +34,14 @@ const StressScoreContent = ({ message, score, level, guest }) => {
     // Implement the logic for sending feedback (e.g., API call, state update)
     console.log("Sending feedback:", { rating, review });
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    };
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   withCredentials: true,
+    // };
+
+    const authConfig = getAuthConfigHeader()
 
     const body = {
       rating,
@@ -48,7 +51,7 @@ const StressScoreContent = ({ message, score, level, guest }) => {
     const response = await axios.post(
       `${serverUrl}/api/feedback/send`,
       body,
-      config
+      authConfig
     );
 
     console.log(response.data);

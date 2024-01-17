@@ -14,6 +14,7 @@ import FormMessage from "../FormMessage";
 import Loading from "../Loading";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { getAuthConfigHeader } from "../../utils/config";
 
 const TestForm = ({
   form_title,
@@ -120,12 +121,14 @@ const TestForm = ({
 
         //make another api call to store the data
         if (guest !== true) {
-          const config = {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            withCredentials: true,
-          };
+          // const config = {
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //   },
+          //   withCredentials: true,
+          // };
+
+          const authConfig = getAuthConfigHeader()
           const historyBody = {
             score: prediction,
             classification: classification,
@@ -136,7 +139,7 @@ const TestForm = ({
           const historyResponse = await axios.post(
             `${serverUrl}/api/history/add`,
             historyBody, // Pass the body here
-            config
+            authConfig
           );
 
           console.log(historyResponse);

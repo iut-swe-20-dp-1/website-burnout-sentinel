@@ -5,7 +5,8 @@ const User = require("../models/User");
 exports.authMiddleware = async (req, res, next) => {
   let token;
 
-  // Check if the token is present in the "Authorization" header
+  // Check if the token is present in the "Authorization" header\
+  console.log(req)
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")

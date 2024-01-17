@@ -42,7 +42,7 @@ const SuggestionPage = () => {
     const fetchData = async () => {
       // setSuggestionData(dummyData);
       try {
-        const url = `${mlUrl}/get-suggestions`;
+        const url = `${mlUrl}/work`;
         const response = await fetch(url, {
           method: "GET",
         });
