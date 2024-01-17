@@ -115,27 +115,28 @@ const TestForm = ({
                 );
 
                 //make another api call to store the data
+                if (guest !== true) {
+                    const config = {
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        withCredentials: true,
+                    };
+                    const historyBody = {
+                        score: prediction,
+                        classification: classification,
+                        timestamp: currentDate, // Use colon here instead of equal sign
+                    };
+                    console.log(historyBody)
 
-                const config = {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    withCredentials: true,
-                };
-                const historyBody = {
-                    score: prediction,
-                    classification: classification,
-                    timestamp: currentDate, // Use colon here instead of equal sign
-                };
-                console.log(historyBody)
+                    const historyResponse = await axios.post(
+                        `${serverUrl}/api/history/add`,
+                        historyBody, // Pass the body here
+                        config
+                    );
 
-                const historyResponse = await axios.post(
-                    `${serverUrl}/api/history/add`,
-                    historyBody, // Pass the body here
-                    config
-                );
-
-                console.log(historyResponse);
+                    console.log(historyResponse);
+                }
             } else {
                 setWait(false);
                 setSuccess(false);
@@ -185,6 +186,7 @@ const TestForm = ({
                                                 message={"Based on your data, your score is"}
                                                 score={score}
                                                 level={stressLevel}
+                                                guest={guest}
                                             />
                                         ) : wait ? (
                                             <Loading
@@ -273,45 +275,7 @@ const TestForm = ({
                                                                 button_type={"submit"}
                                                             />
                                                         </div>
-                                                        {/* <div className="w-full md:w-full px-3">
-                                                                {file && (
-                                                                    <div className="w-full mx-auto py-2 text-center px-3 my-4 border-t-2 ">
-                                                                        <span className="text-lg text-[#7366FF] font-bold">
-                                                                            File Selected: {filename}
-                                                                        </span>
-                                                                    </div>
-                                                                )}
-
-
-                                                            </div> */}
-
-
-
-
-                                                        {/* <div className="w-full mx-auto py-2 text-center px-3 my-4 border-t-2 ">
-                                            <span className="text-lg text-[#7366FF] font bold">OR FILL UP THE FORM BELOW</span>
-                                        </div>
-                                        {baseDataInputFields.map((field) => (
-                                            <div className="w-full md:w-full px-3 mb-2" key={field.name}>
-                                                <label className={labelClass} htmlFor={field.name}>
-                                                    {field.label}
-                                                </label>
-                                                <input
-                                                    className={inputFieldClass}
-                                                    type={field.type}
-                                                    name={field.name}
-                                                    value={formData[field.name]}
-                                                    onChange={handleInputChange} />
-                                            </div>
-                                        ))} */}
-
-                                                        {/* <div className="w-full md:w-full px-3">
-                                            <Button
-                                                additional_classes={"my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"}
-                                                button_text={"Submit"}
-                                                button_type={"submit"}
-                                            />
-                                        </div> */}</div>
+                                                    </div>
                                                 </form>
                                             </>
                                         )}
@@ -330,17 +294,19 @@ const TestForm = ({
                                             </p>
                                         </div>
                                         <form onSubmit={goToTestForm}>
-                                            <div className="w-full flex items-center justify-between px-3 mb-3">
-                                                <label htmlFor="show_password" className="flex items-center w-full">
+                                            <div className="w-full flex items-center justify-between mb-3">
+                                                <label htmlFor="show_password" className="flex items-center w-full border border-1 border-gray-300 p-1 rounded-sm" onClick={(e) => e.target.control.click()}>
                                                     <input
                                                         type="checkbox"
-                                                        className="mr-1 bg-white shadow"
+                                                        id="show_password"
+                                                        className="h-4 w-4 bg-white shadow"
                                                         required
                                                     />
-                                                    <div className="text-md text-gray-700 pl-2">
+                                                    <div className="text-lg text-gray-700 pl-2">
                                                         I understand and wish to continue
                                                     </div>
                                                 </label>
+
                                             </div>
 
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LottieAnimation from "../components/LottieAnimation";
 import LoginAnimation from "../assets/LoginAnimation.json";
 import {
+  incognitoButtonClass,
   inputFieldClass,
   labelClass,
   secondaryButtonClass,
@@ -11,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import FormMessage from "../components/FormMessage";
 import axios from "axios";
 import { serverUrl } from "../utils/urls";
+import { BsIncognito } from "react-icons/bs";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -27,6 +29,10 @@ const LoginPage = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  const turnOnGuestMode = () => {
+
+  }
 
   const handleSubmitDjango = (e) => {
     e.preventDefault();
@@ -88,7 +94,7 @@ const LoginPage = () => {
         },
         withCredentials: true,
       };
-      
+
       const response = await axios.post(
         `${serverUrl}/api/auth/login`,
         loginData,
@@ -102,8 +108,8 @@ const LoginPage = () => {
         console.log(response.data);
 
         //Testing to see if protected route can now be accessed
-        const res2 = await axios.get(`${serverUrl}/api/auth/protected`,{ withCredentials: true })
-        console.log(res2.data); 
+        const res2 = await axios.get(`${serverUrl}/api/auth/protected`, { withCredentials: true })
+        console.log(res2.data);
 
 
         navigate("/home");
@@ -140,27 +146,27 @@ const LoginPage = () => {
   }
   const csrftoken = getCookie("csrftoken");
 
-    return (
-        <>
-            <div className='bg-[#FFA5A5] min-h-screen flex flex-col w-full h-full bg-cover bg-fixed bg-center'
-                style={{
-                    backgroundImage: "url(https://img.freepik.com/free-vector/flat-north-pole-winter-background_23-2149851540.jpg?w=740&t=st=1700407711~exp=1700408311~hmac=291927d45eda57e00f0e52cab905523b63bebeb4628d85ecc690b1946332ee91)",
-                }}
-            >
+  return (
+    <>
+      <div className='bg-[#FFA5A5] min-h-screen flex flex-col w-full h-full bg-cover bg-fixed bg-center'
+        style={{
+          backgroundImage: "url(https://img.freepik.com/free-vector/flat-north-pole-winter-background_23-2149851540.jpg?w=740&t=st=1700407711~exp=1700408311~hmac=291927d45eda57e00f0e52cab905523b63bebeb4628d85ecc690b1946332ee91)",
+        }}
+      >
 
-                <div className="flex justify-center my-2 mx-4 md:mx-0">
-                    <form className="w-full max-w-xl md:max-w-2xl bg-white/90 my-8 rounded-lg shadow-md px-12 py-6" onSubmit={handleSubmit}>
-                        <div className="text-center mb-8">
-                            <h2 className="text-5xl font-bold text-[#7366FF] tracking-tight">
-                                Login to your Account
-                            </h2>
-                        </div>
-                        <LottieAnimation lottie_animation_data={LoginAnimation} start_frame={53} style_classes={"w-3/6 mx-auto"} />
-                        <div className="flex flex-wrap -mx-3 mb-6">
-                            <div className="w-full md:w-full px-3 mb-6">
-                                <label className={`${labelClass}`} htmlFor='email'>Email</label>
-                                <input className={`${inputFieldClass}`} type='email' name="email" value={formData.email} onChange={handleInputChange} required />
-                            </div>
+        <div className="flex justify-center my-2 mx-4 md:mx-0">
+          <form className="w-full max-w-xl md:max-w-2xl bg-white/90 my-8 rounded-lg shadow-md px-12 py-6" onSubmit={handleSubmit}>
+            <div className="text-center mb-8">
+              <h2 className="text-5xl font-bold text-[#7366FF] tracking-tight">
+                Login to your Account
+              </h2>
+            </div>
+            <LottieAnimation lottie_animation_data={LoginAnimation} start_frame={53} style_classes={"w-3/6 mx-auto"} />
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-full px-3 mb-6">
+                <label className={`${labelClass}`} htmlFor='email'>Email</label>
+                <input className={`${inputFieldClass}`} type='email' name="email" value={formData.email} onChange={handleInputChange} required />
+              </div>
 
               <div className="w-full md:w-full px-3 mb-6">
                 <label className={`${labelClass}`} htmlFor="password">
@@ -191,13 +197,13 @@ const LoginPage = () => {
                 </label>
               </div>
 
-                            <div className="text-lg text-center px-3 mb-3 ">
-                                <Link to="/forgot-password" className="text-blue-500 hover:underline">Forgot Your Password?</Link>
-                            </div>
+              <div className="text-lg text-center px-3 mb-3 ">
+                <Link to="/forgot-password" className="text-blue-500 hover:underline">Forgot Your Password?</Link>
+              </div>
 
-                            {success && <FormMessage bg_class={"bg-green-300"} message={success} />}
-                            {error && !wait && <FormMessage bg_class={"bg-red-300"} message={error} />}
-                            {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
+              {success && <FormMessage bg_class={"bg-green-300"} message={success} />}
+              {error && !wait && <FormMessage bg_class={"bg-red-300"} message={error} />}
+              {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
 
               <div className="w-full md:w-full px-3">
                 <Button
@@ -208,7 +214,9 @@ const LoginPage = () => {
                   button_type={"submit"}
                 />
               </div>
-              <div className="mx-auto pb-1 text-center">
+
+
+              {/* <div className="mx-auto pb-1 text-center">
                 <span className="text-sm text-[#300722]">or login with</span>
               </div>
               <div className="flex items-center w-full mt-2 mx-auto justify-center">
@@ -230,6 +238,22 @@ const LoginPage = () => {
                       ></path>
                     </svg>
                     Google
+                  </button>
+                </div>
+              </div> */}
+
+              <div className="mx-auto pb-1 text-center">
+                <span className="text-sm text-[#300722] uppercase">or try</span>
+              </div>
+              <div className="flex items-center w-full mt-2 mx-auto justify-center">
+                <div className="px-3 pt-4 border-t border-gray-400">
+                  <button
+                    type="button"
+                    className={`${incognitoButtonClass}`}
+                    onClick={turnOnGuestMode}
+                  >
+                    <BsIncognito className="text-[#300722] text-xl mr-2" />
+                    Guest Mode
                   </button>
                 </div>
               </div>

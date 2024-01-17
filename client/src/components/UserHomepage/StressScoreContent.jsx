@@ -7,7 +7,7 @@ import Button from "../Button";
 import axios from "axios";
 import { serverUrl } from "../../utils/urls";
 
-const StressScoreContent = ({ message, score, level }) => {
+const StressScoreContent = ({ message, score, level, guest }) => {
   const [count, setCount] = useState(0);
   const [suggestion, setSuggestion] = useState("");
   const [rating, setRating] = useState(null);
@@ -106,7 +106,7 @@ const StressScoreContent = ({ message, score, level }) => {
 
       {/* Feedback and Review section */}
       <div className="bg-yellow-200 bg-opacity-80 rounded-2xl p-6 my-6">
-        {!showThankYou ? (
+        {(!showThankYou && guest!==true) ? (
           <>
             <div className="text-center mb-4">
               <h2 className="text-xl font-bold tracking-tight">
