@@ -30,7 +30,11 @@ router.get("/logout", logout);
 
 router.get("/protected", authMiddleware, (req, res) => {
   console.log("Private route accessed !");
-  res.json({ message: "This is a protected route", user: req.user });
+  res.status(200).json({
+    sucess: true,
+    message: "This is a protected route",
+    user: req.user,
+  });
 });
 
 router.get("/googlefailure", googleFailure);
