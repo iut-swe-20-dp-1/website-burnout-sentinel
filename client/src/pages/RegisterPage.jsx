@@ -72,6 +72,7 @@ const RegisterPage = () => {
           console.log("yes baby");
           setWait("");
           setSuccess("Registration was successful!");
+          setError("")
           navigate("/login");
         }
         return response.text();
@@ -85,6 +86,7 @@ const RegisterPage = () => {
       .catch((error) => {
         setWait("");
         setError("Error occured during registration!");
+        setSuccess("")
         console.error("Error while sending data to the server:", error);
         // Handle errors as needed
       });

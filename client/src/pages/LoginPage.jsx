@@ -111,6 +111,7 @@ const LoginPage = () => {
         console.log(response.data);
         setWait("");
         setSuccess("Login was successful!");
+        setError("");
 
         //Testing to see if protected route can now be accessed
         const res2 = await axios.get(`${serverUrl}/api/auth/protected`, { withCredentials: true })
@@ -122,6 +123,7 @@ const LoginPage = () => {
     } catch (error) {
       setWait("");
       setError("Error occured during login!");
+      setSuccess("")
       console.error(
         "Error:",
         error.response ? error.response.data : error.message
