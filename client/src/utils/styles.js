@@ -6,6 +6,8 @@ export const primaryButtonClass = "relative py-1.5 -top-1 -left-1 border-[#30072
 
 export const secondaryButtonClass= "text-[#7366FF] bg-[#FFDFDF] border-white border-2 hover:border-[#7366FF] font-bold rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
 
+export const incognitoButtonClass= "text-[#300722] bg-[#FFDFDF] border-[#300722] border-2 hover:border-[#7366FF] font-bold rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
+
 export const closeButtonClass = "text-red-500 bg-[#FFDFDF] border-white border-2 hover:border-[#7366FF] font-bold rounded-lg text-lg px-5 py-2 text-center inline-flex items-center"
 
 //form 

@@ -35,9 +35,9 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                 </h2>
             </div> */}
 
-<div className={`${dashboardCardClass} mb-10`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
+            <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
                 <div className={`bg-[#7366FF] ${dashboardCardBgClass}`}></div>
-                <div className="relative w-full h-full p-4 sm:px-6 lg:px-4 flex">
+                <div className="relative w-full h-full p-2 sm:px-6 lg:px-4 flex">
                     <div>
                         <h1 className="text-white text-3xl mt-2 font-bold flex items-center justify-between">
                             <span className="flex-grow">Download sample CSV file for entering your data</span>
@@ -71,11 +71,11 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                 </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 -mt-5">
-                <div className="col-span-2 md:col-span-2 ">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 lg:-mt-5 lg:mb-0 mb-6">
+                <div className="col-span-2 lg:col-span-2 ">
                     <LottieAnimation lottie_animation_data={ManThinkingAnimation} style_classes="w-4/6" />
                 </div>
-                <div className="col-span-2 md:col-span-1 my-auto w-full">
+                <div className="col-span-2 lg:col-span-1 my-auto w-full">
                     <div className="grid gap-4 mt-3">
                         <div className={`${dashboardCardClass}`} style={{ backgroundImage: `url(${dashboardCardBgUrl})` }}>
                             <div className={`bg-[#1bf7f3] ${dashboardCardBgClass}`}></div>
@@ -109,7 +109,7 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                 </div>
             </div>
 
-            
+
         </>
     );
 };

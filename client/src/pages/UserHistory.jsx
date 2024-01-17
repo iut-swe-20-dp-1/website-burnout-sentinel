@@ -70,7 +70,7 @@ const UserHistory = () => {
         const formattedHistory = userHistory.map((item) => ({
           date: item.timestamp,
           stressScore: item.score,
-          level: item.classification.toLowerCase(),
+          level: item.classification,
         }));
 
         // Set the formatted history to the state
@@ -131,8 +131,8 @@ const UserHistory = () => {
           <main>
 
             
-            <div className="pt-6 px-4"><div className="mb-8 bg-[#7366FF] p-2 rounded-lg">
-              <h2 className="text-4xl font-bold text-[#f4ffff] text-center tracking-tight">
+            <div className="pt-6 px-4"><div className="mb-8 p-2 rounded-lg">
+              <h2 className="text-5xl font-bold text-[#7366FF] text-center tracking-tight">
                 Track Your Stress History
               </h2>
             </div>
@@ -150,7 +150,7 @@ const UserHistory = () => {
                       <div className="w-full bg-white/90 mb-8 mx- rounded-lg shadow-md px-12 pt-6">
                         <div className="mb-8">
                           <h2 className="text-3xl font-bold text-[#7366FF] tracking-tight">
-                            Your Stress Timeline
+                            Track Your Stress
                           </h2>
                         </div>
                         <div className="flex flex-wrap -mx-3 mb-6">
@@ -206,7 +206,7 @@ const UserHistory = () => {
                                     : "bg-white border-b rounded-md"
                                 }
                               >
-                                <td className="text-lg text-[#300722] font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-lg text-[#300722] px-6 py-4 whitespace-nowrap">
                                   {new Date(entry.date).toLocaleDateString(
                                     "en-GB",
                                     {
@@ -216,7 +216,7 @@ const UserHistory = () => {
                                     }
                                   )}
                                 </td>
-                                <td className="text-lg text-[#300722] font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-lg text-[#300722] px-6 py-4 whitespace-nowrap">
                                   {new Date(entry.date).toLocaleTimeString(
                                     "en-US",
                                     {
@@ -226,10 +226,10 @@ const UserHistory = () => {
                                     }
                                   )}
                                 </td>
-                                <td className="text-lg text-[#300722] font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-lg text-[#300722] px-6 py-4 whitespace-nowrap">
                                   {entry.stressScore.toFixed(2)}
                                 </td>
-                                <td className="text-lg text-[#300722] font-light px-6 py-4 whitespace-nowrap">
+                                <td className="text-lg text-[#300722] px-6 py-4 whitespace-nowrap">
                                   {entry.level}
                                 </td>
                               </tr>
