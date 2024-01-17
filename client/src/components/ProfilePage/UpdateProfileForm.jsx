@@ -48,6 +48,7 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
         // };
 
         const authConfig = getAuthConfigHeader()
+        console.log("authconfig at update profile : ", authConfig)
 
         const response = await axios.get(
           `${serverUrl}/api/profile/get`,
@@ -85,15 +86,14 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
     }
 
     try {
+      const authConfig = getAuthConfigHeader()
       const response = await axios.post(
         `${serverUrl}/api/profile/update`,
         {
           ...formData,
           profileImage: url,
         },
-        {
-          withCredentials: true, // Include cookies in the request
-        }
+        authConfig
       );
 
       if (response.status === 200) {

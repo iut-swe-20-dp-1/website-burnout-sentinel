@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Button from "../Button";
 import FormMessage from "../FormMessage";
 import { serverUrl } from "../../utils/urls";
+import { getAuthConfigHeader } from "../../utils/config";
 
 const ChangePasswordForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +16,17 @@ const ChangePasswordForm = () => {
   const [success, setSuccess] = useState("");
   const [message, setMessage] = useState("");
   const [wait, setWait] = useState("");
+
+  const [formData, setFormData] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -31,17 +43,17 @@ const ChangePasswordForm = () => {
       return;
     }
 
+
+    
     try {
+      const authConfig = getAuthConfigHeader()
       const response = await fetch(
         `${serverUrl}/api/auth/resetpassword`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include", // Include cookies in the request
+          ...authConfig,  // Spread the properties from authConfig into the fetch options
           body: JSON.stringify({
-            currentPassword: formData.currPassword,
+            currentPassword: formData.currentPassword,
             newPassword: formData.newPassword,
           }),
         }
@@ -61,17 +73,6 @@ const ChangePasswordForm = () => {
       console.error("Error during password reset:", error);
       setMessage("Internal server error");
     }
-  };
-
-  const [formData, setFormData] = useState({
-    currentPassword: "",
-    newPassword: "",
-    confirmNewPassword: "",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
   return (
@@ -95,7 +96,7 @@ const ChangePasswordForm = () => {
                 className={`${inputFieldClass}`}
                 type={showPassword ? "text" : "password"}
                 name="currentPassword"
-                onChange={handleInputChange}
+                onChange={(e) => handleInputChange(e)}
                 value={formData.currentPassword}
                 required
               />
@@ -109,7 +110,7 @@ const ChangePasswordForm = () => {
                 className={`${inputFieldClass}`}
                 type={showPassword ? "text" : "password"}
                 name="newPassword"
-                onChange={handleInputChange}
+                onChange={(e) => handleInputChange(e)}
                 value={formData.newPassword}
                 required
               />
@@ -123,7 +124,7 @@ const ChangePasswordForm = () => {
                 className={`${inputFieldClass}`}
                 type={showPassword ? "text" : "password"}
                 name="confirmNewPassword"
-                onChange={handleInputChange}
+                onChange={(e) => handleInputChange(e)}
                 value={formData.confirmNewPassword}
                 required
               />

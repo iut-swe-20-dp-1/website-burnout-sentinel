@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import UserSidebar from "../components/UserSidebar";
 import axios from "axios";
 import { mlUrl } from "../utils/urls";
+import Loading from "../components/Loading";
 
 const SuggestionPage = () => {
+  const [loading, setLoading] = useState(true)
   const dummyData = [
     {
       position: 1,
@@ -51,9 +53,11 @@ const SuggestionPage = () => {
           const data = await response.json();
           console.log(data);
           setSuggestionData(data);
+          setLoading(false)
         }
       } catch (err) {
         console.log(err);
+        setLoading(false);
       }
     };
 
@@ -82,7 +86,7 @@ const SuggestionPage = () => {
                 assistance on the journey to a healthier, more balanced
                 lifestyle.
               </h1>
-              <div className="grid grid-cols-1 gap-8 mt-4 md:mt-8 md:grid-cols-2">
+              {loading? (<><Loading/></>) : (<div className="grid grid-cols-1 gap-8 mt-4 md:mt-8 md:grid-cols-2">
                 {suggestionData?.map((item) => (
                   <div
                     key={item.position}
@@ -106,7 +110,7 @@ const SuggestionPage = () => {
                     </div>
                   </div>
                 ))}
-              </div>
+              </div>)}
             </div>
           </div>
         </main>
