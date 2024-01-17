@@ -83,6 +83,7 @@ const UserSidebar = () => {
       // authConfig
     );
     console.log(res.data);
+    console.log("T T fixing logout...")
     document.cookie =
       "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
