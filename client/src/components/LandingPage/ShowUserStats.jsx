@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'; // Import axios if not already imported
 import { serverUrl } from "../../utils/urls";
+import LottieAnimation from '../LottieAnimation';
+import SatisfiedUser from "../../assets/SatisfiedUser.json"
 
 
 const SatisfiedUsersCard = () => {
@@ -35,24 +37,6 @@ const SatisfiedUsersCard = () => {
 
         // Animate the increase in usersSatisfied
         animateNumber(count);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       } catch (error) {
         console.log(error);
       }
@@ -60,8 +44,8 @@ const SatisfiedUsersCard = () => {
 
     const animateNumber = (targetNumber) => {
       let currentNumber = 0;
-      const animationDuration = 1000; // Adjust the duration as needed
-      const updateInterval = 10; // Update every 10 milliseconds
+      const animationDuration = 300; // Adjust the duration as needed
+      const updateInterval = 4; // Update every 10 milliseconds
 
       const updateNumber = () => {
         const increment = (targetNumber / animationDuration) * updateInterval;
@@ -80,12 +64,30 @@ const SatisfiedUsersCard = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-8 my-6">
-      <div className="text-4xl font-bold leading-none">{usersSatisfied}</div>
-      <div className="mt-4 text-xl font-light text-true-gray-500 antialiased text-right">
-        Users are satisfied with our service!
-      </div>
-    </div>
+
+    <>
+      <section id="user-satisfaction" className="mx-4 lg:mx-0 ">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <div className="text-center lg:text-left m-auto text-[#300722]">
+            <div className="lg:hidden flex items-center justify-center">
+              <LottieAnimation lottie_animation_data={SatisfiedUser} style_classes={'w-5/6'} />
+            </div>
+
+            <div className="text-4xl lg:text-6xl font-bold leading-none px-8">
+              {usersSatisfied} satisfied users and counting!
+            </div>
+            <div className="mt-4 lg:mt-6 text-lg lg:text-xl font-light text-true-gray-500 antialiased p-8">
+              We value the feedback provided by our users, and their experiences shape the continuous improvement of our services. Your opinions matter, and we strive to create an environment where every user feels heard and supported. Thank you for being a part of our journey towards excellence!
+            </div>
+
+          </div>
+          <div className="lg:flex relative w-full lg:w-auto mt-8 lg:mt-0  flex items-center justify-center">
+            <LottieAnimation lottie_animation_data={SatisfiedUser} style_classes={'w-5/6'} />
+          </div>
+        </div>
+      </section>
+
+    </>
   );
 };
 

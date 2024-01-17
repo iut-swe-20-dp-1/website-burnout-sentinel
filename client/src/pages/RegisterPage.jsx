@@ -32,8 +32,8 @@ const RegisterPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const turnOnGuestMode=()=>{
-    
+  const turnOnGuestMode = () => {
+    navigate('/guest-mode')
   }
 
   const handleSubmitDjango = (e) => {

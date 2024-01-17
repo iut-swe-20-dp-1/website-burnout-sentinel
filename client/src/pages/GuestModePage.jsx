@@ -3,15 +3,18 @@ import UserHomepageCards from '../components/UserHomepage/UserHomepageCards';
 import TakeTestAnimation from '../assets/TakeTestAnimation.json';
 import TestForm from '../components/UserHomepage/TestForm';
 import logo from "../assets/logo.png"
+import incognito from "../assets/incognito.png"
+import { useNavigate } from 'react-router-dom';
 
 const GuestModePage = () => {
     const [baseDataExists, setBaseDataExists] = useState(true);
     const [showAddBaseDataForm, setShowAddBaseDataForm] = useState(false);
     const [showUpdateBaseDataForm, setShowUpdateBaseDataForm] = useState(false);
     const [showTestForm, setShowTestForm] = useState(false);
+    const navigate = useNavigate()
 
     const exitGuestMode = () => {
-        //do magik juice here?
+        navigate('/')
     }
 
     return (
@@ -41,15 +44,15 @@ const GuestModePage = () => {
                                         <div className="px-1.5 font-semibold text-white">
                                             Exit Guest Mode
                                         </div>
-                                        <div
+                                        <img src={incognito}
                                             className="h-10 w-10 user cursor-pointer relative rounded-full my-1 ml-1"
-                                            style={{
-                                                backgroundImage: `url('https://i.pinimg.com/1200x/78/6f/75/786f7595ba1b9d812a24b0960e18563c.jpg')`,
-                                                backgroundSize: "cover",
-                                                backgroundPosition: "center",
-                                              }}
+                                            // style={{
+                                            //     backgroundImage: `url('https://liquipedia.net/commons/images/thumb/f/f0/Incognito_Logo_V3_Black_Border.png/600px-Incognito_Logo_V3_Black_Border.png')`,
+                                            //     backgroundSize: "cover",
+                                            //     backgroundPosition: "center",
+                                            //   }}
                                               onClick={exitGuestMode}
-                                        ></div>
+                                        />
                                     </button>
                                 </div>
                             </div>

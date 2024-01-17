@@ -19,6 +19,7 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [wait, setWait] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -31,7 +32,7 @@ const LoginPage = () => {
   };
 
   const turnOnGuestMode = () => {
-
+    navigate('/guest-mode')
   }
 
   const handleSubmitDjango = (e) => {
@@ -82,6 +83,8 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     // to Mern backend
     e.preventDefault();
+    setMessage("");
+    setWait("Please wait...");
 
     try {
       const loginData = {
@@ -106,17 +109,19 @@ const LoginPage = () => {
       if (response.status == 200) {
         console.log("Login Sucessful.");
         console.log(response.data);
+        setWait("");
+        setSuccess("Login was successful!");
 
         //Testing to see if protected route can now be accessed
         const res2 = await axios.get(`${serverUrl}/api/auth/protected`, { withCredentials: true })
         console.log(res2.data);
-
-
         navigate("/home");
       } else {
         console.log("Unsucessful Login");
       }
     } catch (error) {
+      setWait("");
+      setError("Error occured during login!");
       console.error(
         "Error:",
         error.response ? error.response.data : error.message
@@ -203,6 +208,9 @@ const LoginPage = () => {
 
               {success && <FormMessage bg_class={"bg-green-300"} message={success} />}
               {error && !wait && <FormMessage bg_class={"bg-red-300"} message={error} />}
+              {message && !success && (
+                <FormMessage bg_class={"bg-yellow-300"} message={message} />
+              )}
               {wait && <FormMessage bg_class={"bg-yellow-300"} message={wait} />}
 
               <div className="w-full md:w-full px-3">
