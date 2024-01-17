@@ -20,7 +20,7 @@ import Test from "./pages/Test";
 import SuggestionPage from "./pages/SuggestionPage";
 import GuestModePage from "./pages/GuestModePage";
 import Cookies from "js-cookie";
-import * as jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 function App() {
   return (
@@ -91,7 +91,7 @@ function PrivateRoute({ children }) {
 
     if (accessToken) {
       // Verify the token
-      const decodedToken = jwt_decode(accessToken);
+      const decodedToken = jwtDecode(accessToken);
 
       // Check if the token is expired
       const currentTime = Date.now() / 1000;
