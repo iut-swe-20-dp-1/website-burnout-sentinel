@@ -122,10 +122,11 @@ const TestForm = ({
                     withCredentials: true,
                 };
                 const historyBody = {
-                    score: prediction,
+                    score: prediction/10,
                     classification: classification,
                     timestamp: currentDate, // Use colon here instead of equal sign
                 };
+                console.log(historyBody)
 
                 const historyResponse = await axios.post(
                     `${serverUrl}/api/history/add`,
