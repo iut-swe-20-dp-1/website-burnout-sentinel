@@ -26,7 +26,7 @@ const UserSidebar = () => {
         };
 
         const response = await axios.get(
-            `${serverUrl}/api/profile/get`,
+          `${serverUrl}/api/profile/get`,
           config
         );
         setUserData(response.data.user);
@@ -87,6 +87,12 @@ const UserSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
   const username = userData?.username || "DefaultUsername";
   const profileImage =
     userData?.profileImage ||
@@ -141,17 +147,18 @@ const UserSidebar = () => {
                   Burnout Sentinel
                 </span>
               </a>
+              
+
             </div>
 
             <div className="flex items-center justify-end p-0">
-              <div className="inline relative">
+            <div className="inline relative">
                 <button
                   type="button"
                   className="inline-flex items-center relative px-2 border border-white rounded-full"
+                  onClick={toggleDropdown}
                 >
-                  <div className="px-1.5 font-semibold text-white">
-                    {username}
-                  </div>
+                  <div className="px-1.5 font-semibold text-white">{username}</div>
                   <div
                     className="h-10 w-10 user cursor-pointer relative rounded-full my-1 ml-1"
                     style={{
@@ -161,6 +168,29 @@ const UserSidebar = () => {
                     }}
                   ></div>
                 </button>
+                {showDropdown && (
+                  <div className="absolute right-0 mt-2 bg-white border rounded-lg shadow-md overflow-hidden">
+                    <div
+                      onClick={handleLogOut}
+                      className="flex px-6 items-center cursor-pointer py-3 rounded-sm hover:bg-[#DFE9F7] text-[#300722] group"
+                    >
+                      <BsPersonCircle className={`${userSidebarIconClass}`} />
+                      <span className="ml-3 text-xl text-[#300722]">
+                        Profile
+                      </span>
+                    </div>
+                    <hr/>
+                    <div
+                      onClick={handleLogOut}
+                      className="flex px-6 items-center cursor-pointer py-3 rounded-sm hover:bg-[#DFE9F7] text-[#300722] group"
+                    >
+                      <IoExit className={`${userSidebarIconClass}`} />
+                      <span className="ml-3 text-xl text-[#300722]">
+                        Logout
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -169,9 +199,8 @@ const UserSidebar = () => {
       <div className="flex overflow-hidden bg-white/40 pt-16">
         <aside
           id="sidebar"
-          className={`fixed z-20 h-full bg-white/60  top-0 left-0 pt-16 lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75 ${
-            isSidebarOpen ? "flex" : "hidden -w-64"
-          }`}
+          className={`fixed z-20 h-full bg-white/60  top-0 left-0 pt-16 lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75 ${isSidebarOpen ? "flex" : "hidden -w-64"
+            }`}
           aria-label="Sidebar"
         >
           <div className="relative flex-1 flex flex-col min-h-0 border-r border-gray-200  pt-5">
@@ -181,11 +210,10 @@ const UserSidebar = () => {
                   {links.map((link, index) => (
                     <li
                       key={index}
-                      className={`${
-                        currentPath === link.link
-                          ? "bg-[#aafffe] rounded-lg"
-                          : ""
-                      }`}
+                      className={`${currentPath === link.link
+                        ? "bg-[#aafffe] rounded-lg"
+                        : ""
+                        }`}
                     >
                       <a
                         href={link.link}

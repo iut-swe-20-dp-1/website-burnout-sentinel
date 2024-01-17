@@ -139,7 +139,7 @@ const UserHistory = () => {
               <div className="flex items-center justify-center">
                 <LottieAnimation
                   lottie_animation_data={HistoryAnimation}
-                  style_classes="w-2/6"
+                  style_classes="w-2/6 -mt-12 lg:-mt-16"
                 />
               </div>
 
