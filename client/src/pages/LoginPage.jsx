@@ -109,6 +109,11 @@ const LoginPage = () => {
       if (response.status == 200) {
         console.log("Login Sucessful.");
         console.log(response.data);
+        const accessToken = response.data.token;
+        console.log(accessToken);
+
+        // Set the cookie
+        document.cookie = `accessToken=${accessToken}; path=/;`;
         setWait("");
         setSuccess("Login was successful!");
         setError("");
