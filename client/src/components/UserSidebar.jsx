@@ -79,10 +79,13 @@ const UserSidebar = () => {
     const authConfig = getAuthConfigHeader();
     const res = await axios.get(
       `${serverUrl}/api/auth/logout`,
-      {withCredentials: true,}
+      { withCredentials: true }
       // authConfig
     );
     console.log(res.data);
+    document.cookie =
+      "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
     if (res.status === 200) {
       console.log("Logout was status 200");
       navigate("/");
