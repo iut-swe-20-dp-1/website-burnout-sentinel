@@ -98,70 +98,74 @@ const StressScoreContent = ({ message, score, level, guest }) => {
         </h2>
       </div>
 
-      {suggestion && (<div className="text-center mb-4">
-        <h2 className="text-2xl font-bold tracking-tight">
-          {suggestion?.suggestion}
-        </h2>
-      </div>)}
+      {suggestion && (
+        <div className="text-center mb-4">
+          <h2 className="text-2xl font-bold tracking-tight">
+            {suggestion?.suggestion}
+          </h2>
+        </div>
+      )}
 
       {/* Feedback and Review section */}
-      <div className="bg-yellow-200 bg-opacity-80 rounded-2xl p-6 my-6">
-        {(!showThankYou && guest!==true) ? (
-          <>
-            <div className="text-center mb-4">
-              <h2 className="text-xl font-bold tracking-tight">
-                How satisfied are you with your score?
-              </h2>
-              <div className="flex justify-center items-center space-x-4 mt-2">
-                {emojis.map((emojiObj) => (
-                  <span
-                    key={emojiObj.value}
-                    role="button"
-                    onClick={() => setRating(emojiObj.value)}
-                    style={{
-                      fontSize: rating === emojiObj.value ? "32px" : "24px",
-                      cursor: "pointer",
-                      transition: "font-size 0.3s ease", // Add a smooth transition effect
-                    }}
-                  >
-                    {emojiObj.emoji}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Review section */}
-            {rating !== null && (
+      {guest !== true && (
+        <div className="bg-yellow-200 bg-opacity-80 rounded-2xl p-6 my-6">
+          {!showThankYou && guest !== true ? (
+            <>
               <div className="text-center mb-4">
                 <h2 className="text-xl font-bold tracking-tight">
-                  Care to leave a review?
+                  How satisfied are you with your score?
                 </h2>
-                <textarea
-                  value={review}
-                  onChange={(e) => setReview(e.target.value)}
-                  placeholder="Write your review here..."
-                  className="appearance-none p-2 mt-2 w-full rounded-md leading-tight border border-gray-400 focus:border-[#7366FF]"
-                />
-                <div className="w-full md:w-full px-3">
-                  <Button
-                    additional_classes={
-                      "my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"
-                    }
-                    button_text={"Submit"}
-                    button_function={handleSendFeedback}
-                  />
+                <div className="flex justify-center items-center space-x-4 mt-2">
+                  {emojis.map((emojiObj) => (
+                    <span
+                      key={emojiObj.value}
+                      role="button"
+                      onClick={() => setRating(emojiObj.value)}
+                      style={{
+                        fontSize: rating === emojiObj.value ? "32px" : "24px",
+                        cursor: "pointer",
+                        transition: "font-size 0.3s ease", // Add a smooth transition effect
+                      }}
+                    >
+                      {emojiObj.emoji}
+                    </span>
+                  ))}
                 </div>
               </div>
-            )}
-          </>
-        ) : (
-          <div className="text-center mb-4">
-            <h2 className="text-xl font-bold tracking-tight">
-              Thank you for your valuable feedback!
-            </h2>
-          </div>
-        )}
-      </div>
+
+              {/* Review section */}
+              {rating !== null && (
+                <div className="text-center mb-4">
+                  <h2 className="text-xl font-bold tracking-tight">
+                    Care to leave a review?
+                  </h2>
+                  <textarea
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    placeholder="Write your review here..."
+                    className="appearance-none p-2 mt-2 w-full rounded-md leading-tight border border-gray-400 focus:border-[#7366FF]"
+                  />
+                  <div className="w-full md:w-full px-3">
+                    <Button
+                      additional_classes={
+                        "my-2 lg:px-10 md:px-6 px-6 py-3 text-white bg-[#7366FF] text-2xl font-bold"
+                      }
+                      button_text={"Submit"}
+                      button_function={handleSendFeedback}
+                    />
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="text-center mb-4">
+              <h2 className="text-xl font-bold tracking-tight">
+                Thank you for your valuable feedback!
+              </h2>
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 };
