@@ -14,6 +14,7 @@ import axios from "axios";
 import { serverUrl } from "../utils/urls";
 import { BsIncognito } from "react-icons/bs";
 import Cookies from "js-cookie";
+import { getAuthConfigHeader } from "../utils/config";
 
 
 const LoginPage = () => {
@@ -120,15 +121,9 @@ const LoginPage = () => {
         setSuccess("Login was successful!");
         setError("");
 
-        const accessToken1 = Cookies.get("accessToken");
+        const authConfig = getAuthConfigHeader();
         //Testing to see if protected route can now be accessed
-        const res2 = await axios.get(`${serverUrl}/api/auth/protected`, {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${accessToken1}`,
-          },
-          withCredentials: true,
-        })
+        const res2 = await axios.get(`${serverUrl}/api/auth/protected`, authConfig)
         console.log(res2.data);
         navigate("/home");
       } else {
