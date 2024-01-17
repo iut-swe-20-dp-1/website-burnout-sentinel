@@ -12,6 +12,7 @@ import {
 } from "chart.js";
 import axios from "axios";
 import { serverUrl } from "../utils/urls";
+import { getAuthConfigHeader } from "../utils/config";
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement);
 
@@ -50,16 +51,17 @@ const UserHistory = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        };
+        // const config = {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   withCredentials: true,
+        // };
 
+        const authConfig = getAuthConfigHeader()
         const historyResponse = await axios.get(
           `${serverUrl}/api/history/get`,
-          config
+          authConfig
         );
 
         const userHistory = historyResponse.data.userHistory;

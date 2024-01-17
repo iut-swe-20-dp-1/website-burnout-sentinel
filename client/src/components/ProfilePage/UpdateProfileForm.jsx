@@ -10,6 +10,7 @@ import FormMessage from "../FormMessage";
 import upload from "../../utils/upload";
 import axios from "axios";
 import { serverUrl } from "../../utils/urls";
+import { getAuthConfigHeader } from "../../utils/config";
 
 const UpdateProfileForm = ({ reloadSidebar }) => {
   const [error, setError] = useState("");
@@ -39,16 +40,18 @@ const UpdateProfileForm = ({ reloadSidebar }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const config = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        };
+        // const config = {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   withCredentials: true,
+        // };
+
+        const authConfig = getAuthConfigHeader()
 
         const response = await axios.get(
           `${serverUrl}/api/profile/get`,
-          config
+          authConfig
         );
         const userData = response.data.user;
         setFormData({
