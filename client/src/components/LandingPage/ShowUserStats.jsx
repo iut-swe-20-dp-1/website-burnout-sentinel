@@ -66,7 +66,7 @@ const SatisfiedUsersCard = () => {
   return (
 
     <>
-      <section id="user-satisfaction" className="mx-4 lg:mx-0 ">
+      <div className="mx-4 lg:mx-0 ">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="text-center lg:text-left m-auto text-[#300722]">
             <div className="lg:hidden flex items-center justify-center">
@@ -85,7 +85,7 @@ const SatisfiedUsersCard = () => {
             <LottieAnimation lottie_animation_data={SatisfiedUser} style_classes={'w-5/6'} />
           </div>
         </div>
-      </section>
+      </div>
 
     </>
   );
