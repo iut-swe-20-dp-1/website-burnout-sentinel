@@ -63,7 +63,7 @@ const UserHomepageCards = ({ setShowAddBaseDataForm, setShowUpdateBaseDataForm, 
                         <Link to={`${sampleCsvUrl}`}>
                             <Button
                                 additional_classes="my-4 lg:px-5 md:px-2 px-2 py-1 text-white bg-[#300722] text-2xl font-bold before:border-[#300722]"
-                                button_text={"Download CSV"}
+                                button_text={"Download Sample CSV"}
                                 flex_start="true"
                             />
                         </Link>

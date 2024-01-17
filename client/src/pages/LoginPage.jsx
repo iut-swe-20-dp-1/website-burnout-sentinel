@@ -13,6 +13,8 @@ import FormMessage from "../components/FormMessage";
 import axios from "axios";
 import { serverUrl } from "../utils/urls";
 import { BsIncognito } from "react-icons/bs";
+import Cookies from "js-cookie";
+
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -118,8 +120,15 @@ const LoginPage = () => {
         setSuccess("Login was successful!");
         setError("");
 
+        const accessToken1 = Cookies.get("accessToken");
         //Testing to see if protected route can now be accessed
-        const res2 = await axios.get(`${serverUrl}/api/auth/protected`, { withCredentials: true })
+        const res2 = await axios.get(`${serverUrl}/api/auth/protected`, {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${accessToken1}`,
+          },
+          withCredentials: true,
+        })
         console.log(res2.data);
         navigate("/home");
       } else {
