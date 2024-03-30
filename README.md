@@ -192,11 +192,11 @@ This project is licensed under the [MIT License](LICENSE).
 <!-- CONTACT -->
 ## Contact
 
-Shanta Maria - [github-profile](https://github.com/maria-iut1234)
+Shanta Maria - [maria-iut1234](https://github.com/maria-iut1234)
 
-Nafisa Maliyat - [github-profile](https://github.com/NafisaMaliyat-iut)
+Nafisa Maliyat - [NafisaMaliyat-iut](https://github.com/NafisaMaliyat-iut)
 
-Ayesha Afroza Mohsin - [github-profile](https://github.com/AyeshaMohsin)
+Ayesha Afroza Mohsin - [AyeshaMohsin](https://github.com/AyeshaMohsin)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
